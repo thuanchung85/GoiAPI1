@@ -15,7 +15,13 @@ public struct GoiAPI1 {
     public func hamChayThu(){
         let i = 1
         let x = 2
-        print("Hello toi tu trong package ne", (i + x))
+        print("Hello toi tu trong package ne ", (i + x))
+    }
+    
+    public func hamChayThu2(){
+        let i = 3
+        let x = 4
+        print("Hello toi tu trong package ne 2 ", (i + x))
     }
     
     public func thuChayFor(n:Int){
