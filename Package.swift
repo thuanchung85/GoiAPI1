@@ -21,8 +21,6 @@ let package = Package(
         .target(
             name: "GoiAPI1",
             dependencies: []),
-        .testTarget(
-            name: "GoiAPI1Tests",
-            dependencies: ["GoiAPI1"]),
+        
     ]
 )
