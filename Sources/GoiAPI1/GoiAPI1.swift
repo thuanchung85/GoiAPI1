@@ -1,39 +1,25 @@
-public enum TrangThai:String
-{
-    case mot = "1"
-    case hai = "2"
-    case ba = "3"
-}
+import Foundation
+import web3swift
+import Web3Core
+
+
 
 
 public struct GoiAPI1 {
-    public private(set) var text = "Hello, World!"
+    public private(set) var text = "Hello, This is GoiAPI1!"
 
     public init() {
     }
     
-    public func hamChayThu(){
-        let i = 1
-        let x = 2
-        print("Hello toi tu trong package ne ", (i + x))
+    public func hamChayThu_tao_keystore(){
+        do {
+         let keystore = try EthereumKeystoreV3.init(password: "12345")
+            print("hamChayThu_tao_keystore: ", keystore as Any)
+         } catch {
+         print(error.localizedDescription)
+         }
+       
     }
     
-    public func hamChayThu2(){
-        let i = 3
-        let x = 4
-        print("Hello toi tu trong package ne 2 ", (i + x))
-    }
     
-    public func thuChayFor(n:Int){
-        let languages = ["Swift", "Java", "Go", "JavaScript"]
-
-        for language in languages {
-              print(language)
-        }
-        
-        // iterate from i = 1 to i = 3
-        for i in 1...n {
-            print(i)
-        }
-    }
 }
