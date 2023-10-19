@@ -55,5 +55,18 @@ public struct GoiAPI1 {
         return ["no data"]
     }
     
-    
+    //==hàm chạy lấy transactions của một địa chỉ EthereumAddress===//
+    public func hamChayThu_get_TransactionEthereumAddress(address:String) async -> [String]{
+        do {
+            let InfuraMainnetWeb3 = try await Web3.InfuraMainnetWeb3(accessToken: "b9ce386fa2b3415eb3df790155d24675")
+            
+            let contract =  InfuraMainnetWeb3.contract(Web3Utils.erc20ABI, at: EthereumAddress(address)!, abiVersion: 2)
+           
+            return [contract?.transaction.description ?? "no data"]
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+        return ["no data"]
+    }
 }//end struct
