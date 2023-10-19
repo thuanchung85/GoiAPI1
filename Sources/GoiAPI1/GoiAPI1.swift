@@ -60,10 +60,14 @@ public struct GoiAPI1 {
         do {
             let InfuraMainnetWeb3 = try await Web3.InfuraMainnetWeb3(accessToken: "b9ce386fa2b3415eb3df790155d24675")
             
-            let transactionCount =  try await InfuraMainnetWeb3.eth.getTransactionCount(for: EthereumAddress(address)!)
-            print("contract.transaction: " , transactionCount)
-            
-            return [String(transactionCount) ]
+            let transactionCount_pending =  try await InfuraMainnetWeb3.eth.getTransactionCount(for: EthereumAddress(address)!,onBlock: .pending)
+            let transactionCount_earliest =  try await InfuraMainnetWeb3.eth.getTransactionCount(for: EthereumAddress(address)!,onBlock: .earliest)
+            let transactionCount_latest =  try await InfuraMainnetWeb3.eth.getTransactionCount(for: EthereumAddress(address)!,onBlock: .latest)
+           
+            print("contract.transactionCount_pending: " , transactionCount_pending)
+            print("contract.transactionCount_earliest: " , transactionCount_earliest)
+            print("contract.transactionCount_latest: " , transactionCount_latest)
+            return [" "]
         }
         catch {
             print(error.localizedDescription)
