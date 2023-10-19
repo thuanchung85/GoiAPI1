@@ -60,9 +60,11 @@ public struct GoiAPI1 {
         do {
             let InfuraMainnetWeb3 = try await Web3.InfuraMainnetWeb3(accessToken: "b9ce386fa2b3415eb3df790155d24675")
             
-            let contract =  InfuraMainnetWeb3.contract(Web3Utils.erc20ABI, at: EthereumAddress(address)!, abiVersion: 2)
+            let contract =  InfuraMainnetWeb3.contract(Web3Utils.erc20ABI, at: EthereumAddress(address)!, abiVersion: 2)?.transaction.hash.map({ item in
+                item.toHexString()
+            })
             print("contract: " ,contract as Any)
-            return [contract?.transaction.description ?? "no data"]
+            return [contract!]
         }
         catch {
             print(error.localizedDescription)
