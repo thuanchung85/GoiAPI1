@@ -44,7 +44,7 @@ public struct GoiAPI1 {
             
             let InfuraMainnetWeb3 = try await Web3.InfuraMainnetWeb3(accessToken: "b9ce386fa2b3415eb3df790155d24675")
             print("InfuraMainnetWeb3: ", InfuraMainnetWeb3)
-            let balanceETH = try await InfuraMainnetWeb3.eth.getBalance(for: EthereumAddress("0xb794f5ea0ba39494ce839613fffba74279579268")!)
+            let balanceETH = try await InfuraMainnetWeb3.eth.getBalance(for: EthereumAddress(address)!)
                 print("balanceETH: ", balanceETH)
             
             return [String(balanceETH)]
