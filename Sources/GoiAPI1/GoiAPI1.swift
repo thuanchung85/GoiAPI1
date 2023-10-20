@@ -23,27 +23,28 @@ public class GoiAPI1: ObservableObject {
     }
     
     //===hàm chạy khởi tạo account..... trên iPhone===//
-    func createAccount(accountName: String, password:String)  -> Web3Wallet?  {
+    public func createAccount(accountName: String, password:String)  -> [String]  {
         do {
             guard let mnemonicsString = try BIP39.generateMnemonics(bitsOfEntropy: 256)
-            else {return nil}
+            else {return ["no data: mnemonicsString error"]}
             
             guard let keystore = try BIP32Keystore(mnemonics: mnemonicsString, password: password, mnemonicsPassword: "", language: .english)
-            else {return nil}
+            else {return ["no data: keystore error"]}
             
             guard let address = keystore.addresses?.first?.address
-            else {return nil}
+            else {return ["no data: address error"]}
             
             let keyData = try JSONEncoder().encode(keystore.keystoreParams)
+            print("keyData : ", keyData)
             let mnemonics = mnemonicsString.split(separator: " ").map(String.init)
-            
+            print("mnemonics : ", mnemonics)
            
             let wallet = Web3Wallet(address: address, data: keyData, name: accountName, type: .hd(mnemonics: mnemonics))
             print("wallet: -> " , wallet)
-            return wallet
+            return [wallet.address,wallet.name]
         } catch {
             print(error.localizedDescription)
-            return nil
+            return [error.localizedDescription]
         }
     }
     
