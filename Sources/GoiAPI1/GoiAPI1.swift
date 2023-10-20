@@ -77,7 +77,7 @@ public class GoiAPI1: ObservableObject {
     
     
     //==hàm export account PrivateKey của dạng BIP32==//
-    public func exportPrivatekeyAccount_BIP32AccountType(walletData: Data, password:String)  -> [String]
+    public func exportPrivatekey_HDWALLET_BIP32(walletData: Data, password:String)  -> [String]
     {
         let keystore = BIP32Keystore(walletData)
         print("BIP32Keystore: " , keystore as Any)
