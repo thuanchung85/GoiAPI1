@@ -49,7 +49,29 @@ public class GoiAPI1: ObservableObject {
         }
     }
     
-    
+    //===hàm import account===//
+    public func importAccount(by privateKey: String, name: String, password:String)  -> [String] {
+        let formattedKey = privateKey.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        guard let dataKey = Data.fromHex(formattedKey)
+        else { return ["error cannot get dataKey or EthereumKeystoreV3 by this privateKey"] }
+        do{
+            guard let keystore = try EthereumKeystoreV3(privateKey: dataKey, password: password)
+            else{   return ["error cannot get dataKey or EthereumKeystoreV3 by this privateKey"]}
+            
+            guard let address = keystore.addresses?.first?.address
+            else { return ["error cannot address by this privateKey"] }
+            
+            let keyData = try JSONEncoder().encode(keystore.keystoreParams)
+            print("keyData get back by PrivateKey: ", keyData)
+            let s = String(data: keyData, encoding: . utf8)!
+            return [address, s]
+        }
+        catch{
+            return ["error cannot get dataKey or EthereumKeystoreV3 by this privateKey"]
+        }
+        
+    }
     
     //==hàm chạy lấy số dư của một địa chỉ EthereumAddress===//
     public func hamChayThu_get_BalanceEthereumAddress(address:String) async -> [String]{
