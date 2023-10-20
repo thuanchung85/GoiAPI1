@@ -53,7 +53,7 @@ public class GoiAPI1: ObservableObject {
     public func recover_HDWallet_BIP32_with12Words(with12Words: String, newName:String ,password:String? = "")  -> [Data?]  {
         do {
              let mnemonicsString = with12Words
-            print("mnemonicsString : ", mnemonicsString)
+            print("mnemonicsString FOR RECOVERY WALLET: ", mnemonicsString)
             guard let keystore = try BIP32Keystore(mnemonics: mnemonicsString, password: password!, mnemonicsPassword: "", language: .english)
             else {return [nil]}
             
@@ -66,7 +66,7 @@ public class GoiAPI1: ObservableObject {
             print("mnemonics array: ", mnemonics)
            
             let wallet = Web3Wallet(address: address, data: keyData, name: newName, type: .hd(mnemonics: mnemonics))
-            print("wallet: -> " , wallet.data)
+            print("wallet data RECOVERY: -> " , wallet.data)
             let d = wallet.data
             return [d]
         } catch {
