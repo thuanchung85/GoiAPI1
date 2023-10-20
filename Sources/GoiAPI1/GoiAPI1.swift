@@ -23,7 +23,7 @@ public class GoiAPI1: ObservableObject {
     }
     
     //===hàm chạy khởi tạo account BIP32Keystore..... trên iPhone===//
-    public func createAccount(accountName: String, password:String)  -> [Data?]  {
+    public func createAccountBIP32_with12Words(accountName: String, password:String)  -> [Data?]  {
         do {
             guard let mnemonicsString = try BIP39.generateMnemonics(bitsOfEntropy: 256)
             else {return [nil]}
@@ -49,17 +49,17 @@ public class GoiAPI1: ObservableObject {
         }
     }
     
-    //==hàm export account dạng PrivateKey==//
-    public func exportAccount_BIP32Key(walletData: Data, walletAdress:String, password:String)  -> [String]
+    //==hàm export account PrivateKey của dạng BIP32==//
+    public func exportPrivatekeyAccount_BIP32AccountType(walletData: Data, password:String)  -> [String]
     {
         let keystore = BIP32Keystore(walletData)
-        print(keystore as Any)
+        print("BIP32Keystore: " , keystore as Any)
         let address = keystore?.addresses?.first
         let km = KeystoreManager([keystore!])
-        guard let ethereumAddress = address
-        else { return ["error exportAccount_PrivateKeyType : ethereumAddress not ok"] }
+        
         do{
-            let key = try km.UNSAFE_getPrivateKeyData(password: password, account: ethereumAddress).toHexString()
+            let key = try km.UNSAFE_getPrivateKeyData(password: password, account: address!).toHexString()
+            print("THIS IS YOUR PRIVATE KEY")
             return [key]
         }
         catch{
