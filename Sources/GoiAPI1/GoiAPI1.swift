@@ -23,16 +23,16 @@ public class GoiAPI1: ObservableObject {
     }
     
     //===hàm chạy khởi tạo account..... trên iPhone===//
-    public func createAccount(accountName: String, password:String)  -> [String]  {
+    public func createAccount(accountName: String, password:String)  -> [Data?]  {
         do {
             guard let mnemonicsString = try BIP39.generateMnemonics(bitsOfEntropy: 256)
-            else {return ["no data: mnemonicsString error"]}
+            else {return [nil]}
             
             guard let keystore = try BIP32Keystore(mnemonics: mnemonicsString, password: password, mnemonicsPassword: "", language: .english)
-            else {return ["no data: keystore error"]}
+            else {return [nil]}
             
             guard let address = keystore.addresses?.first?.address
-            else {return ["no data: address error"]}
+            else {return [nil]}
             
             let keyData = try JSONEncoder().encode(keystore.keystoreParams)
             print("keyData : ", keyData)
@@ -41,12 +41,41 @@ public class GoiAPI1: ObservableObject {
            
             let wallet = Web3Wallet(address: address, data: keyData, name: accountName, type: .hd(mnemonics: mnemonics))
             print("wallet: -> " , wallet)
-            let s = String(data: wallet.data, encoding: . utf8)!
-            return [wallet.address,wallet.name, s] + mnemonics
+            let d = wallet.data
+            return [d]
         } catch {
             print(error.localizedDescription)
-            return [error.localizedDescription]
+            return [nil]
         }
+    }
+    
+    //==hàm export account dạng PrivateKey==//
+    private func fetchKeyStoreManager_PrivateKeyType(walletData: Data) -> KeystoreManager? {
+        if let keystore = EthereumKeystoreV3(walletData) {
+            return KeystoreManager([keystore])
+        }
+        else {
+            print("error -> fetchKeyStoreManager_PrivateKeyType")
+            return nil
+        }
+    }
+    
+    
+    public func exportAccount_PrivateKeyType(walletData: Data, walletAdress:String, password:String)  -> [String]
+    {
+        guard let keyStoreManager =  fetchKeyStoreManager_PrivateKeyType(walletData: walletData)
+        else {return ["error exportAccount_PrivateKeyType : keyStoreManager not ok"]}
+        
+        guard let ethereumAddress = EthereumAddress(walletAdress)
+        else { return ["error exportAccount_PrivateKeyType : ethereumAddress not ok"] }
+        do{
+            let key = try keyStoreManager.UNSAFE_getPrivateKeyData(password: password, account: ethereumAddress).toHexString()
+            return [key]
+        }
+        catch{
+            return ["error exportAccount_PrivateKeyType : keyStoreManager.UNSAFE_getPrivateKeyData not ok"]
+        }
+       
     }
     
     //===hàm import account===//
