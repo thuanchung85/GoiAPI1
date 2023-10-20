@@ -18,27 +18,25 @@ public class GoiAPI1: ObservableObject {
     
     //===hàm chạy khởi tạo connect blockchain băng infura provider..... trên iPhone===//
     public func connect_blockchain_infura() async {
-        do{
-            InfuraMainnetWeb3 = try await Web3.InfuraMainnetWeb3(accessToken: "b9ce386fa2b3415eb3df790155d24675")
-            keystoremanager =  KeystoreManager.managerForPath(userDirPath, scanForHDwallets: true, suffix: "json")
-            print("CONNECTED -> INFURA")
-        } catch {
-        print(error.localizedDescription)
-        }
        
     }
     //===hàm chạy khởi tạo 12 từ Mnemonic Phrase trên iPhone===//
     public func hamChayThu_tao_12Words(passwordString:String) async -> [String]{
         do {
-            let mnemonic = try BIP39.generateMnemonics(bitsOfEntropy: 256)!
+            InfuraMainnetWeb3 = try await Web3.InfuraMainnetWeb3(accessToken: "b9ce386fa2b3415eb3df790155d24675")
+            keystoremanager =  KeystoreManager.managerForPath(userDirPath, scanForHDwallets: true, suffix: "json")
+            print("CONNECTED -> INFURA")
+            
+            //let mnemonic = try BIP39.generateMnemonics(bitsOfEntropy: 256)!
             
             //let keystore = try BIP32Keystore(mnemonics: mnemonic,password: passwordString,mnemonicsPassword: passwordString)
             
             InfuraMainnetWeb3!.addKeystoreManager(keystoremanager)
             self.bip32keystore = self.keystoremanager?.bip32keystores[0]
+            print("bip32keystore: ", bip32keystore)
             let address = self.bip32keystore?.addresses?.first?.address
             
-            return [mnemonic,address ?? "no data"]
+            return [address ?? "no data"]
          } catch {
          print(error.localizedDescription)
          }
