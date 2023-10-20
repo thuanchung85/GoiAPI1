@@ -54,7 +54,7 @@ public class GoiAPI1: ObservableObject {
     
     public func exportAccount_PrivateKeyType(walletData: Data, walletAdress:String, password:String)  -> [String]
     {
-        let keystore = EthereumKeystoreV3(walletData)
+        let keystore = BIP32Keystore(walletData)
         print(keystore as Any)
        
         let km = KeystoreManager([keystore!])
