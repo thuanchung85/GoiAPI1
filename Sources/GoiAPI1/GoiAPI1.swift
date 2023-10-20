@@ -5,9 +5,9 @@ import Web3Core
 
 
 public class GoiAPI1:ObservableObject {
-    var bip32keystore:BIP32Keystore?
-    var keystoremanager:KeystoreManager?
-    var InfuraMainnetWeb3: Web3?
+    @Published var bip32keystore:BIP32Keystore?
+    @Published var keystoremanager:KeystoreManager?
+    @Published var InfuraMainnetWeb3: Web3?
     
     let userDirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]+"/keystore/"
     
