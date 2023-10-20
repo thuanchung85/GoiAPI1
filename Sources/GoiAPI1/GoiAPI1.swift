@@ -51,6 +51,8 @@ public class GoiAPI1: ObservableObject {
     
     //==hàm export account dạng PrivateKey==//
     private func fetchKeyStoreManager_PrivateKeyType(walletData: Data) -> KeystoreManager? {
+        let z = EthereumKeystoreV3(walletData)
+        print(z as Any)
         if let keystore = EthereumKeystoreV3(walletData) {
             return KeystoreManager([keystore])
         }
