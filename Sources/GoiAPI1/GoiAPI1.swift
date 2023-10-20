@@ -77,15 +77,15 @@ public class GoiAPI1: ObservableObject {
     
     
     //==hàm export account PrivateKey của dạng BIP32==//
-    public func exportPrivatekey_HDWALLET_BIP32(walletData: Data, password:String)  -> [String]
+    public func exportPrivatekey_HDWALLET_BIP32(walletData: Data, password:String? = "")  -> [String]
     {
         let keystore = BIP32Keystore(walletData)
         print("BIP32Keystore: " , keystore as Any)
         let address = keystore?.addresses?.first
-        let km = KeystoreManager([keystore!])
+        let keyStoreManager = KeystoreManager([keystore!])
         
         do{
-            let key = try km.UNSAFE_getPrivateKeyData(password: password, account: address!).toHexString()
+            let key = try keyStoreManager.UNSAFE_getPrivateKeyData(password: password!, account: address!).toHexString()
             print("THIS IS YOUR PRIVATE KEY")
             return [key]
         }
