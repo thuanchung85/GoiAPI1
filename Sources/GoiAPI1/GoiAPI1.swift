@@ -50,26 +50,18 @@ public class GoiAPI1: ObservableObject {
     }
     
     //==hàm export account dạng PrivateKey==//
-    private func fetchKeyStoreManager_PrivateKeyType(walletData: Data) -> KeystoreManager? {
-        if let keystore = EthereumKeystoreV3(walletData) {
-            return KeystoreManager([keystore])
-        }
-        else {
-            print("error -> fetchKeyStoreManager_PrivateKeyType")
-            return nil
-        }
-    }
-    
+   
     
     public func exportAccount_PrivateKeyType(walletData: Data, walletAdress:String, password:String)  -> [String]
     {
-        guard let keyStoreManager =  fetchKeyStoreManager_PrivateKeyType(walletData: walletData)
-        else {return ["error exportAccount_PrivateKeyType : keyStoreManager not ok"]}
-        
+        let keystore = EthereumKeystoreV3(walletData)
+        print(keystore as Any)
+       
+        let km = KeystoreManager([keystore!])
         guard let ethereumAddress = EthereumAddress(walletAdress)
         else { return ["error exportAccount_PrivateKeyType : ethereumAddress not ok"] }
         do{
-            let key = try keyStoreManager.UNSAFE_getPrivateKeyData(password: password, account: ethereumAddress).toHexString()
+            let key = try km.UNSAFE_getPrivateKeyData(password: password, account: ethereumAddress).toHexString()
             return [key]
         }
         catch{
