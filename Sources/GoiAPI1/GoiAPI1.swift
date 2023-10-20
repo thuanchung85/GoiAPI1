@@ -23,11 +23,11 @@ public class GoiAPI1: ObservableObject {
     }
     
     //===hàm chạy khởi tạo account BIP32Keystore..... trên iPhone===//
-    public func createAccountBIP32_with12Words(accountName: String, password:String)  -> [Data?]  {
+    public func create_HDWallet_BIP32_with12Words(accountName: String, password:String)  -> [Data?]  {
         do {
             guard let mnemonicsString = try BIP39.generateMnemonics(bitsOfEntropy: 256)
             else {return [nil]}
-            
+            print("mnemonicsString : ", mnemonicsString)
             guard let keystore = try BIP32Keystore(mnemonics: mnemonicsString, password: password, mnemonicsPassword: "", language: .english)
             else {return [nil]}
             
@@ -35,9 +35,9 @@ public class GoiAPI1: ObservableObject {
             else {return [nil]}
             
             let keyData = try JSONEncoder().encode(keystore.keystoreParams)
-            print("keyData : ", keyData)
+           
             let mnemonics = mnemonicsString.split(separator: " ").map(String.init)
-            print("mnemonics : ", mnemonics)
+            print("mnemonics array: ", mnemonics)
            
             let wallet = Web3Wallet(address: address, data: keyData, name: accountName, type: .hd(mnemonics: mnemonics))
             print("wallet: -> " , wallet.data)
