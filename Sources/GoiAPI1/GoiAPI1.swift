@@ -40,7 +40,7 @@ public class GoiAPI1: ObservableObject {
             print("mnemonics : ", mnemonics)
            
             let wallet = Web3Wallet(address: address, data: keyData, name: accountName, type: .hd(mnemonics: mnemonics))
-            print("wallet: -> " , wallet)
+            print("wallet: -> " , wallet.data)
             let d = wallet.data
             return [d]
         } catch {
@@ -51,8 +51,6 @@ public class GoiAPI1: ObservableObject {
     
     //==hàm export account dạng PrivateKey==//
     private func fetchKeyStoreManager_PrivateKeyType(walletData: Data) -> KeystoreManager? {
-        let z = EthereumKeystoreV3(walletData)
-        print(z as Any)
         if let keystore = EthereumKeystoreV3(walletData) {
             return KeystoreManager([keystore])
         }
