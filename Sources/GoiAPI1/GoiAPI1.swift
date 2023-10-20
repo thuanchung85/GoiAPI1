@@ -41,7 +41,8 @@ public class GoiAPI1: ObservableObject {
            
             let wallet = Web3Wallet(address: address, data: keyData, name: accountName, type: .hd(mnemonics: mnemonics))
             print("wallet: -> " , wallet)
-            return [wallet.address,wallet.name] + mnemonics
+            let s = String(data: wallet.data, encoding: . utf8)!
+            return [wallet.address,wallet.name, s] + mnemonics
         } catch {
             print(error.localizedDescription)
             return [error.localizedDescription]
