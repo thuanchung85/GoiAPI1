@@ -1,10 +1,10 @@
 import Foundation
 import web3swift
 import Web3Core
+import SwiftUI
 
 
-
-public class GoiAPI1:ObservableObject {
+public class GoiAPI1: ObservableObject {
     @Published var bip32keystore:BIP32Keystore?
     @Published var keystoremanager:KeystoreManager?
     @Published var InfuraMainnetWeb3: Web3?
