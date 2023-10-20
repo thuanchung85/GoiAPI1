@@ -22,13 +22,13 @@ public class GoiAPI1: ObservableObject {
       
     }
     
-    //===hàm chạy khởi tạo account BIP32Keystore..... trên iPhone===//
-    public func create_HDWallet_BIP32_with12Words(accountName: String, password:String)  -> [Data?]  {
+    //===hàm chạy khởi tạo HDWALLET dạng data là BIP32Keystore..... trên iPhone===//
+    public func create_HDWallet_BIP32_Init(accountName: String, password:String? = "")  -> [Data?]  {
         do {
             guard let mnemonicsString = try BIP39.generateMnemonics(bitsOfEntropy: 256)
             else {return [nil]}
             print("mnemonicsString : ", mnemonicsString)
-            guard let keystore = try BIP32Keystore(mnemonics: mnemonicsString, password: password, mnemonicsPassword: "", language: .english)
+            guard let keystore = try BIP32Keystore(mnemonics: mnemonicsString, password: password!, mnemonicsPassword: "", language: .english)
             else {return [nil]}
             
             guard let address = keystore.addresses?.first?.address
@@ -48,6 +48,33 @@ public class GoiAPI1: ObservableObject {
             return [nil]
         }
     }
+    
+    //===hàm chạy nhập 12 từ để tái tạo lại ví HDWALLET..... trên iPhone===//
+    public func recover_HDWallet_BIP32_with12Words(with12Words: String, newName:String ,password:String? = "")  -> [Data?]  {
+        do {
+             let mnemonicsString = with12Words
+            print("mnemonicsString : ", mnemonicsString)
+            guard let keystore = try BIP32Keystore(mnemonics: mnemonicsString, password: password!, mnemonicsPassword: "", language: .english)
+            else {return [nil]}
+            
+            guard let address = keystore.addresses?.first?.address
+            else {return [nil]}
+            
+            let keyData = try JSONEncoder().encode(keystore.keystoreParams)
+           
+            let mnemonics = mnemonicsString.split(separator: " ").map(String.init)
+            print("mnemonics array: ", mnemonics)
+           
+            let wallet = Web3Wallet(address: address, data: keyData, name: newName, type: .hd(mnemonics: mnemonics))
+            print("wallet: -> " , wallet.data)
+            let d = wallet.data
+            return [d]
+        } catch {
+            print(error.localizedDescription)
+            return [nil]
+        }
+    }
+    
     
     //==hàm export account PrivateKey của dạng BIP32==//
     public func exportPrivatekeyAccount_BIP32AccountType(walletData: Data, password:String)  -> [String]
