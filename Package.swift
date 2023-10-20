@@ -25,8 +25,6 @@ let package = Package(
         .target(
             name: "GoiAPI1",
             dependencies: ["web3swift"]),
-        .testTarget(
-            name: "GoiAPI1Tests",
-            dependencies: ["GoiAPI1"]),
+        
     ]
 )

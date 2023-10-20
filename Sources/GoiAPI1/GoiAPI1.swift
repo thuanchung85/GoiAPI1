@@ -2,46 +2,52 @@
 import Foundation
 import web3swift
 import Web3Core
-import SwiftUI
+
+struct Web3Wallet: Equatable {
+    let address: String
+    let data: Data
+    let name: String
+    let type: WalletType
+}
+enum WalletType: Equatable {
+    case normal
+    case hd(mnemonics: [String])
+}
 
 
 public class GoiAPI1: ObservableObject {
-     var bip32keystore:BIP32Keystore?
-     var keystoremanager:KeystoreManager?
-     var InfuraMainnetWeb3: Web3?
     
-    let userDirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]+"/keystore/"
     
     public init()  {
       
     }
     
-    //===hàm chạy khởi tạo connect blockchain băng infura provider..... trên iPhone===//
-    public func connect_blockchain_infura() async {
-       
-    }
-    //===hàm chạy khởi tạo 12 từ Mnemonic Phrase trên iPhone===//
-    public func hamChayThu_tao_12Words(passwordString:String) async -> [String]{
+    //===hàm chạy khởi tạo account..... trên iPhone===//
+    func createAccount(accountName: String, password:String)  -> Web3Wallet?  {
         do {
-            InfuraMainnetWeb3 = try await Web3.InfuraMainnetWeb3(accessToken: "b9ce386fa2b3415eb3df790155d24675")
-            keystoremanager =  KeystoreManager.managerForPath(userDirPath, scanForHDwallets: true, suffix: "json")
-            print("CONNECTED -> INFURA")
+            guard let mnemonicsString = try BIP39.generateMnemonics(bitsOfEntropy: 256)
+            else {return nil}
             
-            //let mnemonic = try BIP39.generateMnemonics(bitsOfEntropy: 256)!
+            guard let keystore = try BIP32Keystore(mnemonics: mnemonicsString, password: password, mnemonicsPassword: "", language: .english)
+            else {return nil}
             
-            //let keystore = try BIP32Keystore(mnemonics: mnemonic,password: passwordString,mnemonicsPassword: passwordString)
+            guard let address = keystore.addresses?.first?.address
+            else {return nil}
             
-            InfuraMainnetWeb3!.addKeystoreManager(keystoremanager)
-            self.bip32keystore = self.keystoremanager?.bip32keystores[0]
-            print("bip32keystore: ", bip32keystore)
-            let address = self.bip32keystore?.addresses?.first?.address
+            let keyData = try JSONEncoder().encode(keystore.keystoreParams)
+            let mnemonics = mnemonicsString.split(separator: " ").map(String.init)
             
-            return [address ?? "no data"]
-         } catch {
-         print(error.localizedDescription)
-         }
-        return ["no data"]
+           
+            let wallet = Web3Wallet(address: address, data: keyData, name: accountName, type: .hd(mnemonics: mnemonics))
+            print("wallet: -> " , wallet)
+            return wallet
+        } catch {
+            print(error.localizedDescription)
+            return nil
+        }
     }
+    
+    
     
     //==hàm chạy lấy số dư của một địa chỉ EthereumAddress===//
     public func hamChayThu_get_BalanceEthereumAddress(address:String) async -> [String]{
@@ -60,23 +66,6 @@ public class GoiAPI1: ObservableObject {
         return ["no data"]
     }
     
-    //==hàm chạy lấy transactions của một địa chỉ EthereumAddress===//
-    public func hamChayThu_get_TransactionEthereumAddress(address:String) async -> [String]{
-        do {
-            let InfuraMainnetWeb3 = try await Web3.InfuraMainnetWeb3(accessToken: "b9ce386fa2b3415eb3df790155d24675")
-            
-            let transactionCount_pending =  try await InfuraMainnetWeb3.eth.getTransactionCount(for: EthereumAddress(address)!,onBlock: .pending)
-            let transactionCount_earliest =  try await InfuraMainnetWeb3.eth.getTransactionCount(for: EthereumAddress(address)!,onBlock: .earliest)
-            let transactionCount_latest =  try await InfuraMainnetWeb3.eth.getTransactionCount(for: EthereumAddress(address)!,onBlock: .latest)
-          
-            print("contract.transactionCount_pending: " , transactionCount_pending)
-            print("contract.transactionCount_earliest: " , transactionCount_earliest)
-            print("contract.transactionCount_latest: " , transactionCount_latest)
-            return [" "]
-        }
-        catch {
-            print(error.localizedDescription)
-        }
-        return ["no data"]
-    }
+   
+  
 }//end struct
