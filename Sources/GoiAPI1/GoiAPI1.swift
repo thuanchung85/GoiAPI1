@@ -1,3 +1,4 @@
+
 import Foundation
 import web3swift
 import Web3Core
@@ -5,13 +6,18 @@ import SwiftUI
 
 
 public class GoiAPI1: ObservableObject {
-    @Published var bip32keystore:BIP32Keystore?
-    @Published var keystoremanager:KeystoreManager?
-    @Published var InfuraMainnetWeb3: Web3?
+     var bip32keystore:BIP32Keystore?
+     var keystoremanager:KeystoreManager?
+     var InfuraMainnetWeb3: Web3?
     
     let userDirPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]+"/keystore/"
     
-    public init() async {
+    public init()  {
+      
+    }
+    
+    //===hàm chạy khởi tạo connect blockchain băng infura provider..... trên iPhone===//
+    public func connect_blockchain_infura() async {
         do{
             InfuraMainnetWeb3 = try await Web3.InfuraMainnetWeb3(accessToken: "b9ce386fa2b3415eb3df790155d24675")
             keystoremanager =  KeystoreManager.managerForPath(userDirPath, scanForHDwallets: true, suffix: "json")
@@ -19,9 +25,8 @@ public class GoiAPI1: ObservableObject {
         } catch {
         print(error.localizedDescription)
         }
+       
     }
-    
-    //===hàm chạy khởi tạo địa chỉ ví 0x..... trên iPhone===//
     //===hàm chạy khởi tạo 12 từ Mnemonic Phrase trên iPhone===//
     public func hamChayThu_tao_12Words(passwordString:String) async -> [String]{
         do {
