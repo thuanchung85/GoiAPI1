@@ -4,7 +4,7 @@ import Web3Core
 
 
 
-public class GoiAPI1 {
+public class GoiAPI1:ObservableObject {
     var bip32keystore:BIP32Keystore?
     var keystoremanager:KeystoreManager?
     var InfuraMainnetWeb3: Web3?
@@ -27,9 +27,7 @@ public class GoiAPI1 {
         do {
             let mnemonic = try BIP39.generateMnemonics(bitsOfEntropy: 256)!
             
-            let keystore = try BIP32Keystore(mnemonics: mnemonic,
-                                              password: passwordString,
-                                              mnemonicsPassword: passwordString)
+            //let keystore = try BIP32Keystore(mnemonics: mnemonic,password: passwordString,mnemonicsPassword: passwordString)
             
             InfuraMainnetWeb3!.addKeystoreManager(keystoremanager)
             self.bip32keystore = self.keystoremanager?.bip32keystores[0]
