@@ -45,7 +45,7 @@ public struct MnemonicWordsView: View {
                                        .padding()
                                        .overlay(
                                                RoundedRectangle(cornerRadius: 16)
-                                                   .stroke(.blue, lineWidth: 4)
+                                                   .stroke(.blue, lineWidth: 8)
                                            )
                                         
                                }
