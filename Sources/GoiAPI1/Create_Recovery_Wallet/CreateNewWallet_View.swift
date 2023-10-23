@@ -54,8 +54,8 @@ public struct CreateNewWallet_View: View {
                     Text("NEXT")
                         .font(.body)
                 }.padding(.bottom, 20)
-                    .border(.blue, width: 5)
-                    .cornerRadius(20)
+                    .border(.blue, width: 55)
+                    .cornerRadius(5)
             }
            
             
