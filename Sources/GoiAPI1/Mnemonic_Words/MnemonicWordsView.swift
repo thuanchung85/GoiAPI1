@@ -29,13 +29,13 @@ public struct MnemonicWordsView: View {
         NavigationView {
             //Choose View
             VStack(alignment: .center) {
-                Text("Your 12-word seed phrase").font(.title)
+                Text("Your 12 words seed phrase").font(.title)
                     .padding(10)
                 Text("Below are 12 recovery words connected to your wallet. Please store it securely and never share it with anyone.")
                     .font(.footnote)
                     .padding(.bottom,10)
                 
-                
+                //12 từ trong khung
                 ScrollView {
                            LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
                                ForEach(data12Words, id: \.self) { item in
@@ -53,6 +53,25 @@ public struct MnemonicWordsView: View {
                        }
                        .frame(maxHeight: 500)
                 
+                //nút next
+                HStack(alignment: .center){
+                    Spacer()
+                    Button(action: {
+                        
+                        
+                    }) {
+                        VStack {
+                            Text("NEXT")
+                        }
+                        .padding()
+                        .accentColor(Color(.systemBlue))
+                        .cornerRadius(4.0)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 4).stroke(Color(.systemBlue), lineWidth: 2)
+                        )
+                    }
+                    Spacer()
+                }
                 
             }//end VStack
             .padding(.bottom,50)
