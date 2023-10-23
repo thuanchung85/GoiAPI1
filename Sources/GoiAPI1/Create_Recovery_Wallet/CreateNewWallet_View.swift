@@ -47,13 +47,16 @@ public struct CreateNewWallet_View: View {
             Spacer()
             
             //nút NEXT
-            Button {
-               
-            } label: {
-                Text("NEXT")
-                    .font(.body)
-            }.padding(.bottom, 20)
-            
+            VStack(alignment: .center){
+                Button {
+                    
+                } label: {
+                    Text("NEXT")
+                        .font(.body)
+                }.padding(.bottom, 20)
+                    .border(.blue, width: 5)
+                    .cornerRadius(20)
+            }
            
             
         }
