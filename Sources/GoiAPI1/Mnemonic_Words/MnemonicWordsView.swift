@@ -78,7 +78,7 @@ public struct MnemonicWordsView: View {
                 }
                 
             }//end VStack
-            .padding(.bottom,50)
+            .padding(.bottom,20)
             
         }
         //genegater 12 từ
