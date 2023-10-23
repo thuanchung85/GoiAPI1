@@ -5,7 +5,7 @@ import Foundation
 import SwiftUI
 import UniformTypeIdentifiers
 
-public struct ChooseCreate_or_RecoveryWallet_View: View {
+public struct ChooseCreate_Wallet_View: View {
    
     @State var walletName = ""
     @State var checkBoxisOn = false
@@ -39,16 +39,6 @@ public struct ChooseCreate_or_RecoveryWallet_View: View {
                 .background(Color.black)
                 .cornerRadius(12)
                 
-               
-                
-                //nút đi tới recovery wallet view
-                Button {
-                    
-                } label: {
-                    Text("Recovery Wallet!")
-                        .font(.body)
-                }
-                .padding(.top, 20)
             }
             .padding(.bottom,50)
             
