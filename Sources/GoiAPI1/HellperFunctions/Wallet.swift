@@ -50,15 +50,15 @@ public class Wallet: ObservableObject {
     }
     
     //===hàm chạy nhập 12 từ để tái tạo lại ví HDWALLET..... trên iPhone===//
-    public func recover_HDWallet_BIP32_with12Words(with12Words: String, newName:String ,password:String? = "")  -> [Data?]  {
+    public func recover_HDWallet_BIP32_with12Words(with12Words: String, newName:String ,password:String? = "")  -> [String]  {
         do {
              let mnemonicsString = with12Words
             print("mnemonicsString FOR RECOVERY WALLET: ", mnemonicsString)
             guard let keystore = try BIP32Keystore(mnemonics: mnemonicsString, password: password!, mnemonicsPassword: "", language: .english)
-            else {return [nil]}
+            else {return ["no data"]}
             
             guard let address = keystore.addresses?.first?.address
-            else {return [nil]}
+            else {return ["no data"]}
             
             let keyData = try JSONEncoder().encode(keystore.keystoreParams)
            
@@ -66,12 +66,12 @@ public class Wallet: ObservableObject {
             print("mnemonics array: ", mnemonics)
            
             let wallet = Web3Wallet(address: address, data: keyData, name: newName, type: .hd(mnemonics: mnemonics))
-            print("wallet data RECOVERY: -> " , wallet.data)
-            let d = wallet.data
-            return [d]
+            //print("wallet data RECOVERY: -> " , wallet.data)
+            //let d = wallet.data
+            return [wallet.address]
         } catch {
             print(error.localizedDescription)
-            return [nil]
+            return ["no data"]
         }
     }
     
