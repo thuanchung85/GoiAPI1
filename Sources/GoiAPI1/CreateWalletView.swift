@@ -15,6 +15,8 @@ public struct CreateWalletView: View {
     public var body: some View{
          
         VStack(alignment: .center) {
+            
+            Spacer()
             Text("ALL in One Dapp")
             Text("Store and protect all your decentralized assets within a Dapp")
             
@@ -23,7 +25,7 @@ public struct CreateWalletView: View {
             } label: {
                 Text("Create New Wallet")
                     .font(.body)
-            }
+            }.padding(.top, 20)
             
             
             Button {
@@ -32,6 +34,7 @@ public struct CreateWalletView: View {
                 Text("Recovery Wallet!")
                     .font(.body)
             }
+            .padding(.top, 20)
         }
     }
     
