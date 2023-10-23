@@ -61,7 +61,7 @@ public struct MnemonicWordsView: View {
                 print("[String] wallet Data: ", HDWallet_1_Data)
                 let array_12Words = HDWallet_1_Data[1].split(separator: " ").map(String.init)
                 self.data12Words = array_12Words.enumerated().map { (index, element) in
-                    return "\(index): \(element)"
+                    return "\(index + 1): \(element)"
                 }
                 
                 let retestWalletby12Words = myWallet.recover_HDWallet_BIP32_with12Words(with12Words: HDWallet_1_Data[1], newName: "newname")
