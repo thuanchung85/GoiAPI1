@@ -37,10 +37,12 @@ public struct CreateNewWallet_View: View {
             
             //phần check box ok
             VStack(alignment: .leading){
-                HStack{
-                    
+                Toggle(isOn: $checkBoxisOn) {
                     Text("I have read and agree to the Term of service and Privacy policy").font(.footnote)
                 }
+                .toggleStyle(CheckboxToggleStyle())
+                
+                
             }
             Spacer()
             
@@ -67,12 +69,12 @@ public struct CreateNewWallet_View: View {
 struct CheckboxToggleStyle: ToggleStyle {
   func makeBody(configuration: Self.Configuration) -> some View {
     HStack {
-      configuration.label
-      Spacer()
       Image(systemName: configuration.isOn ? "checkmark.square" : "square")
         .resizable()
         .frame(width: 24, height: 24)
         .onTapGesture { configuration.isOn.toggle() }
+        
+        configuration.label.padding(.leading,10)
     }
   }
 }
