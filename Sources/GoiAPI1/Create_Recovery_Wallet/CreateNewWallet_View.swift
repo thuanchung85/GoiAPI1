@@ -19,25 +19,7 @@ public struct CreateNewWallet_View: View {
          
         VStack(alignment: .center) {
             
-            //phần title và nút back
-            HStack(alignment: .center){
-                ZStack(alignment: .leading){
-                    HStack(alignment: .center){
-                        Spacer()
-                        Text("CREATE NEW WALLET").font(.title)
-                        Spacer()
-                    }
-                    
-                    //nút back
-                    Button {
-                        
-                    } label: {
-                        Text("Back")
-                            .font(.body)
-                    }.padding(.top, 20)
-                    
-                }
-            }
+           
             
             
             Text("WALLET NAME").font(.title)
