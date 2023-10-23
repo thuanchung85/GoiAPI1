@@ -7,12 +7,13 @@ import UniformTypeIdentifiers
 
 public struct ChooseCreate_Wallet_View: View {
    
-    @State var walletName = ""
+    @Binding var walletName:String
     @State var checkBoxisOn = false
     @Binding var isUserPass_ChooseCreateWallet_View:Bool
     
     
-    public init(isUserPass_ChooseCreateWallet_View: Binding<Bool>) {
+    public init(walletName: Binding<String>,isUserPass_ChooseCreateWallet_View: Binding<Bool>) {
+        self._walletName = walletName
         self._isUserPass_ChooseCreateWallet_View = isUserPass_ChooseCreateWallet_View
     }
     
