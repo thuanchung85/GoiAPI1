@@ -37,7 +37,7 @@ public struct MnemonicWordsView: View {
                 
                 
                 ScrollView {
-                           LazyVGrid(columns: columns,alignment: .center, spacing: 20) {
+                           LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
                                ForEach(data12Words, id: \.self) { item in
                                    Text(item)
                                        .font(.body)
