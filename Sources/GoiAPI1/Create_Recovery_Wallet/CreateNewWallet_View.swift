@@ -28,18 +28,20 @@ public struct CreateNewWallet_View: View {
                     .textFieldStyle(.roundedBorder)
             }
             
-            Spacer()
+           
             //phần nhắc nhở
             VStack(alignment: .leading){
                 Text("PROTECT YOUR WALLET").font(.title)
                 Text("Add one or more security layer to protect your crypto assets").font(.body)
-            }
+            }.padding(.top, 15)
             
             //phần check box ok
-            HStack{
-                Toggle(isOn: $checkBoxisOn) {}
-                    .toggleStyle(CheckboxToggleStyle())
-                Text("I have read and agree to the Term of service and Privacy policy")
+            VStack(alignment: .leading){
+                HStack{
+                    Toggle(isOn: $checkBoxisOn) {}
+                        .toggleStyle(CheckboxToggleStyle())
+                    Text("I have read and agree to the Term of service and Privacy policy").font(.footnote)
+                }
             }
             Spacer()
             
