@@ -23,29 +23,29 @@ public class Wallet: ObservableObject {
     }
     
     //===hàm chạy khởi tạo HDWALLET dạng data là BIP32Keystore..... trên iPhone===//
-    public func create_HDWallet_BIP32_Init(accountName: String, password:String? = "")  -> [Data?]  {
+    public func create_HDWallet_BIP32_Init(accountName: String, password:String? = "")  -> [String]  {
         do {
             guard let mnemonicsString = try BIP39.generateMnemonics(bitsOfEntropy: 256)
-            else {return [nil]}
-            print("mnemonicsString : ", mnemonicsString)
+            else {return ["no data"]}
+            //print("mnemonicsString : ", mnemonicsString)
             guard let keystore = try BIP32Keystore(mnemonics: mnemonicsString, password: password!, mnemonicsPassword: "", language: .english)
-            else {return [nil]}
+            else {return ["no data"]}
             
             guard let address = keystore.addresses?.first?.address
-            else {return [nil]}
+            else {return ["no data"]}
             
             let keyData = try JSONEncoder().encode(keystore.keystoreParams)
            
             let mnemonics = mnemonicsString.split(separator: " ").map(String.init)
-            print("mnemonics array: ", mnemonics)
+            //print("mnemonics array: ", mnemonics)
            
             let wallet = Web3Wallet(address: address, data: keyData, name: accountName, type: .hd(mnemonics: mnemonics))
-            print("wallet: -> " , wallet.data)
-            let d = wallet.data
-            return [d]
+            //print("wallet: -> " , wallet.data)
+            //let d = wallet.data
+            return [wallet.address, mnemonicsString]
         } catch {
             print(error.localizedDescription)
-            return [nil]
+            return ["no data"]
         }
     }
     

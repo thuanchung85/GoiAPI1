@@ -21,6 +21,8 @@ public struct MnemonicWordsView: View {
     public init(walletName:String, PIN_Number:String) {
         self.walletName = walletName
         self.PIN_Number = PIN_Number
+        print("TẠO 12 từ cho ví: ", self.walletName)
+        print("ví có PIN: ", self.PIN_Number)
     }
     //====BODY====///
     public var body: some View{
@@ -52,11 +54,11 @@ public struct MnemonicWordsView: View {
         //genegater 12 từ
         .onAppear(){
             DispatchQueue.main.async {
-                var myWallet = Wallet()
+                let myWallet = Wallet()
                 
                 let HDWallet_1_Data = myWallet.create_HDWallet_BIP32_Init(accountName: self.walletName,password: self.PIN_Number)
-                let convertData =  String(data:HDWallet_1_Data.first!!, encoding: . utf8)!
-                print("convert wallet Data: ", convertData)
+                
+                print("[String] wallet Data: ", HDWallet_1_Data)
             }
         }
     }//end body
