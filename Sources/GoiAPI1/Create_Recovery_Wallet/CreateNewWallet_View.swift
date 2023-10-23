@@ -38,8 +38,7 @@ public struct CreateNewWallet_View: View {
             //phần check box ok
             VStack(alignment: .leading){
                 HStack{
-                    Toggle(isOn: $checkBoxisOn) {}
-                        .toggleStyle(CheckboxToggleStyle())
+                    
                     Text("I have read and agree to the Term of service and Privacy policy").font(.footnote)
                 }
             }
