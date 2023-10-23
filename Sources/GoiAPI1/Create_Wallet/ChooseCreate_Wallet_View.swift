@@ -9,11 +9,11 @@ public struct ChooseCreate_Wallet_View: View {
    
     @State var walletName = ""
     @State var checkBoxisOn = false
-    @Binding var isUserPass_ChooseCreate_or_RecoveryWallet_View:Bool
+    @Binding var isUserPass_ChooseCreateWallet_View:Bool
     
     
-    public init(isUserPass_ChooseCreate_or_RecoveryWallet_View: Binding<Bool>) {
-        self._isUserPass_ChooseCreate_or_RecoveryWallet_View = isUserPass_ChooseCreate_or_RecoveryWallet_View
+    public init(isUserPass_ChooseCreateWallet_View: Binding<Bool>) {
+        self._isUserPass_ChooseCreateWallet_View = isUserPass_ChooseCreateWallet_View
     }
     
     public var body: some View{
@@ -28,7 +28,7 @@ public struct ChooseCreate_Wallet_View: View {
                 //nút đi tới create new wallet view
                 NavigationLink(destination:  CreateNewWallet_View(walletName: $walletName,
                                                                   checkBoxisOn: $checkBoxisOn,
-                                                                  isUserPass_ChooseCreate_or_RecoveryWallet_View: $isUserPass_ChooseCreate_or_RecoveryWallet_View
+                                                                  isUserPass_ChooseCreateWallet_View: $isUserPass_ChooseCreateWallet_View
                                                                  ))
                 {
                     Text("Create New Wallet")

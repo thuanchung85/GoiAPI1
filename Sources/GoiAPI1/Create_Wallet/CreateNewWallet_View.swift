@@ -9,12 +9,12 @@ public struct CreateNewWallet_View: View {
    
     @Binding var walletName:String
     @Binding var checkBoxisOn:Bool
-    @Binding var isUserPass_ChooseCreate_or_RecoveryWallet_View:Bool
+    @Binding var isUserPass_ChooseCreateWallet_View:Bool
     
-    public init(walletName: Binding<String>, checkBoxisOn : Binding<Bool>, isUserPass_ChooseCreate_or_RecoveryWallet_View: Binding<Bool>) {
+    public init(walletName: Binding<String>, checkBoxisOn : Binding<Bool>, isUserPass_ChooseCreateWallet_View: Binding<Bool>) {
         self._walletName = walletName
         self._checkBoxisOn = checkBoxisOn
-        self._isUserPass_ChooseCreate_or_RecoveryWallet_View = isUserPass_ChooseCreate_or_RecoveryWallet_View
+        self._isUserPass_ChooseCreateWallet_View = isUserPass_ChooseCreateWallet_View
     }
     
     public var body: some View{
@@ -55,7 +55,7 @@ public struct CreateNewWallet_View: View {
                     Button(action: {
                         //Ok xác nhận user đã pass qua giai đoạn tạo name và check xác nhận
                         //tryền biến isUserPass_ChooseCreate_or_RecoveryWallet_View về cho view bên ngoài
-                        isUserPass_ChooseCreate_or_RecoveryWallet_View = true
+                        isUserPass_ChooseCreateWallet_View = true
                         //đóng nút next
                         self.checkBoxisOn.toggle()
                         self.walletName = ""
