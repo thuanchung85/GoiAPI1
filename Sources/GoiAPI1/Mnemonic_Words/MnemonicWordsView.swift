@@ -11,7 +11,8 @@ public struct MnemonicWordsView: View {
      var PIN_Number:String
     
     @State var data12Words = (1...12).map { "\($0). item" }
-
+    @State var addressWallet:String = ""
+    
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -53,6 +54,9 @@ public struct MnemonicWordsView: View {
                        }
                        .frame(maxHeight: 500)
                 
+                //show address ví của user
+                Text(addressWallet).font(.body).padding(.horizontal)
+                
                 //nút next
                 HStack(alignment: .center){
                     Spacer()
@@ -83,7 +87,7 @@ public struct MnemonicWordsView: View {
                 let myWallet = Wallet()
                 
                 let HDWallet_1_Data = myWallet.create_HDWallet_BIP32_Init(accountName: self.walletName,password: self.PIN_Number)
-                
+                addressWallet = HDWallet_1_Data.first ?? ""
                 print("[String] wallet Data: ", HDWallet_1_Data)
                 let array_12Words = HDWallet_1_Data[1].split(separator: " ").map(String.init)
                 self.data12Words = array_12Words.enumerated().map { (index, element) in
