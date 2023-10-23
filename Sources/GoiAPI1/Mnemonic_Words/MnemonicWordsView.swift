@@ -10,7 +10,7 @@ public struct MnemonicWordsView: View {
      var walletName:String
      var PIN_Number:String
     
-    let data = (1...12).map { "\($0). item" }
+    @State var data12Words = (1...12).map { "\($0). item" }
 
     let columns = [
         GridItem(.fixed(100)),
@@ -38,7 +38,7 @@ public struct MnemonicWordsView: View {
                 
                 ScrollView {
                            LazyVGrid(columns: columns, spacing: 20) {
-                               ForEach(data, id: \.self) { item in
+                               ForEach(data12Words, id: \.self) { item in
                                    Text(item)
                                }
                            }
@@ -59,6 +59,7 @@ public struct MnemonicWordsView: View {
                 let HDWallet_1_Data = myWallet.create_HDWallet_BIP32_Init(accountName: self.walletName,password: self.PIN_Number)
                 
                 print("[String] wallet Data: ", HDWallet_1_Data)
+                data12Words = HDWallet_1_Data[1].split(separator: " ").map(String.init)
                 
                 let retestWalletby12Words = myWallet.recover_HDWallet_BIP32_with12Words(with12Words: HDWallet_1_Data[1], newName: "newname")
                 
