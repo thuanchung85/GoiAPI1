@@ -17,30 +17,30 @@ public struct CreateNewWallet_View: View {
     
     public var body: some View{
          
-        VStack(alignment: .center) {
-            
-           
-            
+        VStack(alignment: .leading) {
             
             Text("WALLET NAME").font(.title)
-            TextField("Enter your wallet name", text: $walletName).font(.body)
+            TextField("Enter your wallet name", text: $walletName)
+                .font(.body)
+                .textFieldStyle(.roundedBorder)
             
+            Spacer()
             Text("PROTECT YOUR WALLET").font(.title)
             Text("Add one or more security layer to protect your crypto assets").font(.body)
             
             //check box
-            Toggle(isOn: $checkBoxisOn) {
-                       Text("I have read and agree to the Term of service and Privacy policy")
-                   }
+            Toggle(isOn: $checkBoxisOn) {}
             .toggleStyle(CheckboxToggleStyle())
+            Text("I have read and agree to the Term of service and Privacy policy")
             
+            Spacer()
             //nút NEXT
             Button {
                
             } label: {
                 Text("NEXT")
                     .font(.body)
-            }.padding(.top, 20)
+            }.padding(.bottom, 20)
             
            
             
