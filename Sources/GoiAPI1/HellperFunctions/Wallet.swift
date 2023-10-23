@@ -63,7 +63,7 @@ public class Wallet: ObservableObject {
             let keyData = try JSONEncoder().encode(keystore.keystoreParams)
            
             let mnemonics = mnemonicsString.split(separator: " ").map(String.init)
-            print("mnemonics array: ", mnemonics)
+            //print("mnemonics array: ", mnemonics)
            
             let wallet = Web3Wallet(address: address, data: keyData, name: newName, type: .hd(mnemonics: mnemonics))
             //print("wallet data RECOVERY: -> " , wallet.data)
@@ -74,6 +74,35 @@ public class Wallet: ObservableObject {
             return ["no data"]
         }
     }
+    
+    
+    
+    //===hàm chạy nhập 12 từ để tái tạo lại ví HDWALLET..... trên iPhone===//
+    public func recover_HDWallet_BIP32_with12WordsDATA(with12Words: String, newName:String ,password:String? = "")  -> [Data?]  {
+        do {
+             let mnemonicsString = with12Words
+            print("mnemonicsString FOR RECOVERY WALLET: ", mnemonicsString)
+            guard let keystore = try BIP32Keystore(mnemonics: mnemonicsString, password: password!, mnemonicsPassword: "", language: .english)
+            else {return [nil]}
+            
+            guard let address = keystore.addresses?.first?.address
+            else {return [nil]}
+            
+            let keyData = try JSONEncoder().encode(keystore.keystoreParams)
+           
+            let mnemonics = mnemonicsString.split(separator: " ").map(String.init)
+            //print("mnemonics array: ", mnemonics)
+           
+            let wallet = Web3Wallet(address: address, data: keyData, name: newName, type: .hd(mnemonics: mnemonics))
+            //print("wallet data RECOVERY: -> " , wallet.data)
+            let d = wallet.data
+            return [d]
+        } catch {
+            print(error.localizedDescription)
+            return [nil]
+        }
+    }
+    
     
     
     //==hàm export account PrivateKey của dạng BIP32==//
