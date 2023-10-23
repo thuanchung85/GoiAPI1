@@ -40,12 +40,13 @@ public struct MnemonicWordsView: View {
                            LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
                                ForEach(data12Words, id: \.self) { item in
                                    Text(item)
+                                       .frame(width: 100)
                                        .font(.body)
                                        .foregroundColor(.blue)
                                        .padding()
                                        .overlay(
                                                RoundedRectangle(cornerRadius: 16)
-                                                   .stroke(.blue, lineWidth: 8)
+                                                   .stroke(.blue, lineWidth: 2)
                                            )
                                         
                                }
