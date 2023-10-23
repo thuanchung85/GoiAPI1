@@ -7,7 +7,7 @@ import UniformTypeIdentifiers
 
 public struct MnemonicWordsView: View {
    
-    @Binding var walletName:String
+     var walletName:String
      var PIN_Number:String
     
     let data = (1...12).map { "\($0). item" }
@@ -18,8 +18,8 @@ public struct MnemonicWordsView: View {
     ]
     
     //===INIT===///
-    public init(walletName: Binding<String>, PIN_Number:String) {
-        self._walletName = walletName
+    public init(walletName:String, PIN_Number:String) {
+        self.walletName = walletName
         self.PIN_Number = PIN_Number
     }
     //====BODY====///
