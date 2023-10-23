@@ -55,7 +55,7 @@ public struct MnemonicWordsView: View {
                        .frame(maxHeight: 500)
                 
                 //show address ví của user
-                Text(addressWallet).font(.body).padding(.horizontal)
+                Text("Wallet Address:\n" + addressWallet).font(.body).padding(.horizontal)
                 
                 //nút next
                 HStack(alignment: .center){
@@ -94,9 +94,9 @@ public struct MnemonicWordsView: View {
                     return "\(index + 1): \(element)"
                 }
                 
-                let retestWalletby12Words = myWallet.recover_HDWallet_BIP32_with12Words(with12Words: HDWallet_1_Data[1], newName: "newname")
+                //let retestWalletby12Words = myWallet.recover_HDWallet_BIP32_with12Words(with12Words: HDWallet_1_Data[1], newName: "newname")
                 
-                print("[reset] wallet address recover by 12 words: ", retestWalletby12Words)
+                //print("[reset] wallet address recover by 12 words: ", retestWalletby12Words)
             }
         }
     }//end body
