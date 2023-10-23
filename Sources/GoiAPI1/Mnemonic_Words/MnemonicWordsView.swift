@@ -59,6 +59,10 @@ public struct MnemonicWordsView: View {
                 let HDWallet_1_Data = myWallet.create_HDWallet_BIP32_Init(accountName: self.walletName,password: self.PIN_Number)
                 
                 print("[String] wallet Data: ", HDWallet_1_Data)
+                
+                let retestWalletby12Words = myWallet.recover_HDWallet_BIP32_with12Words(with12Words: HDWallet_1_Data[1], newName: "newname")
+                
+                print("[reset] wallet address recover by 12 words: ", retestWalletby12Words)
             }
         }
     }//end body
