@@ -13,7 +13,7 @@ public struct MnemonicWordsView: View {
     @State var data12Words = (1...12).map { "\($0). item" }
 
     let columns = [
-        GridItem(.fixed(100)),
+        GridItem(.flexible()),
         GridItem(.flexible()),
     ]
     
