@@ -9,10 +9,12 @@ public struct CreateNewWallet_View: View {
    
     @Binding var walletName:String
     @Binding var checkBoxisOn:Bool
+    @Binding var isUserPass_ChooseCreate_or_RecoveryWallet_View:Bool
     
-    public init(walletName: Binding<String>, checkBoxisOn : Binding<Bool>) {
+    public init(walletName: Binding<String>, checkBoxisOn : Binding<Bool>, isUserPass_ChooseCreate_or_RecoveryWallet_View: Binding<Bool>) {
         self._walletName = walletName
         self._checkBoxisOn = checkBoxisOn
+        self._isUserPass_ChooseCreate_or_RecoveryWallet_View = isUserPass_ChooseCreate_or_RecoveryWallet_View
     }
     
     public var body: some View{
@@ -51,7 +53,9 @@ public struct CreateNewWallet_View: View {
                 HStack(alignment: .center){
                     Spacer()
                     Button(action: {
-                        
+                        //Ok xác nhận user đã pass qua giai đoạn tạo name và check xác nhận
+                        //tryền biến isUserPass_ChooseCreate_or_RecoveryWallet_View về cho view bên ngoài
+                        isUserPass_ChooseCreate_or_RecoveryWallet_View = true
                     }) {
                         VStack {
                             Text("NEXT")

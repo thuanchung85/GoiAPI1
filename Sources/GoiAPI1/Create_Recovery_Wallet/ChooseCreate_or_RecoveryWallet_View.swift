@@ -9,11 +9,11 @@ public struct ChooseCreate_or_RecoveryWallet_View: View {
    
     @State var walletName = ""
     @State var checkBoxisOn = false
+    @Binding var isUserPass_ChooseCreate_or_RecoveryWallet_View:Bool
     
     
-    
-    public init() {
-       
+    public init(isUserPass_ChooseCreate_or_RecoveryWallet_View: Binding<Bool>) {
+        self._isUserPass_ChooseCreate_or_RecoveryWallet_View = isUserPass_ChooseCreate_or_RecoveryWallet_View
     }
     
     public var body: some View{
@@ -26,7 +26,10 @@ public struct ChooseCreate_or_RecoveryWallet_View: View {
                 Text("Store and protect all your decentralized assets within a Dapp").font(.body)
                 
                 //nút đi tới create new wallet view
-                NavigationLink(destination:  CreateNewWallet_View(walletName: $walletName, checkBoxisOn: $checkBoxisOn))
+                NavigationLink(destination:  CreateNewWallet_View(walletName: $walletName,
+                                                                  checkBoxisOn: $checkBoxisOn,
+                                                                  isUserPass_ChooseCreate_or_RecoveryWallet_View: $isUserPass_ChooseCreate_or_RecoveryWallet_View
+                                                                 ))
                 {
                     Text("Create New Wallet")
                         .foregroundColor(.white)
