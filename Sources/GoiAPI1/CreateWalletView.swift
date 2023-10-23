@@ -36,6 +36,7 @@ public struct CreateWalletView: View {
             }
             .padding(.top, 20)
         }
+        .padding(.bottom,50)
     }
     
     
