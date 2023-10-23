@@ -47,15 +47,22 @@ public struct CreateNewWallet_View: View {
             Spacer()
             
             //nút NEXT
-            VStack(alignment: .center){
-                Button {
+            HStack(alignment: .center){
+                Button(action: {
                     
-                } label: {
-                    Text("NEXT")
-                        .font(.body)
-                }.padding(.bottom, 20)
-                    .border(.blue, width: 55)
-                    .cornerRadius(5)
+                }) {
+                    VStack {
+                        Text("NEXT")
+                    }
+                    .padding()
+                    .accentColor(Color(.systemBlue))
+                    .background(Color(UIColor.systemRed.withAlphaComponent(0.4)))
+                    .cornerRadius(4.0)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 4).stroke(Color(.systemBlue), lineWidth: 2)
+                    )
+                }
+                   
             }
            
             
