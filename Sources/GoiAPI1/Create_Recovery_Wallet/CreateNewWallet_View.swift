@@ -17,7 +17,7 @@ public struct CreateNewWallet_View: View {
     
     public var body: some View{
          
-        VStack(alignment: .center)
+        VStack(alignment: .leading)
         {
          
             //phần nhập tên ví
