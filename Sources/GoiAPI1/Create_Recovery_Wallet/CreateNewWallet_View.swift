@@ -48,6 +48,7 @@ public struct CreateNewWallet_View: View {
             
             //nút NEXT
             HStack(alignment: .center){
+                Spacer()
                 Button(action: {
                     
                 }) {
@@ -62,7 +63,7 @@ public struct CreateNewWallet_View: View {
                         RoundedRectangle(cornerRadius: 4).stroke(Color(.systemBlue), lineWidth: 2)
                     )
                 }
-                   
+                Spacer()
             }
            
             
