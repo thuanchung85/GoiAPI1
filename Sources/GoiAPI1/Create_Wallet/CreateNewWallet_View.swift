@@ -58,7 +58,7 @@ public struct CreateNewWallet_View: View {
                         isUserPass_ChooseCreateWallet_View = true
                         //đóng nút next
                         self.checkBoxisOn.toggle()
-                        self.walletName = ""
+                        
                     }) {
                         VStack {
                             Text("NEXT")
