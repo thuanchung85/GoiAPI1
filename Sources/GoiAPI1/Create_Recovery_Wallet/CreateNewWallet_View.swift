@@ -56,6 +56,9 @@ public struct CreateNewWallet_View: View {
                         //Ok xác nhận user đã pass qua giai đoạn tạo name và check xác nhận
                         //tryền biến isUserPass_ChooseCreate_or_RecoveryWallet_View về cho view bên ngoài
                         isUserPass_ChooseCreate_or_RecoveryWallet_View = true
+                        //đóng nút next
+                        self.checkBoxisOn.toggle()
+                        self.walletName = ""
                     }) {
                         VStack {
                             Text("NEXT")
