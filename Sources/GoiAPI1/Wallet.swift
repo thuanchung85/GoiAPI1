@@ -15,7 +15,7 @@ enum WalletType: Equatable {
 }
 
 
-public class GoiAPI1: ObservableObject {
+public class Wallet: ObservableObject {
     
     
     public init()  {
