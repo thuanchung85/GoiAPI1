@@ -50,9 +50,7 @@ public struct MnemonicWordsView: View {
                                }
                            }
                            .padding(.horizontal)
-                           .background(Color.gray)
                        }
-                        .background(Color.black)
                        .frame(maxHeight: 500)
                 
                 
