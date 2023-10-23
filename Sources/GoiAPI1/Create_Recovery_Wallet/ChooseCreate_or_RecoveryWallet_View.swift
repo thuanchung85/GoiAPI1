@@ -26,15 +26,17 @@ public struct ChooseCreate_or_RecoveryWallet_View: View {
                 Text("Store and protect all your decentralized assets within a Dapp").font(.body)
                 
                 //nút đi tới create new wallet view
-                Button {
-                    NavigationLink(destination: Text("CREATE NEW WALLET")) {
-                           CreateNewWallet_View(walletName: $walletName, checkBoxisOn: $checkBoxisOn)
-                        }
-                        .navigationTitle("CREATE NEW WALLET")
-                } label: {
+                NavigationLink(destination:  CreateNewWallet_View(walletName: $walletName, checkBoxisOn: $checkBoxisOn))
+                {
                     Text("Create New Wallet")
-                        .font(.body)
-                }.padding(.top, 20)
+                        .foregroundColor(.white)
+                        .padding(12)
+                    
+                }
+                .background(Color.black)
+                .cornerRadius(12)
+                
+               
                 
                 //nút đi tới recovery wallet view
                 Button {
