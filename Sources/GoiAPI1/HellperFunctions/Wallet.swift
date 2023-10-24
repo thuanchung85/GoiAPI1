@@ -17,52 +17,36 @@ enum WalletType: Equatable {
 
 public class Wallet: ObservableObject {
     
-     @Published var addressWallet:String = ""
-     @Published var data12Words:[String] = []
     
-    public init(walletName:String)  {
-        DispatchQueue.main.async { [weak self] in
-            
-            
-            let HDWallet_1_Data = self!.create_HDWallet_BIP32_Init(accountName: walletName,password: "")
-            self!.addressWallet = HDWallet_1_Data.first ?? ""
-            print("[String] wallet Data: ", HDWallet_1_Data)
-            let array_12Words = HDWallet_1_Data[1].split(separator: " ").map(String.init)
-            self!.data12Words = array_12Words.enumerated().map { (index, element) in
-                return "\(index + 1): \(element)"
-            }
-            
-            //let retestWalletby12Words = myWallet.recover_HDWallet_BIP32_with12Words(with12Words: HDWallet_1_Data[1], newName: "newname")
-            
-            //print("[reset] wallet address recover by 12 words: ", retestWalletby12Words)
-        }
+    public init()  {
+      
     }
     
     //===hàm chạy khởi tạo HDWALLET dạng data là BIP32Keystore..... trên iPhone===//
     public func create_HDWallet_BIP32_Init(accountName: String, password:String? = "")  -> [String]  {
-       
-            let mnemonicsString = try! BIP39.generateMnemonics(bitsOfEntropy: 128)!
-            let keystore = try! BIP32Keystore(mnemonics: mnemonicsString, password: "", mnemonicsPassword: "")
-            
-            //guard let mnemonicsString = try BIP39.generateMnemonics(bitsOfEntropy: 128)
-            //else {return ["no data"]}
+        do {
+            guard let mnemonicsString = try BIP39.generateMnemonics(bitsOfEntropy: 128)
+            else {return ["no data"]}
             //print("mnemonicsString : ", mnemonicsString)
-            //guard let keystore = try BIP32Keystore(mnemonics: mnemonicsString, password: password!, mnemonicsPassword: "", language: .english)
-            //else {return ["no data"]}
-            
-            guard let address = keystore?.addresses?.first?.address
+            guard let keystore = try BIP32Keystore(mnemonics: mnemonicsString, password: password!, mnemonicsPassword: "", language: .english)
             else {return ["no data"]}
             
-            //let keyData = try JSONEncoder().encode(keystore.keystoreParams)
+            guard let address = keystore.addresses?.first?.address
+            else {return ["no data"]}
+            
+            let keyData = try JSONEncoder().encode(keystore.keystoreParams)
            
-            //let mnemonics = mnemonicsString.split(separator: " ").map(String.init)
+            let mnemonics = mnemonicsString.split(separator: " ").map(String.init)
             //print("mnemonics array: ", mnemonics)
            
-            //let wallet = Web3Wallet(address: address, data: keyData, name: accountName, type: .hd(mnemonics: mnemonics))
+            let wallet = Web3Wallet(address: address, data: keyData, name: accountName, type: .hd(mnemonics: mnemonics))
             //print("wallet: -> " , wallet.data)
             //let d = wallet.data
-            return [address, mnemonicsString]
-       
+            return [wallet.address, mnemonicsString]
+        } catch {
+            print(error.localizedDescription)
+            return ["no data"]
+        }
     }
     
     //===hàm chạy nhập 12 từ để tái tạo lại ví HDWALLET..... trên iPhone===//
