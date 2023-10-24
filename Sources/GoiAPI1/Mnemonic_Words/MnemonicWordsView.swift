@@ -37,7 +37,7 @@ public struct MnemonicWordsView: View {
             }
             //genegater 12 từ
             .onAppear(){
-                
+                /*
                 DispatchQueue.main.async {
                     let myWallet = Wallet()
                     
@@ -53,7 +53,7 @@ public struct MnemonicWordsView: View {
                     
                     //print("[reset] wallet address recover by 12 words: ", retestWalletby12Words)
                 }
-                
+                */
             }
         }
         //nếu load 12 từ xong
