@@ -29,33 +29,82 @@ public struct MnemonicWordsView: View {
     public var body: some View{
         if(isStillLoading12Word == true){
             LoadingView(isShowing: $isStillLoading12Word) {
-                NavigationView {
-                    List(["1", "2", "3", "4", "5"], id: \.self) { row in
-                        Text(row)
-                    }.navigationBarTitle(Text("A List"), displayMode: .large)
+                //12 seed words View
+                VStack(alignment: .center) {
+                    
+                    Text("Your 12 words seed phrase").font(.title)
+                        .padding(10)
+                    Text("Below are 12 recovery words connected to your wallet. Please store it securely and never share it with anyone.")
+                        .font(.footnote)
+                        .padding(.bottom,10)
+                    
+                    //12 từ trong khung
+                    ScrollView {
+                        LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
+                            ForEach(data12Words, id: \.self) { item in
+                                Text(item)
+                                    .frame(width: 130)
+                                    .font(.body)
+                                    .foregroundColor(.blue)
+                                    .padding()
+                                    .border(.blue)
+                                    .cornerRadius(5)
+                                
+                            }
+                        }
+                        .padding(.horizontal)
+                    }
+                    .frame(maxHeight: 500)
+                    
+                    //show address ví của user
+                    Text("Wallet Address:\n" + addressWallet).font(.body).padding(.horizontal)
+                    
+                    //nút next
+                    HStack(alignment: .center){
+                        Spacer()
+                        Button(action: {
+                            
+                            
+                        }) {
+                            VStack {
+                                Text("NEXT")
+                            }
+                            .padding()
+                            .accentColor(Color(.systemBlue))
+                            .cornerRadius(4.0)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 4).stroke(Color(.systemBlue), lineWidth: 2)
+                            )
+                        }
+                        Spacer()
+                    }//end VStack
+                    
+                    
+                }
+                .onAppear(){
+                    
+                    DispatchQueue.main.async {
+                        let myWallet = Wallet()
+                        
+                        let HDWallet_1_Data = myWallet.create_HDWallet_BIP32_Init(accountName: self.walletName,password: self.PIN_Number)
+                        addressWallet = HDWallet_1_Data.first ?? ""
+                        print("[String] wallet Data: ", HDWallet_1_Data)
+                        let array_12Words = HDWallet_1_Data[1].split(separator: " ").map(String.init)
+                        self.data12Words = array_12Words.enumerated().map { (index, element) in
+                            return "\(index + 1): \(element)"
+                        }
+                        self.isStillLoading12Word = false
+                        //let retestWalletby12Words = myWallet.recover_HDWallet_BIP32_with12Words(with12Words: HDWallet_1_Data[1], newName: "newname")
+                        
+                        //print("[reset] wallet address recover by 12 words: ", retestWalletby12Words)
+                    }
+                    
                 }
             }
             //genegater 12 từ
-            .onAppear(){
-                /*
-                DispatchQueue.main.async {
-                    let myWallet = Wallet()
-                    
-                    let HDWallet_1_Data = myWallet.create_HDWallet_BIP32_Init(accountName: self.walletName,password: self.PIN_Number)
-                    addressWallet = HDWallet_1_Data.first ?? ""
-                    print("[String] wallet Data: ", HDWallet_1_Data)
-                    let array_12Words = HDWallet_1_Data[1].split(separator: " ").map(String.init)
-                    self.data12Words = array_12Words.enumerated().map { (index, element) in
-                        return "\(index + 1): \(element)"
-                    }
-                    self.isStillLoading12Word = false
-                    //let retestWalletby12Words = myWallet.recover_HDWallet_BIP32_with12Words(with12Words: HDWallet_1_Data[1], newName: "newname")
-                    
-                    //print("[reset] wallet address recover by 12 words: ", retestWalletby12Words)
-                }
-                */
-            }
+            
         }
+        /*
         //nếu load 12 từ xong
         else{
             //12 seed words View
@@ -112,7 +161,7 @@ public struct MnemonicWordsView: View {
             }
             
         }
-        
+        */
        
         
     }//end body
