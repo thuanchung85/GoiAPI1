@@ -4,12 +4,14 @@ import CoreImage.CIFilterBuiltins
 import Foundation
 import SwiftUI
 import UniformTypeIdentifiers
+import Combine
 
 public struct MnemonicWordsView: View {
    
      var walletName:String
      var PIN_Number:String
-    
+    @ObservedObject var myWallet: Wallet 
+   
     @State var data12Words = (1...12).map { "\($0). item" }
     @State var addressWallet:String = ""
     
@@ -21,9 +23,13 @@ public struct MnemonicWordsView: View {
     //===INIT===///
     public init(walletName:String, PIN_Number:String) {
         self.walletName = walletName
+        myWallet = Wallet(walletName: walletName)
+        
         self.PIN_Number = PIN_Number
         print("TẠO 12 từ cho ví: ", self.walletName)
         print("ví có PIN: ", self.PIN_Number)
+        
+       
     }
     //====BODY====///
     public var body: some View{
@@ -83,21 +89,7 @@ public struct MnemonicWordsView: View {
         }
         //genegater 12 từ
         .onAppear(){
-            DispatchQueue.main.async {
-                let myWallet = Wallet()
-                
-                let HDWallet_1_Data = myWallet.create_HDWallet_BIP32_Init(accountName: self.walletName,password: self.PIN_Number)
-                addressWallet = HDWallet_1_Data.first ?? ""
-                print("[String] wallet Data: ", HDWallet_1_Data)
-                let array_12Words = HDWallet_1_Data[1].split(separator: " ").map(String.init)
-                self.data12Words = array_12Words.enumerated().map { (index, element) in
-                    return "\(index + 1): \(element)"
-                }
-                
-                //let retestWalletby12Words = myWallet.recover_HDWallet_BIP32_with12Words(with12Words: HDWallet_1_Data[1], newName: "newname")
-                
-                //print("[reset] wallet address recover by 12 words: ", retestWalletby12Words)
-            }
+           
         }
     }//end body
     

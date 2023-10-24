@@ -17,9 +17,25 @@ enum WalletType: Equatable {
 
 public class Wallet: ObservableObject {
     
+     @Published var addressWallet:String = ""
+     @Published var data12Words:[String] = []
     
-    public init()  {
-      
+    public init(walletName:String)  {
+        DispatchQueue.main.async { [weak self] in
+            
+            
+            let HDWallet_1_Data = self!.create_HDWallet_BIP32_Init(accountName: walletName,password: "")
+            self!.addressWallet = HDWallet_1_Data.first ?? ""
+            print("[String] wallet Data: ", HDWallet_1_Data)
+            let array_12Words = HDWallet_1_Data[1].split(separator: " ").map(String.init)
+            self!.data12Words = array_12Words.enumerated().map { (index, element) in
+                return "\(index + 1): \(element)"
+            }
+            
+            //let retestWalletby12Words = myWallet.recover_HDWallet_BIP32_with12Words(with12Words: HDWallet_1_Data[1], newName: "newname")
+            
+            //print("[reset] wallet address recover by 12 words: ", retestWalletby12Words)
+        }
     }
     
     //===hàm chạy khởi tạo HDWALLET dạng data là BIP32Keystore..... trên iPhone===//
