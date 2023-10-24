@@ -27,7 +27,7 @@ public struct MnemonicWordsView: View {
     }
     //====BODY====///
     public var body: some View{
-        NavigationView {
+        
             //Choose View
             VStack(alignment: .center) {
                 Text("Your 12 words seed phrase").font(.title)
@@ -75,9 +75,9 @@ public struct MnemonicWordsView: View {
                         )
                     }
                     Spacer()
-                }
+                }//end VStack
                 
-            }//end VStack
+          
             
             
         }
