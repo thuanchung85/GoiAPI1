@@ -26,7 +26,7 @@ public class Wallet: ObservableObject {
     public func create_HDWallet_BIP32_Init(accountName: String, password:String? = "")  -> [String]  {
        
             let mnemonicsString = try! BIP39.generateMnemonics(bitsOfEntropy: 128)!
-            let keystore = try! BIP32Keystore(mnemonics: mnemonicsString, password: password!, mnemonicsPassword: "")
+            let keystore = try! BIP32Keystore(mnemonics: mnemonicsString, password: "", mnemonicsPassword: "")
             
             //guard let mnemonicsString = try BIP39.generateMnemonics(bitsOfEntropy: 128)
             //else {return ["no data"]}
