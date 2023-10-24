@@ -59,7 +59,7 @@ public struct MnemonicWordsView: View {
                     .frame(maxHeight: 500)
                     
                     //show address ví của user
-                    Text("Wallet Address:\n" + addressWallet).font(.body).padding(.horizontal)
+                    Text("Account Address:\n" + addressWallet).font(.body).padding(.horizontal)
                     
                     //nút next
                     HStack(alignment: .center){
@@ -116,7 +116,7 @@ public struct MnemonicWordsView: View {
                 .frame(maxHeight: 500)
                 
                 //show address ví của user
-                Text("Wallet Address:\n" + addressWallet).font(.body).padding(.horizontal)
+                Text("Account Address:\n" + addressWallet).font(.body).padding(.horizontal)
                 
                 //nút next
                 HStack(alignment: .center){
