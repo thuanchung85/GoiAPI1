@@ -34,15 +34,16 @@ public class Wallet: ObservableObject {
             guard let address = keystore.addresses?.first?.address
             else {return ["no data"]}
             
-            let keyData = try JSONEncoder().encode(keystore.keystoreParams)
+            //let keyData = try JSONEncoder().encode(keystore.keystoreParams)
            
-            let mnemonics = mnemonicsString.split(separator: " ").map(String.init)
+            //let mnemonics = mnemonicsString.split(separator: " ").map(String.init)
             //print("mnemonics array: ", mnemonics)
            
-            let wallet = Web3Wallet(address: address, data: keyData, name: accountName, type: .hd(mnemonics: mnemonics))
+            //let wallet = Web3Wallet(address: address, data: keyData, name: accountName, type: .hd(mnemonics: mnemonics))
             //print("wallet: -> " , wallet.data)
             //let d = wallet.data
-            return [wallet.address, mnemonicsString]
+            //return [wallet.address, mnemonicsString]
+            return [address, mnemonicsString]
         } catch {
             print(error.localizedDescription)
             return ["no data"]
