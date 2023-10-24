@@ -7,8 +7,8 @@ import UniformTypeIdentifiers
 
 public struct MnemonicWordsView: View {
    
-     var walletName:String
-     var PIN_Number:String
+    @State var walletName:String
+    @State var PIN_Number:String
     
     @State var data12Words = (1...12).map { "\($0). item" }
     @State var addressWallet:String = ""
@@ -28,7 +28,9 @@ public struct MnemonicWordsView: View {
     //====BODY====///
     public var body: some View{
         if(isStillLoading12Word == true){
-            LoadingView(isShowing: $isStillLoading12Word) {
+            LoadingView(addressWallet: $addressWallet, data12Words: $data12Words, isStillLoading12Word: $isStillLoading12Word,
+                        walletName: $walletName, PIN_Number: $PIN_Number, isShowing:  $isStillLoading12Word)
+            {
                 //12 seed words View
                 VStack(alignment: .center) {
                     
@@ -81,30 +83,9 @@ public struct MnemonicWordsView: View {
                     
                     
                 }
-                .onAppear(){
-                    
-                    DispatchQueue.main.async {
-                        let myWallet = Wallet()
-                        
-                        let HDWallet_1_Data = myWallet.create_HDWallet_BIP32_Init(accountName: self.walletName,password: self.PIN_Number)
-                        addressWallet = HDWallet_1_Data.first ?? ""
-                        print("[String] wallet Data: ", HDWallet_1_Data)
-                        let array_12Words = HDWallet_1_Data[1].split(separator: " ").map(String.init)
-                        self.data12Words = array_12Words.enumerated().map { (index, element) in
-                            return "\(index + 1): \(element)"
-                        }
-                        self.isStillLoading12Word = false
-                        //let retestWalletby12Words = myWallet.recover_HDWallet_BIP32_with12Words(with12Words: HDWallet_1_Data[1], newName: "newname")
-                        
-                        //print("[reset] wallet address recover by 12 words: ", retestWalletby12Words)
-                    }
-                    
-                }
             }
-            //genegater 12 từ
             
         }
-        /*
         //nếu load 12 từ xong
         else{
             //12 seed words View
@@ -161,7 +142,7 @@ public struct MnemonicWordsView: View {
             }
             
         }
-        */
+        
        
         
     }//end body
@@ -188,6 +169,12 @@ struct ActivityIndicator: UIViewRepresentable {
 }
 struct LoadingView<Content>: View where Content: View {
 
+    @Binding var addressWallet: String
+    @Binding var data12Words: [String]
+    @Binding var isStillLoading12Word:Bool
+    @Binding var walletName:String
+    @Binding var PIN_Number:String
+    
     @Binding var isShowing: Bool
     var content: () -> Content
 
@@ -210,6 +197,26 @@ struct LoadingView<Content>: View where Content: View {
                 .cornerRadius(20)
                 .opacity(self.isShowing ? 1 : 0)
 
+            }
+            //genegater 12 từ
+            .onAppear(){
+                
+                DispatchQueue.global().async {
+                    let myWallet = Wallet()
+                    
+                    let HDWallet_1_Data = myWallet.create_HDWallet_BIP32_Init(accountName: self.walletName,password: self.PIN_Number)
+                    addressWallet = HDWallet_1_Data.first ?? ""
+                    print("[String] wallet Data: ", HDWallet_1_Data)
+                    let array_12Words = HDWallet_1_Data[1].split(separator: " ").map(String.init)
+                    self.data12Words = array_12Words.enumerated().map { (index, element) in
+                        return "\(index + 1): \(element)"
+                    }
+                    self.isStillLoading12Word = false
+                    //let retestWalletby12Words = myWallet.recover_HDWallet_BIP32_with12Words(with12Words: HDWallet_1_Data[1], newName: "newname")
+                    
+                    //print("[reset] wallet address recover by 12 words: ", retestWalletby12Words)
+                }
+                
             }
         }
     }
