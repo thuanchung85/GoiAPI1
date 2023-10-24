@@ -28,8 +28,9 @@ public struct MnemonicWordsView: View {
     //====BODY====///
     public var body: some View{
         
-            //Choose View
+            //12 seed words View
             VStack(alignment: .center) {
+                
                 Text("Your 12 words seed phrase").font(.title)
                     .padding(10)
                 Text("Below are 12 recovery words connected to your wallet. Please store it securely and never share it with anyone.")
@@ -79,6 +80,12 @@ public struct MnemonicWordsView: View {
                 
           
             
+            
+        }
+        
+        //loading icon
+        VStack {
+            ProgressView()
             
         }
         //genegater 12 từ
