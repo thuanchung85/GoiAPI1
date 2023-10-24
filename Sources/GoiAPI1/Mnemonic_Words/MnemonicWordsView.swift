@@ -90,6 +90,14 @@ public struct MnemonicWordsView: View {
         }
         //genegater 12 từ
         .onAppear(){
+            LoadingView(isShowing: .constant(true)) {
+                       NavigationView {
+                           List(["1", "2", "3", "4", "5"], id: \.self) { row in
+                               Text(row)
+                           }.navigationBarTitle(Text("A List"), displayMode: .large)
+                       }
+                   }
+            /*
             DispatchQueue.main.async {
                 let myWallet = Wallet()
                 
@@ -104,7 +112,7 @@ public struct MnemonicWordsView: View {
                 //let retestWalletby12Words = myWallet.recover_HDWallet_BIP32_with12Words(with12Words: HDWallet_1_Data[1], newName: "newname")
                 
                 //print("[reset] wallet address recover by 12 words: ", retestWalletby12Words)
-            }
+            }*/
         }
     }//end body
     
@@ -113,3 +121,47 @@ public struct MnemonicWordsView: View {
     
 }//end struct
 
+
+//==========LOADING VIEW========///
+struct ActivityIndicator: UIViewRepresentable {
+
+    @Binding var isAnimating: Bool
+    let style: UIActivityIndicatorView.Style
+
+    func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
+        return UIActivityIndicatorView(style: style)
+    }
+
+    func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicator>) {
+        isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
+    }
+}
+struct LoadingView<Content>: View where Content: View {
+
+    @Binding var isShowing: Bool
+    var content: () -> Content
+
+    var body: some View {
+        GeometryReader { geometry in
+            ZStack(alignment: .center) {
+
+                self.content()
+                    .disabled(self.isShowing)
+                    .blur(radius: self.isShowing ? 3 : 0)
+
+                VStack {
+                    Text("Your Wallet is making...please wait.")
+                    ActivityIndicator(isAnimating: .constant(true), style: .large)
+                }
+                .frame(width: geometry.size.width / 2,
+                       height: geometry.size.height / 5)
+                .background(Color.secondary.colorInvert())
+                .foregroundColor(Color.primary)
+                .cornerRadius(20)
+                .opacity(self.isShowing ? 1 : 0)
+
+            }
+        }
+    }
+
+}
