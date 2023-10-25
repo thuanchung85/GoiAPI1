@@ -32,7 +32,7 @@ public struct ReInputMnemonicWordsView: View {
                 .padding(10)
             Text("Please tap your 12 words follow previous order. ")
                 .font(.footnote)
-                .padding(.bottom,10)
+                .padding(.bottom,5)
             
             //12 từ trong khung
             Text(seedsTextString.joined(separator: " "))
@@ -42,7 +42,7 @@ public struct ReInputMnemonicWordsView: View {
                         .background(Color.gray)
                         .padding(10)
                         .cornerRadius(5)
-         
+                        .lineSpacing(10)
             
            
             
@@ -60,7 +60,9 @@ public struct ReInputMnemonicWordsView: View {
                             .scaledToFill()
                             .minimumScaleFactor(0.5)
                             .lineLimit(1)
-                        
+                            .onTapGesture {
+                                print("seed word: ", item.components(separatedBy: ": ").last ?? " ")
+                            }
                     }
                 }
                 .padding(.horizontal)
