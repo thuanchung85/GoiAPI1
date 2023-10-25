@@ -42,6 +42,7 @@ public struct ReInputMnemonicWordsView: View {
                         .foregroundColor(.white)
                         .background(Color.gray)
                         .padding(10)
+                        .cornerRadius(5)
             }
             .frame(maxHeight: 300)
             
