@@ -80,7 +80,7 @@ public struct ReInputMnemonicWordsView: View {
                                     .minimumScaleFactor(0.5)
                                     .lineLimit(1)
                                     .onTapGesture {
-                                        print("seed word: ", s)
+                                        print("seed word: \(currentIndexSeed)", s)
                                         seedsTextString[currentIndexSeed] = s
                                         currentIndexSeed += 1
                                         if(currentIndexSeed >= 12) {currentIndexSeed = 0}
