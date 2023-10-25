@@ -51,12 +51,12 @@ public struct ReInputMnemonicWordsView: View {
             ScrollView {
                 LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
                     ForEach(data12Words, id: \.self) { item in
-                        Text(item)
+                        Text(item.components(separatedBy: ": ").last ?? " ")
                             .frame(width: 130)
                             .font(.body)
-                            .foregroundColor(.blue)
+                            .foregroundColor(.white)
                             .padding()
-                            .border(.blue)
+                            .background(Color.blue)
                             .cornerRadius(5)
                         
                     }
