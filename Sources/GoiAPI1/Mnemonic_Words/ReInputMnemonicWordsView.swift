@@ -8,14 +8,21 @@ import UniformTypeIdentifiers
 public struct ReInputMnemonicWordsView: View {
     
     @Binding var isShowReInput12SeedsView:Bool
+    @Binding var data12Words:[String]
     
     @State var seedsTextString = ["words1","words2","words3","words4",
                                   "words5","words6","words7","words8",
                                   "words9","words10","words11","words12"]
+    
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
     //===INIT===///
-    public init(isShowReInput12SeedsView:Binding<Bool>) {
+    public init(isShowReInput12SeedsView:Binding<Bool>, data12Words:Binding<[String]>) {
         self._isShowReInput12SeedsView = isShowReInput12SeedsView
-      
+        self._data12Words = data12Words
     }
     
     public var body: some View{
@@ -31,13 +38,32 @@ public struct ReInputMnemonicWordsView: View {
             ScrollView {
                Text(seedsTextString.joined(separator: " "))
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                        .font(.largeTitle)
+                        .font(.body)
                         .foregroundColor(.white)
                         .background(Color.gray)
                         .padding(10)
             }
             .frame(maxHeight: 500)
             
+            Divider()
+            
+            //12 button seeds
+            ScrollView {
+                LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
+                    ForEach(data12Words, id: \.self) { item in
+                        Text(item)
+                            .frame(width: 130)
+                            .font(.body)
+                            .foregroundColor(.blue)
+                            .padding()
+                            .border(.blue)
+                            .cornerRadius(5)
+                        
+                    }
+                }
+                .padding(.horizontal)
+            }
+            .frame(maxHeight: 500)
              
             //nút back
             HStack(alignment: .center){

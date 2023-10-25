@@ -147,7 +147,7 @@ public struct MnemonicWordsView: View {
             }
             //nếu user bấm next thì isShowReInput12SeedsView = true và show ra view cho user nhập lại 12 từ.
             else{
-                ReInputMnemonicWordsView(isShowReInput12SeedsView: $isShowReInput12SeedsView)
+                ReInputMnemonicWordsView(isShowReInput12SeedsView: $isShowReInput12SeedsView, data12Words: $data12Words)
             }
         }
         
