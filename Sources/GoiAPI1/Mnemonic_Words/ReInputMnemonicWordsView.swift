@@ -87,8 +87,11 @@ public struct ReInputMnemonicWordsView: View {
                                         //nếu là từ cuối cùng thì check kết quả luôn
                                         if(currentIndexSeed >= 12){
                                             print("ket qua re check : ", seedsTextString)
-                                            print("data12Words : ", data12Words)
-                                            if(seedsTextString == data12Words){
+                                            let array_Data12Words = data12Words.map { i in
+                                               return i.components(separatedBy: ": ").last ?? " "
+                                            }
+                                            print("data12Words : ", array_Data12Words)
+                                            if(seedsTextString == array_Data12Words){
                                                 self.finalReCheckResult = true
                                             }
                                             currentIndexSeed = 0
