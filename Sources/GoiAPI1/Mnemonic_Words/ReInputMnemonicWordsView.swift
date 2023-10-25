@@ -35,7 +35,6 @@ public struct ReInputMnemonicWordsView: View {
                 .padding(.bottom,10)
             
             //12 từ trong khung
-            
             Text(seedsTextString.joined(separator: " "))
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                         .font(.body)
@@ -45,7 +44,7 @@ public struct ReInputMnemonicWordsView: View {
                         .cornerRadius(5)
          
             
-            Divider()
+           
             
             //12 button seeds
             ScrollView {
