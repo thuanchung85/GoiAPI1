@@ -43,7 +43,7 @@ public struct ReInputMnemonicWordsView: View {
                         .background(Color.gray)
                         .padding(10)
             }
-            .frame(maxHeight: 500)
+            .frame(maxHeight: 300)
             
             Divider()
             
