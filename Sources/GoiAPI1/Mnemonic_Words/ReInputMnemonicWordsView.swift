@@ -52,7 +52,7 @@ public struct ReInputMnemonicWordsView: View {
                 LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
                     ForEach(data12Words, id: \.self) { item in
                         Text(item.components(separatedBy: ": ").last ?? " ")
-                            .frame(width: 130)
+                            .frame(width: 110)
                             .font(.body)
                             .foregroundColor(.white)
                             .padding()
