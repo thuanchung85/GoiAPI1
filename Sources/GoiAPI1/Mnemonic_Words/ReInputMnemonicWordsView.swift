@@ -36,7 +36,7 @@ public struct ReInputMnemonicWordsView: View {
             
             //12 từ trong khung
             Text(seedsTextString.joined(separator: " "))
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 300)
                         .font(.body)
                         .foregroundColor(.white)
                         .background(Color.gray)
