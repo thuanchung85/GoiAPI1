@@ -44,22 +44,21 @@ public struct ReInputMnemonicWordsView: View {
                         .cornerRadius(5)
                         .lineSpacing(10)
             //nút delete 1 từ
-            VStack(alignment: .trailing){
+            HStack(){
+                Spacer()
                 Button(action: {
                     self.isShowReInput12SeedsView = false
                 }) {
                     VStack {
                         Text("Delete")
                     }
-                    .padding()
+                    .padding(5)
                     .accentColor(Color(.red))
-                    .cornerRadius(4.0)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 4).stroke(Color(.systemBlue), lineWidth: 2)
-                    )
+                   
+                    
                 }
             }//end HStack
-           
+           Divider()
             
             //12 button seeds
             ScrollView {
