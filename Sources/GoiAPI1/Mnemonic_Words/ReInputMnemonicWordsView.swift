@@ -83,9 +83,9 @@ public struct ReInputMnemonicWordsView: View {
                                         print("seed word: \(currentIndexSeed)", s)
                                         seedsTextString[currentIndexSeed] = s
                                         currentIndexSeed += 1
-                                        if(currentIndexSeed >= 12) {currentIndexSeed = 0}
+                                        
                                         //nếu là từ cuối cùng thì check kết quả luôn
-                                        if(currentIndexSeed == 12){
+                                        if(currentIndexSeed >= 12){
                                             print("ket qua re check : ", seedsTextString)
                                             print("data12Words : ", data12Words)
                                             if(seedsTextString == data12Words){
