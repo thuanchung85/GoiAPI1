@@ -13,6 +13,7 @@ public struct ReInputMnemonicWordsView: View {
     @State var seedsTextString = ["1:...","2:...","3:...","4:...",
                                   "5:...","6:...","7:...","8:...",
                                   "9:...","10:...","11:...","12:..."]
+    @State var currentIndexSeed = 0
     
     let columns = [
         GridItem(.flexible()),
@@ -47,7 +48,7 @@ public struct ReInputMnemonicWordsView: View {
             HStack(){
                 Spacer()
                 Button(action: {
-                    self.isShowReInput12SeedsView = false
+                    
                 }) {
                     VStack {
                         Text("Delete")
@@ -76,6 +77,9 @@ public struct ReInputMnemonicWordsView: View {
                             .lineLimit(1)
                             .onTapGesture {
                                 print("seed word: ", item.components(separatedBy: ": ").last ?? " ")
+                                seedsTextString[currentIndexSeed] = item.components(separatedBy: ": ").last ?? " "
+                                currentIndexSeed += 1
+                                if(currentIndexSeed >= 12) {currentIndexSeed = 0}
                             }
                     }
                 }
