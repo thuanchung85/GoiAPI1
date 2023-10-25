@@ -65,26 +65,29 @@ public struct ReInputMnemonicWordsView: View {
             ScrollView {
                 LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
                     ForEach(data12Words, id: \.self) { item in
-                        Text(item.components(separatedBy: ": ").last ?? " ")
-                            .frame(width: 80)
-                            .font(.body)
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(Color.blue)
-                            .cornerRadius(5)
-                            .scaledToFill()
-                            .minimumScaleFactor(0.5)
-                            .lineLimit(1)
-                            .onTapGesture {
-                                print("seed word: ", item.components(separatedBy: ": ").last ?? " ")
-                                seedsTextString[currentIndexSeed] = item.components(separatedBy: ": ").last ?? " "
-                                currentIndexSeed += 1
-                                if(currentIndexSeed >= 12) {currentIndexSeed = 0}
-                            }
-                    }
-                }
+                        let s = item.components(separatedBy: ": ").last ?? " "
+                        if(seedsTextString.contains(s) == false){
+                            Text(s)
+                                .frame(width: 80)
+                                .font(.body)
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Color.blue)
+                                .cornerRadius(5)
+                                .scaledToFill()
+                                .minimumScaleFactor(0.5)
+                                .lineLimit(1)
+                                .onTapGesture {
+                                    print("seed word: ", s)
+                                    seedsTextString[currentIndexSeed] = s
+                                    currentIndexSeed += 1
+                                    if(currentIndexSeed >= 12) {currentIndexSeed = 0}
+                                }
+                        }
+                    }//end for each
+                }//end LazyVGrid
                 .padding(.horizontal)
-            }
+            }//end ScrollView
             .frame(maxHeight: 700)
              
             //nút back
