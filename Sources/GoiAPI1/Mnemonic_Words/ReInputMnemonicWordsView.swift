@@ -36,7 +36,7 @@ public struct ReInputMnemonicWordsView: View {
             
             //12 từ trong khung
             Text(seedsTextString.joined(separator: " "))
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 150)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
                         .font(.body)
                         .foregroundColor(.white)
                         .background(Color.gray)
@@ -44,23 +44,20 @@ public struct ReInputMnemonicWordsView: View {
                         .cornerRadius(5)
                         .lineSpacing(10)
             //nút delete 1 từ
-            HStack(alignment: .center){
-                Spacer()
+            VStack(alignment: .trailing){
                 Button(action: {
                     self.isShowReInput12SeedsView = false
-                    
                 }) {
                     VStack {
                         Text("Delete")
                     }
                     .padding()
-                    .accentColor(Color(.systemBlue))
+                    .accentColor(Color(.red))
                     .cornerRadius(4.0)
                     .overlay(
                         RoundedRectangle(cornerRadius: 4).stroke(Color(.systemBlue), lineWidth: 2)
                     )
                 }
-                Spacer()
             }//end HStack
            
             
