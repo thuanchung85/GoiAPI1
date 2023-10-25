@@ -64,7 +64,7 @@ public struct ReInputMnemonicWordsView: View {
             //12 button seeds
             ScrollView {
                 LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
-                    ForEach(data12Words, id: \.self) { item in
+                    ForEach(data12Words.shuffled(), id: \.self) { item in
                         let s = item.components(separatedBy: ": ").last ?? " "
                         if(seedsTextString.contains(s) == false){
                             Text(s)
