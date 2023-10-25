@@ -10,9 +10,9 @@ public struct ReInputMnemonicWordsView: View {
     @Binding var isShowReInput12SeedsView:Bool
     @Binding var data12Words:[String]
     
-    @State var seedsTextString = ["words1","words2","words3","words4",
-                                  "words5","words6","words7","words8",
-                                  "words9","words10","words11","words12"]
+    @State var seedsTextString = ["1:...","2:...","3:...","4:...",
+                                  "5:...","6:...","7:...","8:...",
+                                  "9:...","10:...","11:...","12:..."]
     
     let columns = [
         GridItem(.flexible()),
@@ -36,14 +36,32 @@ public struct ReInputMnemonicWordsView: View {
             
             //12 từ trong khung
             Text(seedsTextString.joined(separator: " "))
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 200)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 150)
                         .font(.body)
                         .foregroundColor(.white)
                         .background(Color.gray)
                         .padding(10)
                         .cornerRadius(5)
                         .lineSpacing(10)
-            
+            //nút delete 1 từ
+            HStack(alignment: .center){
+                Spacer()
+                Button(action: {
+                    self.isShowReInput12SeedsView = false
+                    
+                }) {
+                    VStack {
+                        Text("Delete")
+                    }
+                    .padding()
+                    .accentColor(Color(.systemBlue))
+                    .cornerRadius(4.0)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 4).stroke(Color(.systemBlue), lineWidth: 2)
+                    )
+                }
+                Spacer()
+            }//end HStack
            
             
             //12 button seeds
@@ -87,7 +105,7 @@ public struct ReInputMnemonicWordsView: View {
                     )
                 }
                 Spacer()
-            }//end VStack
+            }//end HStack
             
             
         }
