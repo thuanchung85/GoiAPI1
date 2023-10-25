@@ -91,6 +91,7 @@ public struct ReInputMnemonicWordsView: View {
                                             if(seedsTextString == data12Words){
                                                 self.finalReCheckResult = true
                                             }
+                                            currentIndexSeed = 0
                                         }
                                     }
                             }
