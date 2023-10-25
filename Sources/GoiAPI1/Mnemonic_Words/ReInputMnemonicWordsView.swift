@@ -63,7 +63,7 @@ public struct ReInputMnemonicWordsView: View {
                 }
                 .padding(.horizontal)
             }
-            .frame(maxHeight: 500)
+            .frame(maxHeight: 600)
              
             //nút back
             HStack(alignment: .center){
