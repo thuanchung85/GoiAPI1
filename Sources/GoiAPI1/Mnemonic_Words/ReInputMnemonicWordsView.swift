@@ -35,16 +35,15 @@ public struct ReInputMnemonicWordsView: View {
                 .padding(.bottom,10)
             
             //12 từ trong khung
-            ScrollView {
-               Text(seedsTextString.joined(separator: " "))
+            
+            Text(seedsTextString.joined(separator: " "))
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                         .font(.body)
                         .foregroundColor(.white)
                         .background(Color.gray)
                         .padding(10)
                         .cornerRadius(5)
-            }
-            .frame(maxHeight: 300)
+         
             
             Divider()
             
