@@ -14,6 +14,7 @@ public struct ReInputMnemonicWordsView: View {
                                   "5:...","6:...","7:...","8:...",
                                   "9:...","10:...","11:...","12:..."]
     @State var currentIndexSeed = 0
+    @State var finalReCheckResult = false
     
     let columns = [
         GridItem(.flexible()),
@@ -60,55 +61,89 @@ public struct ReInputMnemonicWordsView: View {
                 }
             }//end HStack
            Divider()
-            
-            //12 button seeds
-            ScrollView {
-                LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
-                    ForEach(data12Words.shuffled(), id: \.self) { item in
-                        let s = item.components(separatedBy: ": ").last ?? " "
-                        if(seedsTextString.contains(s) == false){
-                            Text(s)
-                                .frame(width: 80)
-                                .font(.body)
-                                .foregroundColor(.white)
-                                .padding()
-                                .background(Color.blue)
-                                .cornerRadius(5)
-                                .scaledToFill()
-                                .minimumScaleFactor(0.5)
-                                .lineLimit(1)
-                                .onTapGesture {
-                                    print("seed word: ", s)
-                                    seedsTextString[currentIndexSeed] = s
-                                    currentIndexSeed += 1
-                                    if(currentIndexSeed >= 12) {currentIndexSeed = 0}
-                                }
+            //nếu vẫn chưa ok re check 12 words thì chưa show next button
+            if(finalReCheckResult == false){
+                //12 button seeds
+                ScrollView {
+                    LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
+                        ForEach(data12Words.shuffled(), id: \.self) { item in
+                            let s = item.components(separatedBy: ": ").last ?? " "
+                            if(seedsTextString.contains(s) == false){
+                                Text(s)
+                                    .frame(width: 80)
+                                    .font(.body)
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .background(Color.blue)
+                                    .cornerRadius(5)
+                                    .scaledToFill()
+                                    .minimumScaleFactor(0.5)
+                                    .lineLimit(1)
+                                    .onTapGesture {
+                                        print("seed word: ", s)
+                                        seedsTextString[currentIndexSeed] = s
+                                        currentIndexSeed += 1
+                                        if(currentIndexSeed >= 12) {currentIndexSeed = 0}
+                                        //nếu là từ cuối cùng thì check kết quả luôn
+                                        if(currentIndexSeed == 11){
+                                            if(seedsTextString == data12Words){
+                                                self.finalReCheckResult = true
+                                            }
+                                        }
+                                    }
+                            }
+                        }//end for each
+                    }//end LazyVGrid
+                    .padding(.horizontal)
+                }//end ScrollView
+                .frame(maxHeight: 700)
+                
+                //nút back để user làm lại
+                HStack(alignment: .center){
+                    Spacer()
+                    Button(action: {
+                        self.isShowReInput12SeedsView = false
+                        
+                    }) {
+                        VStack {
+                            Text("TRY AGAIN")
                         }
-                    }//end for each
-                }//end LazyVGrid
-                .padding(.horizontal)
-            }//end ScrollView
-            .frame(maxHeight: 700)
-             
-            //nút back
-            HStack(alignment: .center){
-                Spacer()
-                Button(action: {
-                    self.isShowReInput12SeedsView = false
-                    
-                }) {
-                    VStack {
-                        Text("BACK")
+                        .padding()
+                        .accentColor(Color(.systemBlue))
+                        .cornerRadius(4.0)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 4).stroke(Color(.systemBlue), lineWidth: 2)
+                        )
                     }
-                    .padding()
-                    .accentColor(Color(.systemBlue))
-                    .cornerRadius(4.0)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 4).stroke(Color(.systemBlue), lineWidth: 2)
-                    )
-                }
-                Spacer()
-            }//end HStack
+                    Spacer()
+                }//end HStack
+            }
+            
+            //nếu PASS re check 12 words thì show next button
+            else{
+                Text("WELL DONE,YOU WERE CORRECTED ALL WORDS")
+                
+                //nút NEXT
+                HStack(alignment: .center){
+                    Spacer()
+                    Button(action: {
+                       
+                        
+                    }) {
+                        VStack {
+                            Text("NEXT")
+                        }
+                        .padding()
+                        .accentColor(Color(.systemBlue))
+                        .cornerRadius(4.0)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 4).stroke(Color(.systemBlue), lineWidth: 2)
+                        )
+                    }
+                    Spacer()
+                }//end HStack
+            }
+            
             
             
         }
