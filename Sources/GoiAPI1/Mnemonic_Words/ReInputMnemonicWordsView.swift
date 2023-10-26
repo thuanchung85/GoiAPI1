@@ -67,7 +67,9 @@ public struct ReInputMnemonicWordsView: View {
                     
                 }
             }//end HStack
+            
            Divider()
+            
             //nếu vẫn chưa ok re check 12 words thì chưa show next button
             if(finalReCheckResult == false){
                 if(isInput12SeedsDone == false){
@@ -118,6 +120,7 @@ public struct ReInputMnemonicWordsView: View {
                     Text("SORRY, YOU GOT THE WRONG ORDER, PLEASE TRY AGAIN.").foregroundColor(Color.red)
                 }
                 //nút back để user làm lại
+                //nut skip nếu user thôi không làm nữa
                 HStack(alignment: .center){
                     Spacer()
                     Button(action: {
@@ -135,7 +138,25 @@ public struct ReInputMnemonicWordsView: View {
                         )
                     }
                     Spacer()
+                    Button(action: {
+                        
+                        
+                    }) {
+                        VStack {
+                            Text("SKIP").foregroundColor(Color.red)
+                        }
+                        .padding()
+                        .accentColor(Color(.red))
+                        .cornerRadius(4.0)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 4).stroke(Color(.systemBlue), lineWidth: 2)
+                        )
+                    }
+                    Spacer()
                 }//end HStack
+                
+               
+                
             }
             
             //nếu PASS re check 12 words thì show next button
