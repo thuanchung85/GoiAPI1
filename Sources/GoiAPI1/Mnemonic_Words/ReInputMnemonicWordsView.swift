@@ -13,8 +13,11 @@ public struct ReInputMnemonicWordsView: View {
     @State var seedsTextString = ["1:...","2:...","3:...","4:...",
                                   "5:...","6:...","7:...","8:...",
                                   "9:...","10:...","11:...","12:..."]
+    
+    //các biến phục vụ quá trình check và nhập seed lại
     @State var currentIndexSeed = 0
     @State var finalReCheckResult = false
+    @State var isInput12SeedsDone = false
     
     let columns = [
         GridItem(.flexible()),
@@ -66,47 +69,53 @@ public struct ReInputMnemonicWordsView: View {
            Divider()
             //nếu vẫn chưa ok re check 12 words thì chưa show next button
             if(finalReCheckResult == false){
-                //12 button seeds
-                ScrollView {
-                    LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
-                        ForEach(data12Words.shuffled(), id: \.self) { item in
-                            let s = item.components(separatedBy: ": ").last ?? " "
-                            if(seedsTextString.contains(s) == false){
-                                Text(s)
-                                    .frame(width: 80)
-                                    .font(.body)
-                                    .foregroundColor(.white)
-                                    .padding()
-                                    .background(Color.blue)
-                                    .cornerRadius(5)
-                                    .scaledToFill()
-                                    .minimumScaleFactor(0.5)
-                                    .lineLimit(1)
-                                    .onTapGesture {
-                                        print("seed word: \(currentIndexSeed)", s)
-                                        seedsTextString[currentIndexSeed] = s
-                                        currentIndexSeed += 1
-                                        
-                                        //nếu là từ cuối cùng thì check kết quả luôn
-                                        if(currentIndexSeed >= 12){
-                                            print("ket qua re check : ", seedsTextString)
-                                            let array_Data12Words = data12Words.map { i in
-                                               return i.components(separatedBy: ": ").last ?? " "
+                if(isInput12SeedsDone == false){
+                    //12 button seeds
+                    ScrollView {
+                        LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
+                            ForEach(data12Words.shuffled(), id: \.self) { item in
+                                let s = item.components(separatedBy: ": ").last ?? " "
+                                if(seedsTextString.contains(s) == false){
+                                    Text(s)
+                                        .frame(width: 80)
+                                        .font(.body)
+                                        .foregroundColor(.white)
+                                        .padding()
+                                        .background(Color.blue)
+                                        .cornerRadius(5)
+                                        .scaledToFill()
+                                        .minimumScaleFactor(0.5)
+                                        .lineLimit(1)
+                                        .onTapGesture {
+                                            print("seed word: \(currentIndexSeed)", s)
+                                            seedsTextString[currentIndexSeed] = s
+                                            currentIndexSeed += 1
+                                            
+                                            //nếu là từ cuối cùng thì check kết quả luôn
+                                            if(currentIndexSeed >= 12){
+                                                print("ket qua re check : ", seedsTextString)
+                                                let array_Data12Words = data12Words.map { i in
+                                                   return i.components(separatedBy: ": ").last ?? " "
+                                                }
+                                                print("data12Words : ", array_Data12Words)
+                                                if(seedsTextString == array_Data12Words){
+                                                    self.finalReCheckResult = true
+                                                }
+                                                isInput12SeedsDone = true
+                                                currentIndexSeed = 0
                                             }
-                                            print("data12Words : ", array_Data12Words)
-                                            if(seedsTextString == array_Data12Words){
-                                                self.finalReCheckResult = true
-                                            }
-                                            currentIndexSeed = 0
                                         }
-                                    }
-                            }
-                        }//end for each
-                    }//end LazyVGrid
-                    .padding(.horizontal)
-                }//end ScrollView
-                .frame(maxHeight: 700)
-                
+                                }
+                            }//end for each
+                        }//end LazyVGrid
+                        .padding(.horizontal)
+                    }//end ScrollView
+                    .frame(maxHeight: 700)
+                    
+                }
+                else{
+                    Text("SORRY, YOU GOT THE WRONG ORDER, PLEASE TRY AGAIN.").foregroundColor(Color.red)
+                }
                 //nút back để user làm lại
                 HStack(alignment: .center){
                     Spacer()
@@ -130,7 +139,7 @@ public struct ReInputMnemonicWordsView: View {
             
             //nếu PASS re check 12 words thì show next button
             else{
-                Text("WELL DONE,YOU WERE CORRECTED ALL WORDS")
+                Text("WELL DONE,YOU WERE CORRECTED ALL WORDS").foregroundColor(Color.green)
                 
                 //nút NEXT
                 HStack(alignment: .center){
