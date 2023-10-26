@@ -51,18 +51,19 @@ public struct ReInputMnemonicWordsView: View {
             //nút delete 1 từ
             HStack(){
                 Spacer()
-                Button(action: {
-                    if(currentIndexSeed > 0){
-                        currentIndexSeed -= 1
-                        seedsTextString[currentIndexSeed] = String(currentIndexSeed + 1) + ":..."
+                if(isInput12SeedsDone == false){
+                    Button(action: {
+                        if(currentIndexSeed > 0){
+                            currentIndexSeed -= 1
+                            seedsTextString[currentIndexSeed] = String(currentIndexSeed + 1) + ":..."
+                        }
+                    }) {
+                        VStack {
+                            Text("Delete")
+                        }
+                        .padding(5)
+                        .accentColor(Color(.red))
                     }
-                }) {
-                    VStack {
-                        Text("Delete")
-                    }
-                    .padding(5)
-                    .accentColor(Color(.red))
-                   
                     
                 }
             }//end HStack
