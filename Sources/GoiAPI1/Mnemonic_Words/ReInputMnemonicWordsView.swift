@@ -49,7 +49,10 @@ public struct ReInputMnemonicWordsView: View {
             HStack(){
                 Spacer()
                 Button(action: {
-                    
+                    if(currentIndexSeed > 0){
+                        currentIndexSeed -= 1
+                        seedsTextString[currentIndexSeed] = String(currentIndexSeed) + ":..."
+                    }
                 }) {
                     VStack {
                         Text("Delete")
