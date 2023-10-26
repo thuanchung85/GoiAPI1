@@ -20,10 +20,15 @@ public struct MnemonicWordsView: View {
     
     @State var isShowReInput12SeedsView = false
     
+    //kết quả trả ra bên ngoài package
+    @Binding var isUserPass12SeedsWordView:Bool
+    
+    
     //===INIT===///
-    public init(walletName:String, PIN_Number:String) {
+    public init(walletName:String, PIN_Number:String , isUserPass12SeedsWordView:Binding<Bool>) {
         self.walletName = walletName
         self.PIN_Number = PIN_Number
+        self._isUserPass12SeedsWordView = isUserPass12SeedsWordView
         print("TẠO 12 từ cho ví: ", self.walletName)
         print("ví có PIN: ", self.PIN_Number)
     }
@@ -147,7 +152,9 @@ public struct MnemonicWordsView: View {
             }
             //nếu user bấm next thì isShowReInput12SeedsView = true và show ra view cho user nhập lại 12 từ.
             else{
-                ReInputMnemonicWordsView(isShowReInput12SeedsView: $isShowReInput12SeedsView, data12Words: $data12Words)
+                ReInputMnemonicWordsView(isShowReInput12SeedsView: $isShowReInput12SeedsView,
+                                         data12Words: $data12Words,
+                                         isUserPass12SeedsWordView:   $isUserPass12SeedsWordView)
             }
         }
         

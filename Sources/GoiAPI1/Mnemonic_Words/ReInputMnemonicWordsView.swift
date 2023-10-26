@@ -19,15 +19,19 @@ public struct ReInputMnemonicWordsView: View {
     @State var finalReCheckResult = false
     @State var isInput12SeedsDone = false
     
+    //kết quả trả ra bên ngoài package
+    @Binding var isUserPass12SeedsWordView:Bool
+    
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
     //===INIT===///
-    public init(isShowReInput12SeedsView:Binding<Bool>, data12Words:Binding<[String]>) {
+    public init(isShowReInput12SeedsView:Binding<Bool>, data12Words:Binding<[String]>, isUserPass12SeedsWordView:Binding<Bool>) {
         self._isShowReInput12SeedsView = isShowReInput12SeedsView
         self._data12Words = data12Words
+        self._isUserPass12SeedsWordView = isUserPass12SeedsWordView
     }
     
     public var body: some View{
@@ -139,7 +143,7 @@ public struct ReInputMnemonicWordsView: View {
                     }
                     Spacer()
                     Button(action: {
-                        
+                        isUserPass12SeedsWordView = true
                         
                     }) {
                         VStack {
@@ -167,7 +171,7 @@ public struct ReInputMnemonicWordsView: View {
                 HStack(alignment: .center){
                     Spacer()
                     Button(action: {
-                       
+                        isUserPass12SeedsWordView = true
                         
                     }) {
                         VStack {
