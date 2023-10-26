@@ -54,7 +54,7 @@ public struct ReInputMnemonicWordsView: View {
                 Button(action: {
                     if(currentIndexSeed > 0){
                         currentIndexSeed -= 1
-                        seedsTextString[currentIndexSeed] = String(currentIndexSeed) + ":..."
+                        seedsTextString[currentIndexSeed] = String(currentIndexSeed + 1) + ":..."
                     }
                 }) {
                     VStack {
