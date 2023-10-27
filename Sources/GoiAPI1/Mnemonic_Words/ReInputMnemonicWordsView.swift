@@ -6,7 +6,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 public struct ReInputMnemonicWordsView: View {
-    
+    @Binding var walletName:String
     @Binding var isShowReInput12SeedsView:Bool
     @Binding var data12Words:[String]
     
@@ -18,20 +18,22 @@ public struct ReInputMnemonicWordsView: View {
     @State var currentIndexSeed = 0
     @State var finalReCheckResult = false
     @State var isInput12SeedsDone = false
-    
     //kết quả trả ra bên ngoài package
     @Binding var isUserPass12SeedsWordView:Bool
     
+    @State var showQRCodePage = false
+  
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
     //===INIT===///
-    public init(isShowReInput12SeedsView:Binding<Bool>, data12Words:Binding<[String]>, isUserPass12SeedsWordView:Binding<Bool>) {
+    public init(isShowReInput12SeedsView:Binding<Bool>, data12Words:Binding<[String]>,walletName:Binding<String>, isUserPass12SeedsWordView:Binding<Bool>) {
         self._isShowReInput12SeedsView = isShowReInput12SeedsView
         self._data12Words = data12Words
         self._isUserPass12SeedsWordView = isUserPass12SeedsWordView
+        self._walletName = walletName
     }
     
     public var body: some View{
@@ -143,8 +145,7 @@ public struct ReInputMnemonicWordsView: View {
                     }
                     Spacer()
                     Button(action: {
-                        isUserPass12SeedsWordView = true
-                        
+                        showQRCodePage = true
                     }) {
                         VStack {
                             Text("SKIP").foregroundColor(Color.red)
@@ -171,7 +172,7 @@ public struct ReInputMnemonicWordsView: View {
                 HStack(alignment: .center){
                     Spacer()
                     Button(action: {
-                        isUserPass12SeedsWordView = true
+                        showQRCodePage = true
                         
                     }) {
                         VStack {
@@ -189,7 +190,12 @@ public struct ReInputMnemonicWordsView: View {
             }
             
             
-            
+            //show page QRcode 12 từ cho user copy
+            if(showQRCodePage == true){
+                //user skip nhưng vẫn cho qua pass qui trình tạo ví, show mã QR cho ho
+                 QRCodeMakerView(isUserPass12SeedsWordView: $isUserPass12SeedsWordView,
+                                 name: $walletName, seed12WordsString: data12Words.joined(separator: " "), width: 300, height: 300)
+            }
         }
     }
     
