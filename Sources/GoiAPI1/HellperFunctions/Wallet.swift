@@ -50,6 +50,7 @@ public class Wallet: ObservableObject {
         }
     }
     
+    /*
     //===hàm chạy nhập 12 từ để tái tạo lại ví HDWALLET..... trên iPhone===//
     public func recover_HDWallet_BIP32_with12Words(with12Words: String, newName:String ,password:String? = "")  -> [String]  {
         do {
@@ -167,5 +168,5 @@ public class Wallet: ObservableObject {
     }
     
    
-  
+  */
 }//end struct
