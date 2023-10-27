@@ -57,6 +57,10 @@ public struct QRCodeMakerView: View {
                         .font(.body)
                 }
                
+                Text("Just for convenience, not recommendation: you can take a screenshot of this and use it later, but be careful!")
+                    .foregroundColor(.red)
+                    .padding(.all,10)
+                
                 //nút next pass quy trình tạo ví
                 Button {
                     isUserPass12SeedsWordView = true
