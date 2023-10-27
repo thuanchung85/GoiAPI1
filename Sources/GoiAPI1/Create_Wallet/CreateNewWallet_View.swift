@@ -10,7 +10,7 @@ public struct CreateNewWallet_View: View {
     @Binding var walletName:String
     @Binding var checkBoxisOn:Bool
     
-    @Binding var isUserPass_PIN_making:Bool 
+    @Binding var isUserPass_PIN_making:Bool
     
     public init(walletName: Binding<String>, checkBoxisOn : Binding<Bool>, isUserPass_PIN_making:Binding<Bool>) {
         self._walletName = walletName
@@ -68,12 +68,7 @@ public struct CreateNewWallet_View: View {
         }
         .padding(.bottom,50)
         
-        //detect khi pass giai đoạn khoi phuc ví
-        .onChange(of: self.isUserPass_PIN_making) { value in
-            print("User đã pass giai đoạn tạo mã PIN và chuẩn bị tạo 12 ký tự")
-             self.isUserPass_PIN_making = true
-             print("self.isUserPass_PIN_making = ", self.isUserPass_PIN_making )
-         }
+       
     }
     
    
