@@ -59,6 +59,7 @@ public struct QRCodeMakerView: View {
                
                 Text("Just for convenience, not recommendation: you can take a screenshot of this and use it later, but be careful!")
                     .foregroundColor(.red)
+                    .font(.footnote)
                     .padding(.all,10)
                 
                 //nút next pass quy trình tạo ví
