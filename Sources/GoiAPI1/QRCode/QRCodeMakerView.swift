@@ -32,7 +32,7 @@ public struct QRCodeMakerView: View {
     
     //===BODY===//
     public var body: some View{
-        NavigationView{
+       
          
             VStack() {
                 Text("Your wallet name: \n" + self.name)
@@ -49,25 +49,20 @@ public struct QRCodeMakerView: View {
                 //nut copy 12 từ
                 Button {
                     print("Copy Button was tapped save to clipbroad")
-                  
                     UIPasteboard.general.setValue(self.seed12WordsString,
                                                       forPasteboardType: UTType.plainText.identifier)
                    
                 } label: {
                     Text("Copy!")
                         .font(.body)
-                       
                 }
                
                 //nút next pass quy trình tạo ví
                 Button {
-                    print("Copy Button was tapped save to clipbroad")
-                  
                     isUserPass12SeedsWordView = true
-                    
-                   
                 } label: {
                     Text("NEXT")
+                        .padding(10)
                         .font(.body)
                         .accentColor(Color(.systemBlue))
                         .cornerRadius(4.0)
@@ -75,10 +70,10 @@ public struct QRCodeMakerView: View {
                             RoundedRectangle(cornerRadius: 4).stroke(Color(.systemBlue), lineWidth: 2)
                         )
                 }
-                
-            }
+                .padding(.top,20)
+            }//end VStack
            
-        }
+        
     }
     
     
