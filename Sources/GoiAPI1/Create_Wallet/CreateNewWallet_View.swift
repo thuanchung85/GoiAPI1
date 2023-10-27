@@ -9,12 +9,13 @@ public struct CreateNewWallet_View: View {
    
     @Binding var walletName:String
     @Binding var checkBoxisOn:Bool
-    @Binding var isUserPass_ChooseCreateWallet_View:Bool
     
-    public init(walletName: Binding<String>, checkBoxisOn : Binding<Bool>, isUserPass_ChooseCreateWallet_View: Binding<Bool>) {
+    @State var isUserPass_PIN_making:Bool = false
+    
+    public init(walletName: Binding<String>, checkBoxisOn : Binding<Bool>) {
         self._walletName = walletName
         self._checkBoxisOn = checkBoxisOn
-        self._isUserPass_ChooseCreateWallet_View = isUserPass_ChooseCreateWallet_View
+        
     }
     
     public var body: some View{
@@ -50,28 +51,18 @@ public struct CreateNewWallet_View: View {
             
             //nút NEXT
             if(self.checkBoxisOn == true) && (self.walletName.isEmpty == false){
-                HStack(alignment: .center){
-                    Spacer()
-                    Button(action: {
-                        //Ok xác nhận user đã pass qua giai đoạn tạo name và check xác nhận
-                        //tryền biến isUserPass_ChooseCreate_or_RecoveryWallet_View về cho view bên ngoài
-                        isUserPass_ChooseCreateWallet_View = true
-                        //đóng nút next
-                        self.checkBoxisOn.toggle()
-                        
-                    }) {
-                        VStack {
-                            Text("NEXT")
-                        }
-                        .padding()
-                        .accentColor(Color(.systemBlue))
-                        .cornerRadius(4.0)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 4).stroke(Color(.systemBlue), lineWidth: 2)
-                        )
-                    }
-                    Spacer()
+                //===nút đi tới create new wallet view của gói API 1===//
+                NavigationLink(destination:  PasscodeView_ConfirmPIN(textAskUserDo: "Enter PIN Number for your wallet",
+                                                                     walletName:  $walletName,
+                                                                     isUserPass_PIN_making: $isUserPass_PIN_making))
+                {
+                    Text("NEXT")
+                        .foregroundColor(.white)
+                        .padding(12)
+                    
                 }
+                .background(Color.black)
+                .cornerRadius(12)
             }
             
         }
