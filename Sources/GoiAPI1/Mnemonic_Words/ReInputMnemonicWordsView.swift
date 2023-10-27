@@ -195,8 +195,11 @@ public struct ReInputMnemonicWordsView: View {
             //show page QRcode 12 từ cho user copy
             if(showQRCodePage == true){
                 //user skip nhưng vẫn cho qua pass qui trình tạo ví, show mã QR cho ho
+                let array_Data12Words = data12Words.map { i in
+                    return i.components(separatedBy: ": ").last ?? " "
+                }
                  QRCodeMakerView(isUserPass12SeedsWordView: $isUserPass12SeedsWordView,
-                                 name: $walletName, seed12WordsString: data12Words.joined(separator: " "), width: 300, height: 300)
+                                 name: $walletName, seed12WordsString: array_Data12Words.joined(separator: " "), width: 300, height: 300)
             }
         }
     }
