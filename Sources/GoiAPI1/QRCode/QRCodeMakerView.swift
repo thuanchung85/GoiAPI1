@@ -35,7 +35,7 @@ public struct QRCodeMakerView: View {
        
          
             VStack() {
-                Text("Your wallet name: \n" + self.name)
+                Text("Your 12 serect words QR code of your: " + self.name + " wallet")
                     .font(.title)
                 
                 Image(uiImage: generateQRCode(from: self.seed12WordsString))
@@ -44,9 +44,9 @@ public struct QRCodeMakerView: View {
                     .scaledToFit()
                     .frame(width: 300, height: 300)
                 
-                Text("12 serect words: \n" + self.seed12WordsString)
-                    .font(.body)
-                //nut copy 12 từ
+                //Text("12 serect words: \n" + self.seed12WordsString).font(.body)
+                /*
+                //nut copy 12 từ NGUY HIEM vi CLIPBROAD co the bi hack
                 Button {
                     print("Copy Button was tapped save to clipbroad")
                     UIPasteboard.general.setValue(self.seed12WordsString,
@@ -55,7 +55,7 @@ public struct QRCodeMakerView: View {
                 } label: {
                     Text("Copy!")
                         .font(.body)
-                }
+                }*/
                
                 Text("Just for convenience, not recommendation: you can take a screenshot of this and use it later, but be careful!")
                     .foregroundColor(.red)
