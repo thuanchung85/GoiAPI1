@@ -67,9 +67,16 @@ public struct CreateNewWallet_View: View {
             
         }
         .padding(.bottom,50)
+        
+        //detect khi pass giai đoạn khoi phuc ví
+        .onChange(of: self.isUserPass_PIN_making) { value in
+            print("User đã pass giai đoạn tạo mã PIN và chuẩn bị tạo 12 ký tự")
+             self.isUserPass_PIN_making = true
+             print("self.isUserPass_PIN_making = ", self.isUserPass_PIN_making )
+         }
     }
     
-    
+   
     
     
 }//end struct
