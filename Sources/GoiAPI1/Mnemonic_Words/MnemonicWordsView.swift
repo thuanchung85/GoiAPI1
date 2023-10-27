@@ -125,7 +125,10 @@ public struct MnemonicWordsView: View {
                     .frame(maxHeight: 500)
                     
                     //show address ví của user
-                    Text("Account Address:\n" + addressWallet).font(.body).padding(.horizontal)
+                    let array_Data12Words = data12Words.map { i in
+                        return i.components(separatedBy: ": ").last ?? " "
+                    }
+                    Text(array_Data12Words.joined(separator: " ")).font(.body).padding(.horizontal)
                     
                     //nút next
                     HStack(alignment: .center){
