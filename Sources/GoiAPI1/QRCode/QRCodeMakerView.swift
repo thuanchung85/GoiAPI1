@@ -35,7 +35,7 @@ public struct QRCodeMakerView: View {
         NavigationView{
          
             VStack() {
-                Text(self.name)
+                Text("Your wallet name: \n" + self.name)
                     .font(.title)
                 
                 Image(uiImage: generateQRCode(from: self.seed12WordsString))
@@ -44,8 +44,8 @@ public struct QRCodeMakerView: View {
                     .scaledToFit()
                     .frame(width: 300, height: 300)
                 
-                Text("Wallet address: " + self.seed12WordsString)
-                    .font(.title)
+                Text("12 serect words: \n" + self.seed12WordsString)
+                    .font(.body)
                 //nut copy 12 từ
                 Button {
                     print("Copy Button was tapped save to clipbroad")
@@ -69,8 +69,13 @@ public struct QRCodeMakerView: View {
                 } label: {
                     Text("NEXT")
                         .font(.body)
-                       
+                        .accentColor(Color(.systemBlue))
+                        .cornerRadius(4.0)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 4).stroke(Color(.systemBlue), lineWidth: 2)
+                        )
                 }
+                
             }
            
         }
