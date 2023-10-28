@@ -23,23 +23,8 @@ public struct CreateNewWallet_View: View {
     
     public var body: some View{
          
-        if(self.isShow_PasscodeView_ConfirmPIN == true)
-        {
-           //===nút đi tới create new wallet view của gói API 1===//
-           PasscodeView_ConfirmPIN(textAskUserDo: "Enter PIN Number for your wallet",
-                                   walletName:  $walletName,
-                                   isUserPass_PIN_making: $isUserPass_PIN_making)
-            
-            if(self.isUserPass_PIN_making == true)
-            {
-                //call trang tạo 12 từ khóa
-                MnemonicWordsView(walletName: walletName,
-                                  PIN_Number: String(decoding: keychain_read(service: "PoolsWallet_KeyChain_PIN", account: walletName) ?? Data(), as: UTF8.self),
-                                  isUserPass12SeedsWordView: $isUserPass_MakeNewWalletView )
-                
-            }
-        }
-        else{
+        //mới vô show nhập tên ví và ok thì mới cho next button hiện ra
+        if(self.isShow_PasscodeView_ConfirmPIN == false){
             
             
             VStack(alignment: .leading)
@@ -92,7 +77,32 @@ public struct CreateNewWallet_View: View {
                 
             }//end VStack
             
-        }//end else
+        }//end if
+        
+        
+        //nếu user nhập xong tên và bấm next thì tới nhập mã Pin view
+        if(self.isShow_PasscodeView_ConfirmPIN == true)
+        {
+            //Nếu user chưa pass nhập mã Pin thì còn ở view nhập mã PIN
+            if(self.isUserPass_PIN_making == false){
+                //===nút đi tới create new wallet view của gói API 1===//
+                PasscodeView_ConfirmPIN(textAskUserDo: "Enter PIN Number for your wallet",
+                                        walletName:  $walletName,
+                                        isUserPass_PIN_making: $isUserPass_PIN_making)
+            }
+            
+            //nếu user pass Bước Nhập mã PIN, thì show tiếp view 12 từ seed
+            if(self.isUserPass_PIN_making == true)
+            {
+                //call trang tạo 12 từ khóa
+                MnemonicWordsView(walletName: walletName,
+                                  PIN_Number: String(decoding: keychain_read(service: "PoolsWallet_KeyChain_PIN", account: walletName) ?? Data(), as: UTF8.self),
+                                  isUserPass12SeedsWordView: $isUserPass_MakeNewWalletView )
+                
+            }
+        }//end if
+        
+       
         
     }//end Body
     
