@@ -8,14 +8,14 @@ import UniformTypeIdentifiers
 public struct CreateNewWallet_View: View {
    
     @Binding var walletName:String
-    @Binding var checkBoxisOn:Bool
+    @State var checkBoxisOn:Bool = false
     
-    @Binding var isUserPass_PIN_making:Bool
+    @State var isUserPass_PIN_making:Bool = false
     
-    public init(walletName: Binding<String>, checkBoxisOn : Binding<Bool>, isUserPass_PIN_making:Binding<Bool>) {
+    public init(walletName: Binding<String>) {
         self._walletName = walletName
-        self._checkBoxisOn = checkBoxisOn
-        self._isUserPass_PIN_making = isUserPass_PIN_making
+        //self._checkBoxisOn = checkBoxisOn
+        //self._isUserPass_PIN_making = isUserPass_PIN_making
     }
     
     public var body: some View{
