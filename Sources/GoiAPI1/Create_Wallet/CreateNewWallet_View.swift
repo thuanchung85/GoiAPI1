@@ -80,7 +80,12 @@ public struct CreateNewWallet_View: View {
                 
             }
             .padding(.bottom,50)
+            
+            .onChange(of: $isUserPass_PIN_making.wrappedValue, perform: { value in
+                                  print(value)
+                          })
         }
+        
        
     }
     
