@@ -29,8 +29,7 @@ public struct CreateNewWallet_View: View {
            PasscodeView_ConfirmPIN(textAskUserDo: "Enter PIN Number for your wallet",
                                    walletName:  $walletName,
                                    isUserPass_PIN_making: $isUserPass_PIN_making)
-       }
-        else{
+            
             if(self.isUserPass_PIN_making == true)
             {
                 //call trang tạo 12 từ khóa
@@ -39,60 +38,63 @@ public struct CreateNewWallet_View: View {
                                   isUserPass12SeedsWordView: $isUserPass_MakeNewWalletView )
                 
             }
-            else{
-                VStack(alignment: .leading)
-                {
-                    
-                    //phần nhập tên ví
-                    VStack(alignment: .leading){
-                        Text("WALLET NAME").font(.title)
-                        TextField("Enter your wallet name", text: $walletName)
-                            .font(.body)
-                            .textFieldStyle(.roundedBorder)
-                    }
-                    
-                    
-                    //phần nhắc nhở
-                    VStack(alignment: .leading){
-                        Text("PROTECT YOUR WALLET").font(.title)
-                        Text("Add one or more security layer to protect your crypto assets").font(.body)
-                    }.padding(.top, 15)
-                    
-                    //phần check box ok
-                    VStack(alignment: .leading){
-                        Toggle(isOn: $checkBoxisOn) {
-                            Text("I have read and agree to the Term of service and Privacy policy").font(.footnote)
-                        }
-                        .toggleStyle(CheckboxToggleStyle())
-                        
-                        
-                    }
-                    Spacer()
-                    
-                    //nút NEXT
-                    if(self.checkBoxisOn == true) && (self.walletName.isEmpty == false){
-                        Button(action: {
-                            //call PasscodeView_ConfirmPIN
-                            self.isShow_PasscodeView_ConfirmPIN = true
-                        }) {
-                            VStack {
-                                Text("NEXT")
-                            }
-                            .padding(5)
-                            .accentColor(Color(.red))
-                        }
-                        
-                        
-                    }
-                    
+        }
+        else{
+            
+            
+            VStack(alignment: .leading)
+            {
+                
+                //phần nhập tên ví
+                VStack(alignment: .leading){
+                    Text("WALLET NAME").font(.title)
+                    TextField("Enter your wallet name", text: $walletName)
+                        .font(.body)
+                        .textFieldStyle(.roundedBorder)
                 }
                 
                 
+                //phần nhắc nhở
+                VStack(alignment: .leading){
+                    Text("PROTECT YOUR WALLET").font(.title)
+                    Text("Add one or more security layer to protect your crypto assets").font(.body)
+                }.padding(.top, 15)
                 
-            }
+                //phần check box ok
+                VStack(alignment: .leading){
+                    Toggle(isOn: $checkBoxisOn) {
+                        Text("I have read and agree to the Term of service and Privacy policy").font(.footnote)
+                    }
+                    .toggleStyle(CheckboxToggleStyle())
+                    
+                    
+                }
+                Spacer()
+                
+                //nút NEXT
+                if(self.checkBoxisOn == true) && (self.walletName.isEmpty == false){
+                    Button(action: {
+                        //call PasscodeView_ConfirmPIN
+                        self.isShow_PasscodeView_ConfirmPIN = true
+                    }) {
+                        VStack {
+                            Text("NEXT")
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(Color.green)
+                        }
+                        .padding(5)
+                        .accentColor(Color(.red))
+                    }
+                    
+                    
+                }
+                
+            }//end VStack
             
-        }
-    }
+        }//end else
+        
+    }//end Body
     
    
     
