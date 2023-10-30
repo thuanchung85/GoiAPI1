@@ -116,12 +116,13 @@ public struct MnemonicWordsView: View {
                                         .font(.body)
                                         .foregroundColor(.black)
                                         .padding()
+                                        .background(Color.gray.opacity(0.1))
                                         .cornerRadius(20)
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 20)
-                                                .stroke(.green, lineWidth: 5)
+                                                .stroke(.green, lineWidth: 1)
                                         )
-                                        .background(Color.gray.opacity(0.1))
+                                        
                                         
                                 
                             }
