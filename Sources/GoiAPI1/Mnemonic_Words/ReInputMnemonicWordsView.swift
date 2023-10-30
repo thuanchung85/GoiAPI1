@@ -87,7 +87,7 @@ public struct ReInputMnemonicWordsView: View {
                                     let s = item.components(separatedBy: ": ").last ?? " "
                                    
                                     if(seedsTextString.contains(s) == false){
-                                        Text("\(index) : \(s)")
+                                        Text("\(index + 1) : \(s)")
                                             .frame(width: 80)
                                             .font(.body)
                                             .foregroundColor(.white)
