@@ -138,17 +138,17 @@ public struct MnemonicWordsView: View {
                     HStack(alignment: .center){
                        
                         Button(action: {
-                            UIPasteboard.general.setValue(array_Data12Words,
+                            UIPasteboard.general.setValue(array_Data12Words.joined(separator: " "),
                                                               forPasteboardType: UTType.plainText.identifier)
                             
                         }) {
-                            Text("Copy")
-                                .frame(width:100)
+                            Text("COPY")
+                                .frame(width:60)
                                 .font(.footnote)
                                 .padding()
-                                .foregroundColor(.red)
+                                .foregroundColor(.black)
                         }
-                        .background(Color.green)
+                        .background(Color.gray.opacity(0.5))
                         .cornerRadius(30)
                         Spacer()
                         Text("You can copy 12 words here! But this is NOT RECOMMEND.")
