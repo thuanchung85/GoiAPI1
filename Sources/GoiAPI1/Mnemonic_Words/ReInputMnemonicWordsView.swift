@@ -58,8 +58,8 @@ public struct ReInputMnemonicWordsView: View {
                         .lineSpacing(10)
                         .cornerRadius(5)
                 }
-                .cornerRadius(5)
                 .background(Color.gray.opacity(0.5))
+                .cornerRadius(5)
                 
                 //nút delete 1 từ
                 HStack(){
