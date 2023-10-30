@@ -33,9 +33,10 @@ public struct PasscodeView_ConfirmPIN : View {
                 
                 Text(textAskUserDo)
                     .font(.custom("Arial ", size: 22))
-                    .padding(.top,20)
+                    .padding(.top,10)
                 Text(textAskUserDo2)
                     .font(.custom("Arial ", size: 18))
+                    .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
                     .padding(.vertical,20)
                 
@@ -153,7 +154,7 @@ struct PasswordView2 : View {
             if password.count > index{
                 
                 Circle()
-                    .fill(Color.blue)
+                    .fill(Color.black)
                     .frame(width: 25, height: 25)
             }
         }
@@ -174,8 +175,8 @@ struct PasswordView3 : View {
         ZStack{
             
             Circle()
-                .stroke(Color.red,lineWidth: 2)
-                .frame(width: 30, height: 30)
+                .stroke(Color.red,lineWidth: 1)
+                .frame(width: 25, height: 25)
             
             // checking whether it is typed...
             
@@ -183,7 +184,7 @@ struct PasswordView3 : View {
                 
                 Circle()
                     .fill(Color.red)
-                    .frame(width: 30, height: 30)
+                    .frame(width: 25, height: 25)
             }
         }
     }
@@ -210,13 +211,17 @@ struct PasswordButton2 : View {
                     
                     Image(systemName: "delete.left")
                         .font(.system(size: 24))
-                        .foregroundColor(.blue)
+                        .foregroundColor(.black)
+                        .background(Color.gray.opacity(0.5))
+                        .cornerRadius(10)
                 }
                 else{
                     
                     Text(value)
-                        .font(.title)
-                        .foregroundColor(.blue)
+                        .font(.body)
+                        .foregroundColor(.black)
+                        .background(Color.gray.opacity(0.5))
+                        .cornerRadius(10)
                 }
             }
             .padding()
