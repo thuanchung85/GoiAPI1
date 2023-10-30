@@ -117,7 +117,9 @@ public struct PasscodeView_ConfirmPIN : View {
                     password.removeAll()
                 } label: {
                     Text("Reset your Passcode!")
-                        .font(.body)
+                        .font(.custom("Arial ", size: 22))
+                        .padding(.top,10)
+                        .foregroundColor(.green)
                        
                 }
             }
