@@ -154,7 +154,7 @@ struct PasswordView2 : View {
             if password.count > index{
                 
                 Circle()
-                    .fill(Color.black)
+                    .fill(Color.green)
                     .frame(width: 25, height: 25)
             }
         }
