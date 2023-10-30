@@ -65,6 +65,7 @@ public struct CreateNewWallet_View: View {
                         .padding(.bottom,5)
                     Text("Add one or more security layer to protect your crypto assets")
                         .font(.footnote)
+                        .foregroundColor(.gray)
                 }.padding(.vertical, 20)
                 Spacer()
                 //phần check box ok
