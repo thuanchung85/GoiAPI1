@@ -160,7 +160,7 @@ public struct MnemonicWordsView: View {
                     //show 12 từ
                     
                     Text(array_Data12Words.joined(separator: " "))
-                        .font(.custom("Arial ", size: 20))
+                        .font(.custom("Arial ", size: 15))
                         .padding(5)
                         .background(Color.gray.opacity(0.1))
                         .cornerRadius(5)
