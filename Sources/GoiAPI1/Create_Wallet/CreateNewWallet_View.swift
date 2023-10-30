@@ -47,12 +47,13 @@ public struct CreateNewWallet_View: View {
                 //phần nhập tên ví
                 VStack(alignment: .leading){
                     Text("WALLET NAME")
-                        .font(.custom("Arial ", size: 10))
+                        .font(.custom("Arial ", size: 22))
                         .padding(.bottom,5)
                     TextField("Enter your wallet name", text: $walletName)
                         .font(.body)
-                        .textFieldStyle(.roundedBorder)
-                        .background(Color.black)
+                        .padding()
+                        .background(Color.gray)
+                        .cornerRadius(12)
                 }
                 
                 
