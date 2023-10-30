@@ -15,12 +15,14 @@ public struct CreateNewWallet_View: View {
     @State var isShow_PasscodeView_ConfirmPIN = false
     @State var isUserPass_PIN_making:Bool = false
     
+    //==init==//
     public init(walletName: Binding<String>, isUserPass_MakeNewWalletView:Binding<Bool>) {
         self._walletName = walletName
         self._isUserPass_MakeNewWalletView = isUserPass_MakeNewWalletView
         
     }
     
+    //==BODY==//
     public var body: some View{
          
         //mới vô show nhập tên ví và ok thì mới cho next button hiện ra
@@ -29,6 +31,8 @@ public struct CreateNewWallet_View: View {
             
             VStack(alignment: .leading)
             {
+                Text("Create a New Wallet")
+                    .font(.custom("Tahoma Bold", size: 15))
                 
                 //phần nhập tên ví
                 VStack(alignment: .leading){
