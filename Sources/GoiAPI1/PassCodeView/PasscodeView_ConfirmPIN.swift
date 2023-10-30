@@ -78,10 +78,8 @@ public struct PasscodeView_ConfirmPIN : View {
             VStack{
                 
                 Text("Please Confirm your PIN number")
-                    .font(.title2)
-                    .fontWeight(.heavy)
-                    .padding(.top,20)
-                    .foregroundColor(.red)
+                    .font(.custom("Arial ", size: 22))
+                    .padding(.top,10)
                 
                 HStack(spacing: 22){
                     
