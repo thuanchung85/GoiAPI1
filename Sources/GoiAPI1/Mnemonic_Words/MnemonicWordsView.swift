@@ -100,23 +100,26 @@ public struct MnemonicWordsView: View {
                 //show 12 seed words View
                 VStack(alignment: .center) {
                     
-                    Text("Your 12 words seed phrase").font(.title)
-                        .padding(10)
-                    Text("Below are 12 recovery words connected to your wallet. Please store it securely and never share it with anyone.")
-                        .font(.footnote)
+                    //title
+                    Text("Here are 12 recovery words connected to your wallet.\n Please store it securely and never share it with anyone.")
+                        .font(.custom("Arial ", size: 15))
+                        .foregroundColor(.gray)
                         .padding(.bottom,10)
                     
                     //12 từ trong khung
                     ScrollView {
                         LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
                             ForEach(Array(data12Words.enumerated()), id: \.offset) { index,item in
-                                Text("\(index + 1) : \(item)")
-                                    .frame(width: 130)
-                                    .font(.body)
-                                    .foregroundColor(.blue)
-                                    .padding()
-                                    .border(.blue)
-                                    .cornerRadius(5)
+                                ZStack{
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .fill(.gray.opacity(0.2))
+                                        .frame(width: 130, height: 55)
+                                    Text("\(index + 1) : \(item)")
+                                        .frame(width: 130)
+                                        .font(.body)
+                                        .foregroundColor(.black)
+                                        .padding()
+                                }
                                 
                             }
                         }
