@@ -190,16 +190,14 @@ public struct ReInputMnemonicWordsView: View {
                             showQRCodePage = true
                             
                         }) {
-                            VStack {
                                 Text("NEXT")
-                            }
-                            .padding()
-                            .accentColor(Color(.systemBlue))
-                            .cornerRadius(4.0)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 4).stroke(Color(.systemBlue), lineWidth: 2)
-                            )
+                                .frame(width: 120)
+                                .padding()
+                                .foregroundColor(.white)
+                            
                         }
+                        .background(Color.green)
+                        .cornerRadius(30)
                         Spacer()
                     }//end HStack
                 }
