@@ -54,9 +54,11 @@ struct LoadingView<Content>: View where Content: View {
             }
             //genegater 12 từ
             .onAppear(){
-                do{
+                
                     let mnemonic = try! BIP39.generateMnemonics(bitsOfEntropy: 128)!
                     data12Words = mnemonic.components(separatedBy: " ")
+                    print(data12Words)
+                    
                     DispatchQueue.global(qos: .userInteractive).async {
                         let keystore = try! BIP32Keystore(mnemonics: mnemonic, password: "", mnemonicsPassword: "")
                         print(keystore as Any)
@@ -64,11 +66,9 @@ struct LoadingView<Content>: View where Content: View {
                         print(self.addressWallet)
                     }
                     self.isStillLoading12Word = false
-                }
-                catch{
-                    print("make mnemonic error!")
-                }
-                    let myWallet = Wallet()
+                
+               
+                    //let myWallet = Wallet()
                 
                 /*
                 DispatchQueue.global().async {
