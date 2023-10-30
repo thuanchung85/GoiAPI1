@@ -90,10 +90,10 @@ public struct ReInputMnemonicWordsView: View {
                                         Text("\(index + 1) : \(s)")
                                             .frame(width: 80)
                                             .font(.custom("Arial ", size: 15))
-                                            .foregroundColor(.white)
+                                            .foregroundColor(.green)
                                             .padding()
                                             .background(Color.gray.opacity(0.2))
-                                            .cornerRadius(5)
+                                            .cornerRadius(20)
                                             .scaledToFill()
                                             .minimumScaleFactor(0.5)
                                             .lineLimit(1)
@@ -123,7 +123,7 @@ public struct ReInputMnemonicWordsView: View {
                                     }
                                 }//end for each
                             }//end LazyVGrid
-                            .padding(.horizontal)
+                            .padding(5)
                         }//end ScrollView
                         .frame(maxHeight: 700)
                         
