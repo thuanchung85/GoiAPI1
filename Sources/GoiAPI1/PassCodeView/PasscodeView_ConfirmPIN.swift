@@ -87,7 +87,7 @@ public struct PasscodeView_ConfirmPIN : View {
                     .padding(.top,20)
                     .foregroundColor(.red)
                 
-                HStack(spacing: 22){
+                HStack(spacing: 15){
                     
                     // Password Circle View...
                     
