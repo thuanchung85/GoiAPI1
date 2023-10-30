@@ -41,7 +41,8 @@ public struct MnemonicWordsView: View {
                 //12 seed words View
                 VStack(alignment: .center) {
                     
-                    Text("Your 12 words seed phrase").font(.title)
+                    Text("Your 12 words seed phrase")
+                        .font(.custom("Arial ", size: 20))
                         .padding(10)
                     Text("Below are 12 recovery words connected to your wallet. Please store it securely and never share it with anyone.")
                         .font(.footnote)

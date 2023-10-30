@@ -35,8 +35,13 @@ public struct QRCodeMakerView: View {
        
          
             VStack() {
-                Text("Your 12 serect words QR code of your: " + self.name + " wallet")
-                    .font(.title)
+                Text("Your words QR Code")
+                    .font(.custom("Arial ", size: 20))
+                    .padding(10)
+                
+                Text("Wallet name: " + self.name )
+                    .font(.footnote)
+                    .padding(.bottom,10)
                 
                 Image(uiImage: generateQRCode(from: self.seed12WordsString))
                     .resizable()
@@ -67,15 +72,12 @@ public struct QRCodeMakerView: View {
                     isUserPass12SeedsWordView = true
                 } label: {
                     Text("NEXT")
-                        .padding(10)
-                        .font(.body)
-                        .accentColor(Color(.systemBlue))
-                        .cornerRadius(4.0)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 4).stroke(Color(.systemBlue), lineWidth: 2)
-                        )
+                        .frame(width: 120)
+                        .padding()
+                        .foregroundColor(.white)
                 }
-                .padding(.top,20)
+                .background(Color.green)
+                .cornerRadius(30)
             }//end VStack
            
         
