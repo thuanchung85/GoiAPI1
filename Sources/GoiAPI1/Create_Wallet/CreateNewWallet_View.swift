@@ -32,13 +32,15 @@ public struct CreateNewWallet_View: View {
             VStack(alignment: .leading)
             {
                 HStack(alignment: .center){
+                    Spacer()
                     Text("Create a New Wallet")
-                        .font(.custom("Arial Bold", size: 25))
+                        .font(.custom("Arial Bold", size: 20))
                         .padding(.bottom, 20)
                         .padding(.horizontal)
                         .multilineTextAlignment(.center)
                         .scaledToFit()
                         .minimumScaleFactor(0.05)
+                    Spacer()
                 }
                 
                 //phần nhập tên ví
