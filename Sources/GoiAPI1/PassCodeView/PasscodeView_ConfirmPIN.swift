@@ -212,16 +212,18 @@ struct PasswordButton2 : View {
                     Image(systemName: "delete.left")
                         .font(.system(size: 24))
                         .foregroundColor(.black)
-                        .background(Color.gray.opacity(0.5))
+                        .background(Color.gray.opacity(0.2))
                         .cornerRadius(10)
+                        .frame(width: 25, height: 25)
                 }
                 else{
                     
                     Text(value)
                         .font(.body)
                         .foregroundColor(.black)
-                        .background(Color.gray.opacity(0.5))
+                        .background(Color.gray.opacity(0.2))
                         .cornerRadius(10)
+                        .frame(width: 25, height: 25)
                 }
             }
             .padding()
