@@ -4,6 +4,8 @@ import CoreImage.CIFilterBuiltins
 import Foundation
 import SwiftUI
 import UniformTypeIdentifiers
+import web3swift
+import Web3Core
 
 //==========LOADING VIEW========///
 struct ActivityIndicator: UIViewRepresentable {
@@ -52,10 +54,24 @@ struct LoadingView<Content>: View where Content: View {
             }
             //genegater 12 từ
             .onAppear(){
-                
-                DispatchQueue.global().async {
+                do{
+                    let mnemonic = try! BIP39.generateMnemonics(bitsOfEntropy: 128)!
+                    data12Words = mnemonic.components(separatedBy: " ")
+                    DispatchQueue.global(qos: .userInteractive).async {
+                        let keystore = try! BIP32Keystore(mnemonics: mnemonic, password: "", mnemonicsPassword: "")
+                        print(keystore as Any)
+                        self.addressWallet = (keystore?.addresses?.first)!.address
+                        print(self.addressWallet)
+                    }
+                    self.isStillLoading12Word = false
+                }
+                catch{
+                    print("make mnemonic error!")
+                }
                     let myWallet = Wallet()
-                    
+                
+                /*
+                DispatchQueue.global().async {
                     let HDWallet_1_Data = myWallet.create_HDWallet_BIP32_Init(accountName: self.walletName,password: self.PIN_Number)
                     addressWallet = HDWallet_1_Data.first ?? ""
                     print("[String] wallet Data: ", HDWallet_1_Data)
@@ -68,7 +84,7 @@ struct LoadingView<Content>: View where Content: View {
                     
                     //print("[reset] wallet address recover by 12 words: ", retestWalletby12Words)
                 }
-                
+                */
             }
         }
     }
