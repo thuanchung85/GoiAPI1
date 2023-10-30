@@ -101,7 +101,7 @@ public struct MnemonicWordsView: View {
                 VStack(alignment: .center) {
                     
                     //title
-                    Text("Here are 12 recovery words connected to your wallet.\n Please store it securely and never share it with anyone.")
+                    Text("Here are 12 recovery words connected to your wallet.\nPlease store it securely and never share it with anyone.")
                         .font(.custom("Arial ", size: 15))
                         .foregroundColor(.gray)
                         .padding(.bottom,10)

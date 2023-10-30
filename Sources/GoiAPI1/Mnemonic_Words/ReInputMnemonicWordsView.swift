@@ -65,9 +65,11 @@ public struct ReInputMnemonicWordsView: View {
                                 seedsTextString[currentIndexSeed] = String(currentIndexSeed + 1) + ":..."
                             }
                         }) {
-                            VStack {
-                                Text("Delete")
-                            }
+                          
+                            Image(systemName: "delete.left")
+                                    .font(.system(size: 24))
+                                    .foregroundColor(.black)
+                            
                             .padding(5)
                             .accentColor(Color(.red))
                         }
@@ -90,7 +92,7 @@ public struct ReInputMnemonicWordsView: View {
                                         Text("\(index + 1) : \(s)")
                                             .frame(width: 80)
                                             .font(.custom("Arial ", size: 15))
-                                            .foregroundColor(.green)
+                                            .foregroundColor(.black)
                                             .padding()
                                             .background(Color.gray.opacity(0.2))
                                             .cornerRadius(20)
