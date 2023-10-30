@@ -136,10 +136,13 @@ public struct ReInputMnemonicWordsView: View {
                         
                     }
                     else{
-                        Text("SORRY, YOU GOT THE WRONG ORDER, PLEASE TRY AGAIN.")
-                            .font(.custom("Arial ", size: 20))
-                            .foregroundColor(.gray)
-                            .padding(.bottom,10)
+                        VStack{
+                            Spacer()
+                            Text("SORRY, YOU GOT THE WRONG ORDER, PLEASE TRY AGAIN.")
+                                .font(.custom("Arial ", size: 20))
+                                .foregroundColor(.gray)
+                                .padding(.bottom,10)
+                        }.padding(.bottom,10)
                     }
                     //nút back để user làm lại
                     //nut skip nếu user thôi không làm nữa
