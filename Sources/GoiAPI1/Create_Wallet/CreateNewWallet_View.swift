@@ -84,15 +84,12 @@ public struct CreateNewWallet_View: View {
                         //call PasscodeView_ConfirmPIN
                         self.isShow_PasscodeView_ConfirmPIN = true
                     }) {
-                        VStack {
-                            Text("NEXT")
-                                .padding()
-                                .foregroundColor(.white)
-                                .background(Color.green)
-                        }
-                        .padding(5)
-                        .accentColor(Color(.red))
+                        Text("Create PIN code")
+                            .padding()
+                            .foregroundColor(.white)
                     }
+                    .background(Color.green)
+                    .cornerRadius(30)
                     
                     
                 }
