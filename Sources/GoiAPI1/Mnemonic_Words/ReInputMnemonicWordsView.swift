@@ -40,10 +40,12 @@ public struct ReInputMnemonicWordsView: View {
         VStack(alignment: .center) {
             //show page tập input 12 từ cho user
             if(showQRCodePage == false){
-                Text("ReEnter Your 12 words seed phrase").font(.title)
+                Text("Re-enter your 12-word seed phrase")
+                    .font(.custom("Arial ", size: 20))
                     .padding(10)
                 Text("Please tap your 12 words follow previous order. ")
                     .font(.footnote)
+                    .foregroundColor(Color.gray)
                     .padding(.bottom,5)
                 
                 //12 từ trong khung
@@ -55,6 +57,7 @@ public struct ReInputMnemonicWordsView: View {
                     .padding(10)
                     .cornerRadius(5)
                     .lineSpacing(10)
+                
                 //nút delete 1 từ
                 HStack(){
                     Spacer()
