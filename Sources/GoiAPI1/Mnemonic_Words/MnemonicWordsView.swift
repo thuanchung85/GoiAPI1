@@ -110,17 +110,19 @@ public struct MnemonicWordsView: View {
                     ScrollView {
                         LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
                             ForEach(Array(data12Words.enumerated()), id: \.offset) { index,item in
-                                ZStack{
-                                    RoundedRectangle(cornerRadius: 25)
-                                        .fill(.gray.opacity(0.1))
-                                        .border(Color.green, width: 1)
-                                        .frame(width: 130, height: 55)
+                                
                                     Text("\(index + 1) : \(item)")
                                         .frame(width: 130)
                                         .font(.body)
                                         .foregroundColor(.black)
                                         .padding()
-                                }
+                                        .cornerRadius(20)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .stroke(.green, lineWidth: 5)
+                                        )
+                                        .background(Color.gray.opacity(0.1))
+                                        
                                 
                             }
                         }
