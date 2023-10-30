@@ -208,22 +208,32 @@ struct PasswordButton2 : View {
                 if value.count > 1{
                     
                     // Image...
-                    
-                    Image(systemName: "delete.left")
-                        .font(.system(size: 24))
-                        .foregroundColor(.black)
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(10)
-                        .frame(width: 25, height: 25)
+                    ZStack{
+                        Rectangle()
+                            .frame(width: 30, height: 30)
+                            .background(Color.gray.opacity(0.2))
+                            .cornerRadius(10)
+                        
+                        Image(systemName: "delete.left")
+                            .font(.system(size: 24))
+                            .foregroundColor(.black)
+                           
+                           
+                        
+                    }
                 }
                 else{
-                    
-                    Text(value)
-                        .font(.body)
-                        .foregroundColor(.black)
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(10)
-                        .frame(width: 25, height: 25)
+                    ZStack{
+                        Rectangle()
+                            .frame(width: 30, height: 30)
+                            .background(Color.gray.opacity(0.2))
+                            .cornerRadius(10)
+                        
+                        Text(value)
+                            .font(.body)
+                            .foregroundColor(.black)
+                           
+                    }
                 }
             }
             .padding()
