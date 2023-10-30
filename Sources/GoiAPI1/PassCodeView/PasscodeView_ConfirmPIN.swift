@@ -77,7 +77,7 @@ public struct PasscodeView_ConfirmPIN : View {
         else{
             VStack{
                 
-                Text("Please Confirm your PIN number")
+                Text("Please confirm your pin number")
                     .font(.custom("Arial ", size: 22))
                     .padding(.top,10)
                 
