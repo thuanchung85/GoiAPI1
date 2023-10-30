@@ -139,7 +139,7 @@ public struct ReInputMnemonicWordsView: View {
                     else{
                         VStack{
                             Spacer()
-                            Text("SORRY, YOU GOT THE WRONG ORDER, PLEASE TRY AGAIN.")
+                            Text("SORRY, YOU MADE THE WRONG ORDER, PLEASE TRY AGAIN.")
                                 .font(.custom("Arial ", size: 20))
                                 .foregroundColor(.gray)
                                 .padding(.bottom,10)
@@ -188,7 +188,7 @@ public struct ReInputMnemonicWordsView: View {
                 else{
                     VStack{
                         Spacer()
-                        Text("WELL DONE,YOU WERE CORRECTED ALL WORDS").foregroundColor(Color.green)
+                        Text("WELL DONE, YOU CORRECTED ALL THE WORDS").foregroundColor(Color.green)
                         Spacer()
                         //nút NEXT
                         HStack(alignment: .center){
