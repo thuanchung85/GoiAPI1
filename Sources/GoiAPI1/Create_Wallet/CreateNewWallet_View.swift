@@ -60,8 +60,11 @@ public struct CreateNewWallet_View: View {
                 
                 //phần nhắc nhở
                 VStack(alignment: .leading){
-                    Text("PROTECT YOUR WALLET").font(.title)
-                    Text("Add one or more security layer to protect your crypto assets").font(.body)
+                    Text("PROTECT YOUR WALLET")
+                        .font(.custom("Arial ", size: 22))
+                        .padding(.bottom,5)
+                    Text("Add one or more security layer to protect your crypto assets")
+                        .font(.footnote)
                 }.padding(.top, 15)
                 
                 //phần check box ok
@@ -133,13 +136,18 @@ public struct CreateNewWallet_View: View {
 // Define a custom toggle style to make our Toggle look like a checkbox
 struct CheckboxToggleStyle: ToggleStyle {
   func makeBody(configuration: Self.Configuration) -> some View {
-    HStack {
-      Image(systemName: configuration.isOn ? "checkmark.square" : "square")
-        .resizable()
-        .frame(width: 24, height: 24)
-        .onTapGesture { configuration.isOn.toggle() }
-        
-        configuration.label.padding(.leading,10)
-    }
+      HStack {
+          Image(systemName: configuration.isOn ? "checkmark.square" : "square")
+              .resizable()
+              .renderingMode(.template)
+              .foregroundColor(.blue)
+            
+              .frame(width: 24, height: 24)
+              .onTapGesture {
+                  configuration.isOn.toggle()
+              }
+              
+          configuration.label.padding(.leading,10)
+      }
   }
 }
