@@ -127,9 +127,9 @@ public struct MnemonicWordsView: View {
                                 
                             }
                         }
-                        .padding(.horizontal)
+                        .padding(5)
                     }
-                    .frame(maxHeight: 550)
+                    .frame(maxHeight: 510)
                     
                     //nút next
                     let array_Data12Words = data12Words.map { i in
@@ -167,6 +167,7 @@ public struct MnemonicWordsView: View {
                             
                         }) {
                             Text("NEXT")
+                                .frame(width: 120)
                                 .padding()
                                 .foregroundColor(.white)
                         }
