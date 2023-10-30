@@ -65,8 +65,8 @@ public struct CreateNewWallet_View: View {
                         .padding(.bottom,5)
                     Text("Add one or more security layer to protect your crypto assets")
                         .font(.footnote)
-                }.padding(.top, 15)
-                
+                }.padding(.vertical, 20)
+                Spacer()
                 //phần check box ok
                 VStack(alignment: .leading){
                     Toggle(isOn: $checkBoxisOn) {
