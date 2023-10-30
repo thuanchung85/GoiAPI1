@@ -89,14 +89,18 @@ public struct ReInputMnemonicWordsView: View {
                                     if(seedsTextString.contains(s) == false){
                                         Text("\(index + 1) : \(s)")
                                             .frame(width: 80)
-                                            .font(.body)
+                                            .font(.custom("Arial ", size: 15))
                                             .foregroundColor(.white)
                                             .padding()
-                                            .background(Color.blue)
+                                            .background(Color.gray.opacity(0.2))
                                             .cornerRadius(5)
                                             .scaledToFill()
                                             .minimumScaleFactor(0.5)
                                             .lineLimit(1)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 20)
+                                                    .stroke(.green, lineWidth: 1)
+                                            )
                                             .onTapGesture {
                                                 print("seed word: \(currentIndexSeed)", s)
                                                 seedsTextString[currentIndexSeed] = s
@@ -125,40 +129,42 @@ public struct ReInputMnemonicWordsView: View {
                         
                     }
                     else{
-                        Text("SORRY, YOU GOT THE WRONG ORDER, PLEASE TRY AGAIN.").foregroundColor(Color.red)
+                        Text("SORRY, YOU GOT THE WRONG ORDER, PLEASE TRY AGAIN.")
+                            .font(.custom("Arial ", size: 20))
+                            .foregroundColor(.gray)
+                            .padding(.bottom,10)
                     }
                     //nút back để user làm lại
                     //nut skip nếu user thôi không làm nữa
                     HStack(alignment: .center){
                         Spacer()
+                        
                         Button(action: {
                             self.isShowReInput12SeedsView = false
                             
                         }) {
-                            VStack {
-                                Text("TRY AGAIN")
-                            }
-                            .padding()
-                            .accentColor(Color(.systemBlue))
-                            .cornerRadius(4.0)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 4).stroke(Color(.systemBlue), lineWidth: 2)
-                            )
+                            Text("TRY AGAIN")
+                                .frame(width: 120)
+                                .padding()
+                                .foregroundColor(.white)
                         }
+                        .background(Color.green)
+                        .cornerRadius(30)
+                        
                         Spacer()
+                        
+                        
                         Button(action: {
                             showQRCodePage = true
                         }) {
-                            VStack {
-                                Text("SKIP").foregroundColor(Color.red)
-                            }
-                            .padding()
-                            .accentColor(Color(.red))
-                            .cornerRadius(4.0)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 4).stroke(Color(.systemBlue), lineWidth: 2)
-                            )
+                            Text("SKIP")
+                                .frame(width: 120)
+                                .padding()
+                                .foregroundColor(.white)
                         }
+                        .background(Color.green)
+                        .cornerRadius(30)
+                        
                         Spacer()
                     }//end HStack
                     
