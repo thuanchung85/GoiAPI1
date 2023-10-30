@@ -129,7 +129,7 @@ public struct MnemonicWordsView: View {
                         }
                         .padding(.horizontal)
                     }
-                    .frame(maxHeight: 500)
+                    .frame(maxHeight: 550)
                     
                     //nút next
                     let array_Data12Words = data12Words.map { i in
