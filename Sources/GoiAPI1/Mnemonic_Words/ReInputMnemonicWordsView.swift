@@ -142,6 +142,7 @@ public struct ReInputMnemonicWordsView: View {
                                 .font(.custom("Arial ", size: 20))
                                 .foregroundColor(.gray)
                                 .padding(.bottom,10)
+                            Spacer()
                         }.padding(.bottom,10)
                     }
                     //nút back để user làm lại
@@ -187,7 +188,7 @@ public struct ReInputMnemonicWordsView: View {
                     VStack{
                         Spacer()
                         Text("WELL DONE,YOU WERE CORRECTED ALL WORDS").foregroundColor(Color.green)
-                        
+                        Spacer()
                         //nút NEXT
                         HStack(alignment: .center){
                             Spacer()
