@@ -161,9 +161,9 @@ public struct MnemonicWordsView: View {
                     
                     Text(array_Data12Words.joined(separator: " "))
                         .font(.custom("Arial ", size: 20))
-                        .padding(.horizontal,15)
-                        .padding(.bottom,15)
+                        .padding(5)
                         .background(Color.gray.opacity(0.1))
+                        .cornerRadius(5)
                     
                     //nút next
                     HStack(alignment: .center){
@@ -180,8 +180,10 @@ public struct MnemonicWordsView: View {
                         .background(Color.green)
                         .cornerRadius(30)
                         Spacer()
+                        
+                        
                     }//end VStack
-                    
+                    .padding(.vertical,10)
                     
                 }
             }
