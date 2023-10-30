@@ -31,14 +31,15 @@ public struct CreateNewWallet_View: View {
             
             VStack(alignment: .leading)
             {
-                
-                Text("Create a New Wallet")
-                    .font(.custom("Arial Bold", size: 15))
-                    .padding(.bottom, 20)
-                    .padding(.horizontal)
-                    .multilineTextAlignment(.center)
-                    .scaledToFit()
-                    .minimumScaleFactor(0.05)
+                HStack(alignment: .center){
+                    Text("Create a New Wallet")
+                        .font(.custom("Arial Bold", size: 25))
+                        .padding(.bottom, 20)
+                        .padding(.horizontal)
+                        .multilineTextAlignment(.center)
+                        .scaledToFit()
+                        .minimumScaleFactor(0.05)
+                }
                 
                 //phần nhập tên ví
                 VStack(alignment: .leading){
