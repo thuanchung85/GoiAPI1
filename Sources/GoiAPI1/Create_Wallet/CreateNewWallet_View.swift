@@ -31,8 +31,14 @@ public struct CreateNewWallet_View: View {
             
             VStack(alignment: .leading)
             {
+                
                 Text("Create a New Wallet")
-                    .font(.custom("Tahoma Bold", size: 15))
+                    .font(.custom("Arial Bold", size: 15))
+                    .padding(.bottom, 20)
+                    .padding(.horizontal)
+                    .multilineTextAlignment(.center)
+                    .scaledToFit()
+                    .minimumScaleFactor(0.05)
                 
                 //phần nhập tên ví
                 VStack(alignment: .leading){
