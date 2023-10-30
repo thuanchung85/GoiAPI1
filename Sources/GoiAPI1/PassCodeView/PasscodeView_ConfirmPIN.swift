@@ -33,12 +33,11 @@ public struct PasscodeView_ConfirmPIN : View {
                 
                 Text(textAskUserDo)
                     .font(.custom("Arial ", size: 22))
-                    .fontWeight(.heavy)
                     .padding(.top,20)
                 Text(textAskUserDo2)
                     .font(.custom("Arial ", size: 18))
-                    .fontWeight(.heavy)
-                    .padding(.top,20)
+                    .multilineTextAlignment(.center)
+                    .padding(.vertical,20)
                 
                 HStack(spacing: 22){
                     
@@ -146,8 +145,8 @@ struct PasswordView2 : View {
         ZStack{
             
             Circle()
-                .stroke(Color.blue,lineWidth: 2)
-                .frame(width: 30, height: 30)
+                .stroke(Color.black,lineWidth: 1)
+                .frame(width: 25, height: 25)
             
             // checking whether it is typed...
             
@@ -155,7 +154,7 @@ struct PasswordView2 : View {
                 
                 Circle()
                     .fill(Color.blue)
-                    .frame(width: 30, height: 30)
+                    .frame(width: 25, height: 25)
             }
         }
     }
