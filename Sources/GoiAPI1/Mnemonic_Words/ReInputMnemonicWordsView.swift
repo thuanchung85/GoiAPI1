@@ -181,27 +181,30 @@ public struct ReInputMnemonicWordsView: View {
                 
                 //nếu PASS re check 12 words thì show next button
                 else{
-                    Text("WELL DONE,YOU WERE CORRECTED ALL WORDS").foregroundColor(Color.green)
-                    
-                    //nút NEXT
-                    HStack(alignment: .center){
+                    VStack{
                         Spacer()
-                        Button(action: {
-                            showQRCodePage = true
-                            
-                        }) {
+                        Text("WELL DONE,YOU WERE CORRECTED ALL WORDS").foregroundColor(Color.green)
+                        
+                        //nút NEXT
+                        HStack(alignment: .center){
+                            Spacer()
+                            Button(action: {
+                                showQRCodePage = true
+                                
+                            }) {
                                 Text("NEXT")
-                                .frame(width: 120)
-                                .padding()
-                                .foregroundColor(.white)
-                            
-                        }
-                        .background(Color.green)
-                        .cornerRadius(30)
-                        Spacer()
-                    }//end HStack
+                                    .frame(width: 120)
+                                    .padding()
+                                    .foregroundColor(.white)
+                                
+                            }
+                            .background(Color.green)
+                            .cornerRadius(30)
+                            Spacer()
+                        }//end HStack
+                    }
+                    .padding(.bottom,10)
                 }
-                
             }
             
             //show page QRcode 12 từ cho user copy
