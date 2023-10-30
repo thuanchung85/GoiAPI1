@@ -50,8 +50,8 @@ public struct MnemonicWordsView: View {
                     //12 từ trong khung
                     ScrollView {
                         LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
-                            ForEach(data12Words, id: \.self) { item in
-                                Text("\(item.indices) : " + item)
+                            ForEach(Array(data12Words.enumerated()), id: \.offset) { index,item in
+                                Text("\(index) : " + item)
                                     .frame(width: 130)
                                     .font(.body)
                                     .foregroundColor(.blue)
