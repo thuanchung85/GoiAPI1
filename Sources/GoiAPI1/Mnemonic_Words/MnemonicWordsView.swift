@@ -113,7 +113,7 @@ public struct MnemonicWordsView: View {
                                 
                                     Text("\(index + 1) : \(item)")
                                         .frame(width: 130)
-                                        .font(.body)
+                                        .font(.custom("Arial ", size: 20))
                                         .foregroundColor(.black)
                                         .padding()
                                         .background(Color.gray.opacity(0.1))
@@ -131,11 +131,33 @@ public struct MnemonicWordsView: View {
                     }
                     .frame(maxHeight: 500)
                     
-                    //show address ví của user
+                    //nút next
                     let array_Data12Words = data12Words.map { i in
                         return i.components(separatedBy: ": ").last ?? " "
                     }
-                    Text(array_Data12Words.joined(separator: " ")).font(.body).padding(.horizontal)
+                    HStack(alignment: .center){
+                        Spacer()
+                        Button(action: {
+                            UIPasteboard.general.setValue(array_Data12Words,
+                                                              forPasteboardType: UTType.plainText.identifier)
+                            
+                        }) {
+                            Text("You can copy 12 words here! But this is NOT RECOMMEND.")
+                                .font(.footnote)
+                                .padding()
+                                .foregroundColor(.red)
+                        }
+                        .background(Color.green)
+                        .cornerRadius(30)
+                        Spacer()
+                    }//end VStack
+                    
+                    //show 12 từ
+                    
+                    Text(array_Data12Words.joined(separator: " "))
+                        .font(.custom("Arial ", size: 20))
+                        .padding(.horizontal,15)
+                        .padding(.bottom,15)
                     
                     //nút next
                     HStack(alignment: .center){
@@ -144,16 +166,12 @@ public struct MnemonicWordsView: View {
                             self.isShowReInput12SeedsView = true
                             
                         }) {
-                            VStack {
-                                Text("NEXT")
-                            }
-                            .padding()
-                            .accentColor(Color(.systemBlue))
-                            .cornerRadius(4.0)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 4).stroke(Color(.systemBlue), lineWidth: 2)
-                            )
+                            Text("NEXT")
+                                .padding()
+                                .foregroundColor(.white)
                         }
+                        .background(Color.green)
+                        .cornerRadius(30)
                         Spacer()
                     }//end VStack
                     
