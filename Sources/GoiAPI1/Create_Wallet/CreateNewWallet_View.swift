@@ -109,7 +109,8 @@ public struct CreateNewWallet_View: View {
             //Nếu user chưa pass nhập mã Pin thì còn ở view nhập mã PIN
             if(self.isUserPass_PIN_making == false){
                 //===nút đi tới create new wallet view của gói API 1===//
-                PasscodeView_ConfirmPIN(textAskUserDo: "Enter PIN Number for your wallet",
+                PasscodeView_ConfirmPIN(textAskUserDo: "Put in your pin number",
+                                        textAskUserDo2: "(This pincode will unlock your Pools wallet only on this device)",
                                         walletName:  $walletName,
                                         isUserPass_PIN_making: $isUserPass_PIN_making)
             }

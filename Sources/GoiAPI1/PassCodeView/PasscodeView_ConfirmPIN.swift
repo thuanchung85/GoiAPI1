@@ -13,25 +13,30 @@ public struct PasscodeView_ConfirmPIN : View {
     @State var isShowConFirmPassCodeView:Bool = false
     
     var textAskUserDo:String
+    var textAskUserDo2:String
     
-    public init(textAskUserDo:String,walletName: Binding<String>, isUserPass_PIN_making:Binding<Bool>) {
+    //===INIT====///
+    public init(textAskUserDo:String,textAskUserDo2:String,walletName: Binding<String>, isUserPass_PIN_making:Binding<Bool>) {
         self._walletName = walletName
         self.textAskUserDo = textAskUserDo
+        self.textAskUserDo2 = textAskUserDo2
         self._isUserPass_PIN_making = isUserPass_PIN_making
     }
     
+    //===BODY====//
     public var body: some View{
         //Bước 1: hiện page cho user nhập mã PIN trước
         if (isShowConFirmPassCodeView == false){
             VStack{
                 
-                Image(systemName: "person")
-                    .resizable()
-                    .frame(width: 50, height: 50)
-                    .padding(.top,20)
+               
                 
                 Text(textAskUserDo)
-                    .font(.title2)
+                    .font(.custom("Arial ", size: 22))
+                    .fontWeight(.heavy)
+                    .padding(.top,20)
+                Text(textAskUserDo2)
+                    .font(.custom("Arial ", size: 18))
                     .fontWeight(.heavy)
                     .padding(.top,20)
                 
