@@ -34,6 +34,8 @@ public struct MnemonicWordsView: View {
     }
     //====BODY====///
     public var body: some View{
+        
+        //chính LoadingView quyết định việc tạo ra 12 từ
         if(isStillLoading12Word == true){
             LoadingView(addressWallet: $addressWallet, data12Words: $data12Words, isStillLoading12Word: $isStillLoading12Word,
                         walletName: $walletName, PIN_Number: $PIN_Number, isShowing:  $isStillLoading12Word)
@@ -46,6 +48,7 @@ public struct MnemonicWordsView: View {
             }
             
         }
+        
         //nếu load 12 từ xong thì show ra 12 từ đó, và chuẫn bị view "cho user nhập lại 12 từ"
         if(isStillLoading12Word == false)
         {
