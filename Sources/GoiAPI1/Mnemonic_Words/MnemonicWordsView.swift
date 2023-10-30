@@ -163,6 +163,7 @@ public struct MnemonicWordsView: View {
                         .font(.custom("Arial ", size: 20))
                         .padding(.horizontal,15)
                         .padding(.bottom,15)
+                        .background(Color.gray.opacity(0.1))
                     
                     //nút next
                     HStack(alignment: .center){
