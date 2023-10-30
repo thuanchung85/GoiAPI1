@@ -49,14 +49,15 @@ public struct ReInputMnemonicWordsView: View {
                     .padding(.bottom,5)
                 
                 //12 từ trong khung
-                Text(seedsTextString.joined(separator: " "))
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
-                    .font(.body)
-                    .foregroundColor(.white)
-                    .background(Color.gray)
-                    .padding(10)
-                    .cornerRadius(5)
-                    .lineSpacing(10)
+                HStack{
+                    Text(seedsTextString.joined(separator: " "))
+                        .font(.body)
+                        .foregroundColor(.black)
+                        .padding(5)
+                        .lineSpacing(10)
+                }
+                .cornerRadius(5)
+                .background(Color.gray.opacity(0.5))
                 
                 //nút delete 1 từ
                 HStack(){
