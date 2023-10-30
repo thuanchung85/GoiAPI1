@@ -52,7 +52,7 @@ public struct ReInputMnemonicWordsView: View {
                 HStack{
                     Text(seedsTextString.joined(separator: " "))
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
-                        .font(.body)
+                        .font(.custom("Arial ", size: 20))
                         .foregroundColor(.black)
                         .padding(5)
                         .lineSpacing(10)
