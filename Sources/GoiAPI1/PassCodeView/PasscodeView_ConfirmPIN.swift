@@ -77,18 +77,13 @@ public struct PasscodeView_ConfirmPIN : View {
         else{
             VStack{
                 
-                Image(systemName: "person.fill")
-                    .resizable()
-                    .frame(width: 50, height: 50)
-                    .padding(.top,20)
-                
                 Text("Please Confirm your PIN number")
                     .font(.title2)
                     .fontWeight(.heavy)
                     .padding(.top,20)
                     .foregroundColor(.red)
                 
-                HStack(spacing: 15){
+                HStack(spacing: 22){
                     
                     // Password Circle View...
                     
@@ -318,7 +313,7 @@ struct PasswordButton3 : View {
                             .frame(width: 55, height: 55)
                         
                         Text(value)
-                            .font(.title)
+                            .font(.body)
                             .foregroundColor(.black)
                     }
                 }
