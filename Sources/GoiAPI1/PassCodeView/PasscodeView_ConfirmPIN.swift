@@ -209,10 +209,9 @@ struct PasswordButton2 : View {
                     
                     // Image...
                     ZStack{
-                        Rectangle()
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(.gray.opacity(0.2))
                             .frame(width: 55, height: 55)
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(10)
                         
                         Image(systemName: "delete.left")
                             .font(.system(size: 24))
@@ -224,10 +223,9 @@ struct PasswordButton2 : View {
                 }
                 else{
                     ZStack{
-                        Rectangle()
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(.gray.opacity(0.2))
                             .frame(width: 55, height: 55)
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(10)
                         
                         Text(value)
                             .font(.body)
