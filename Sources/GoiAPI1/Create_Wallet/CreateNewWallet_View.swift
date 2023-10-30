@@ -51,6 +51,7 @@ public struct CreateNewWallet_View: View {
                         .padding(.bottom,5)
                     TextField("Enter your wallet name", text: $walletName)
                         .font(.body)
+                        .foregroundColor(.white)
                         .padding()
                         .background(Color.gray)
                         .cornerRadius(12)
