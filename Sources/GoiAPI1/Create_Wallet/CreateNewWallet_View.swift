@@ -31,6 +31,7 @@ public struct CreateNewWallet_View: View {
             
             VStack(alignment: .leading)
             {
+                //title
                 HStack(alignment: .center){
                     Spacer()
                     Text("Create a New Wallet")
@@ -45,10 +46,13 @@ public struct CreateNewWallet_View: View {
                 
                 //phần nhập tên ví
                 VStack(alignment: .leading){
-                    Text("WALLET NAME").font(.title)
+                    Text("WALLET NAME")
+                        .font(.custom("Arial ", size: 10))
+                        .padding(.bottom,5)
                     TextField("Enter your wallet name", text: $walletName)
                         .font(.body)
                         .textFieldStyle(.roundedBorder)
+                        .background(Color.black)
                 }
                 
                 
