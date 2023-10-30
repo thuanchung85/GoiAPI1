@@ -85,8 +85,9 @@ public struct ReInputMnemonicWordsView: View {
                             LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
                                 ForEach(Array(data12Words.shuffled().enumerated()), id: \.offset) { index,item in
                                     let s = item.components(separatedBy: ": ").last ?? " "
+                                   
                                     if(seedsTextString.contains(s) == false){
-                                        Text(s)
+                                        Text("\(index) : \(s)")
                                             .frame(width: 80)
                                             .font(.body)
                                             .foregroundColor(.white)
