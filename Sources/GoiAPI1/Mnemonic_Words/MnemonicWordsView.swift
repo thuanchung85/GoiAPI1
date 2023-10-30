@@ -131,18 +131,19 @@ public struct MnemonicWordsView: View {
                     }
                     .frame(maxHeight: 510)
                     
-                    //nút next
+                    //nút copy to clipboard
                     let array_Data12Words = data12Words.map { i in
                         return i.components(separatedBy: ": ").last ?? " "
                     }
                     HStack(alignment: .center){
-                        Spacer()
+                       
                         Button(action: {
                             UIPasteboard.general.setValue(array_Data12Words,
                                                               forPasteboardType: UTType.plainText.identifier)
                             
                         }) {
-                            Text("You can copy 12 words here! But this is NOT RECOMMEND.")
+                            Text("Copy")
+                                .frame(width:100)
                                 .font(.footnote)
                                 .padding()
                                 .foregroundColor(.red)
@@ -150,6 +151,10 @@ public struct MnemonicWordsView: View {
                         .background(Color.green)
                         .cornerRadius(30)
                         Spacer()
+                        Text("You can copy 12 words here! But this is NOT RECOMMEND.")
+                            .foregroundColor(.red)
+                            .font(.footnote)
+                       
                     }//end VStack
                     
                     //show 12 từ
