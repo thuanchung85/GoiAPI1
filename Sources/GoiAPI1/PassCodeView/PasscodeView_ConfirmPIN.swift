@@ -210,7 +210,7 @@ struct PasswordButton2 : View {
                     // Image...
                     ZStack{
                         Rectangle()
-                            .frame(width: 30, height: 30)
+                            .frame(width: 55, height: 55)
                             .background(Color.gray.opacity(0.2))
                             .cornerRadius(10)
                         
@@ -225,7 +225,7 @@ struct PasswordButton2 : View {
                 else{
                     ZStack{
                         Rectangle()
-                            .frame(width: 30, height: 30)
+                            .frame(width: 55, height: 55)
                             .background(Color.gray.opacity(0.2))
                             .cornerRadius(10)
                         
