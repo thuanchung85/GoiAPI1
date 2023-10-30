@@ -56,6 +56,7 @@ public struct ReInputMnemonicWordsView: View {
                         .foregroundColor(.black)
                         .padding(5)
                         .lineSpacing(10)
+                        .cornerRadius(5)
                 }
                 .cornerRadius(5)
                 .background(Color.gray.opacity(0.5))
