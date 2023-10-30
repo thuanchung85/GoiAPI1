@@ -51,6 +51,7 @@ public struct ReInputMnemonicWordsView: View {
                 //12 từ trong khung
                 HStack{
                     Text(seedsTextString.joined(separator: " "))
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
                         .font(.body)
                         .foregroundColor(.black)
                         .padding(5)
