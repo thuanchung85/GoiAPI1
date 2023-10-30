@@ -78,19 +78,22 @@ public struct CreateNewWallet_View: View {
                 }
                 Spacer()
                 
-                //nút NEXT
+                //nút Create PIN code đi tới nhập mã PIN view
                 if(self.checkBoxisOn == true) && (self.walletName.isEmpty == false){
-                    Button(action: {
-                        //call PasscodeView_ConfirmPIN
-                        self.isShow_PasscodeView_ConfirmPIN = true
-                    }) {
-                        Text("Create PIN code")
-                            .padding()
-                            .foregroundColor(.white)
+                    HStack{
+                        Spacer()
+                        Button(action: {
+                            //call PasscodeView_ConfirmPIN
+                            self.isShow_PasscodeView_ConfirmPIN = true
+                        }) {
+                            Text("Create PIN code")
+                                .padding()
+                                .foregroundColor(.white)
+                        }
+                        .background(Color.green)
+                        .cornerRadius(30)
+                        Spacer()
                     }
-                    .background(Color.green)
-                    .cornerRadius(30)
-                    
                     
                 }
                 
