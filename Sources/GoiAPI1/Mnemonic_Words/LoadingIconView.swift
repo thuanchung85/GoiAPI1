@@ -61,10 +61,17 @@ struct LoadingView<Content>: View where Content: View {
                     
                     DispatchQueue.global(qos: .userInteractive).async {
                         let keystore = try! BIP32Keystore(mnemonics: mnemonic, password: "", mnemonicsPassword: "")
-                        print(keystore as Any)
+                        
+                        //let keyData = try! JSONEncoder().encode(keystore!.keystoreParams)
+                        //let wallet = Web3Wallet(address:  self.addressWallet,
+                                                //data: keyData, name: self.walletName, type: .hd(mnemonics: mnemonic.components(separatedBy: " ")))
+                       
                         self.addressWallet = (keystore?.addresses?.first)!.address
-                        print(self.addressWallet)
+                       
+                        let pkey = try! keystore!.UNSAFE_getPrivateKeyData(password: "", account: (keystore?.addresses?.first)!).toHexString()
                         UserDefaults.standard.set( self.addressWallet, forKey: "PoolsWallet_addressWallet")
+                        print(self.addressWallet)
+                        print("pkey :\(pkey)")
                     }
                 
                     //save vao2 user default wallet name va addressWallet
