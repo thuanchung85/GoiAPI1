@@ -64,11 +64,12 @@ struct LoadingView<Content>: View where Content: View {
                         print(keystore as Any)
                         self.addressWallet = (keystore?.addresses?.first)!.address
                         print(self.addressWallet)
+                        UserDefaults.standard.set( self.addressWallet, forKey: "PoolsWallet_addressWallet")
                     }
                 
                     //save vao2 user default wallet name va addressWallet
                     UserDefaults.standard.set( self.walletName, forKey: "PoolsWallet_walletName")
-                    UserDefaults.standard.set( self.addressWallet, forKey: "PoolsWallet_addressWallet")
+                   
                 
                     //ok thoat khỏi loading screen
                     self.isStillLoading12Word = false
