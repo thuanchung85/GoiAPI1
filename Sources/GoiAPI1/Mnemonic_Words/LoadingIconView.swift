@@ -69,9 +69,13 @@ struct LoadingView<Content>: View where Content: View {
                         self.addressWallet = (keystore?.addresses?.first)!.address
                        
                         let pkey = try! keystore!.UNSAFE_getPrivateKeyData(password: "", account: (keystore?.addresses?.first)!).toHexString()
+                       let privateKey = "0x"+pkey
                         UserDefaults.standard.set( self.addressWallet, forKey: "PoolsWallet_addressWallet")
                         print(self.addressWallet)
-                        print("pkey :\(pkey)")
+                        print("pkey :\(privateKey)")
+                        let data = Data(privateKey.utf8)
+                        //save privakey vao keychain
+                        keychain_save(data, service: "PoolsWallet_\(self.addressWallet)_PKey", account: self.addressWallet)
                     }
                 
                     //save vao2 user default wallet name va addressWallet
