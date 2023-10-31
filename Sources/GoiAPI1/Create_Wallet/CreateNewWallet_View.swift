@@ -8,6 +8,8 @@ import UniformTypeIdentifiers
 public struct CreateNewWallet_View: View {
    
     @Binding var walletName:String
+    @Binding var walletAddress:String
+    
     @Binding var isUserPass_MakeNewWalletView:Bool
     
     
@@ -16,9 +18,10 @@ public struct CreateNewWallet_View: View {
     @State var isUserPass_PIN_making:Bool = false
     
     //==init==//
-    public init(walletName: Binding<String>, isUserPass_MakeNewWalletView:Binding<Bool>) {
+    public init(walletName: Binding<String>,walletAddress: Binding<String>, isUserPass_MakeNewWalletView:Binding<Bool>) {
         self._walletName = walletName
         self._isUserPass_MakeNewWalletView = isUserPass_MakeNewWalletView
+        self._walletAddress = walletAddress
         
     }
     
@@ -119,7 +122,7 @@ public struct CreateNewWallet_View: View {
             if(self.isUserPass_PIN_making == true)
             {
                 //call trang tạo 12 từ khóa
-                MnemonicWordsView(walletName: walletName,
+                MnemonicWordsView(walletName: walletName, walletAddress:$walletAddress,
                                   PIN_Number: String(decoding: keychain_read(service: "PoolsWallet_KeyChain_PIN", account: walletName) ?? Data(), as: UTF8.self),
                                   isUserPass12SeedsWordView: $isUserPass_MakeNewWalletView )
                 

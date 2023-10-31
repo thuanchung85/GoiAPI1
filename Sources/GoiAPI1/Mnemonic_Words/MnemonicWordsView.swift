@@ -8,10 +8,11 @@ import UniformTypeIdentifiers
 public struct MnemonicWordsView: View {
    
     @State var walletName:String
+    
     @State var PIN_Number:String
     
     @State var data12Words = (1...12).map { "\($0). item" }
-    @State var addressWallet:String = ""
+    @Binding var addressWallet:String
     @State var isStillLoading12Word = true
     let columns = [
         GridItem(.flexible()),
@@ -25,7 +26,8 @@ public struct MnemonicWordsView: View {
     
     
     //===INIT===///
-    public init(walletName:String, PIN_Number:String , isUserPass12SeedsWordView:Binding<Bool>) {
+    public init(walletName:String,walletAddress:Binding<String>, PIN_Number:String , isUserPass12SeedsWordView:Binding<Bool>) {
+        self._addressWallet = walletAddress
         self.walletName = walletName
         self.PIN_Number = PIN_Number
         self._isUserPass12SeedsWordView = isUserPass12SeedsWordView
