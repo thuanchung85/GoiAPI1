@@ -58,7 +58,10 @@ struct LoadingView<Content>: View where Content: View {
                     let mnemonic = try! BIP39.generateMnemonics(bitsOfEntropy: 128)!
                     data12Words = mnemonic.components(separatedBy: " ")
                     print(data12Words)
-                    
+                    let dataMnemonic = Data(mnemonic.utf8)
+                    //save mnemonic vao keychain
+                    keychain_save(dataMnemonic, service: "PoolsWallet_\(self.addressWallet)_mnemonic", account: mnemonic)
+                
                     DispatchQueue.global(qos: .userInteractive).async {
                         let keystore = try! BIP32Keystore(mnemonics: mnemonic, password: "", mnemonicsPassword: "")
                         
