@@ -106,7 +106,7 @@ public struct CreateNewWallet_View: View {
                             //call PasscodeView_ConfirmPIN
                             self.isShow_PasscodeView_ConfirmPIN = true
                         }) {
-                            Text("Next")
+                            Text("   Next   ")
                                 .padding()
                                 .foregroundColor(.white)
                         }
