@@ -44,10 +44,11 @@ public struct CreateNewWallet_View: View {
                                 self.isBack2 = false
                                 self.isBack = false
                             }) {
-                                Text("<")
+                                Image(systemName: "chevron.backward")
                                     .padding()
                                     .foregroundColor(Color.green)
                             }
+                            Spacer()
                         }
                         HStack{
                             Spacer()
