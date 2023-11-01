@@ -12,17 +12,19 @@ public struct CreateNewWallet_View: View {
     
     @Binding var isUserPass_MakeNewWalletView:Bool
     @Binding var isBack:Bool
+    @Binding var isBack2:Bool
     
     @State var checkBoxisOn:Bool = false
     @State var isShow_PasscodeView_ConfirmPIN = false
     @State var isUserPass_PIN_making:Bool = false
     
     //==init==//
-    public init(walletName: Binding<String>,walletAddress: Binding<String>, isUserPass_MakeNewWalletView:Binding<Bool>, isBack:Binding<Bool>) {
+    public init(walletName: Binding<String>,walletAddress: Binding<String>, isUserPass_MakeNewWalletView:Binding<Bool>, isBack:Binding<Bool>, isBack2:Binding<Bool>) {
         self._walletName = walletName
         self._isUserPass_MakeNewWalletView = isUserPass_MakeNewWalletView
         self._walletAddress = walletAddress
         self._isBack = isBack
+        self._isBack2 = isBack2
     }
     
     //==BODY==//
@@ -36,18 +38,17 @@ public struct CreateNewWallet_View: View {
             {
                 //title
                 HStack(alignment: .center){
-                    Spacer()
+                   
                     Button(action: {
-                        //call PasscodeView_ConfirmPIN
-                        self.isBack = true
+                        self.isBack2 = false
+                        self.isBack = false
                     }) {
                         Text("<")
                             .padding()
                             .foregroundColor(.white)
                     }
-                    .background(Color.green)
-                    .cornerRadius(30)
                     
+                    Spacer()
                     Text("Create a New Wallet")
                         .font(.custom("Arial Bold", size: 20))
                         .padding(.bottom, 20)
