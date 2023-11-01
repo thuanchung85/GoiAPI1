@@ -62,7 +62,7 @@ public struct ReInputMnemonicWordsView: View {
                     LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
                         ForEach(Array(seedsTextString.enumerated()), id: \.offset) { index,item in
                             
-                                Text("\(index + 1) : \(item)")
+                                Text("...")
                                 .scaledToFit()
                                 .minimumScaleFactor(0.01)
                                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
