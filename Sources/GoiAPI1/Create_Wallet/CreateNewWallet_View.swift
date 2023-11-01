@@ -11,18 +11,18 @@ public struct CreateNewWallet_View: View {
     @Binding var walletAddress:String
     
     @Binding var isUserPass_MakeNewWalletView:Bool
-    
+    @Binding var isBack:Bool
     
     @State var checkBoxisOn:Bool = false
     @State var isShow_PasscodeView_ConfirmPIN = false
     @State var isUserPass_PIN_making:Bool = false
     
     //==init==//
-    public init(walletName: Binding<String>,walletAddress: Binding<String>, isUserPass_MakeNewWalletView:Binding<Bool>) {
+    public init(walletName: Binding<String>,walletAddress: Binding<String>, isUserPass_MakeNewWalletView:Binding<Bool>, isBack:Binding<Bool>) {
         self._walletName = walletName
         self._isUserPass_MakeNewWalletView = isUserPass_MakeNewWalletView
         self._walletAddress = walletAddress
-        
+        self._isBack = isBack
     }
     
     //==BODY==//
@@ -37,6 +37,17 @@ public struct CreateNewWallet_View: View {
                 //title
                 HStack(alignment: .center){
                     Spacer()
+                    Button(action: {
+                        //call PasscodeView_ConfirmPIN
+                        self.isBack = true
+                    }) {
+                        Text("<")
+                            .padding()
+                            .foregroundColor(.white)
+                    }
+                    .background(Color.green)
+                    .cornerRadius(30)
+                    
                     Text("Create a New Wallet")
                         .font(.custom("Arial Bold", size: 20))
                         .padding(.bottom, 20)
@@ -90,7 +101,7 @@ public struct CreateNewWallet_View: View {
                             //call PasscodeView_ConfirmPIN
                             self.isShow_PasscodeView_ConfirmPIN = true
                         }) {
-                            Text("Create PIN code")
+                            Text("Next")
                                 .padding()
                                 .foregroundColor(.white)
                         }
