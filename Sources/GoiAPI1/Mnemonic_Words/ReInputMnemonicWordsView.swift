@@ -50,6 +50,7 @@ public struct ReInputMnemonicWordsView: View {
                 
                 //12 từ trong khung
                 HStack{
+                    /*
                     Text(seedsTextString.joined(separator: " "))
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
                         .font(.custom("Arial ", size: 20))
@@ -57,6 +58,28 @@ public struct ReInputMnemonicWordsView: View {
                         .padding(5)
                         .lineSpacing(10)
                         .cornerRadius(5)
+                     */
+                    LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
+                        ForEach(Array(seedsTextString.enumerated()), id: \.offset) { index,item in
+                            
+                                Text("\(index + 1) : \(item)")
+                                    .frame(width: 130)
+                                    .font(.custom("Arial ", size: 20))
+                                    .foregroundColor(.black)
+                                    .padding()
+                                    .background(Color.gray.opacity(0.1))
+                                    .cornerRadius(20)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .stroke(.green, lineWidth: 1)
+                                    )
+                                    
+                                    
+                            
+                        }
+                    }
+                    .padding(5)
+                    
                 }
                 .background(Color.gray.opacity(0.5))
                 .cornerRadius(5)
