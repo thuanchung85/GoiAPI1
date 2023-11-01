@@ -90,10 +90,12 @@ public struct MnemonicWordsView: View {
                     }
                     .frame(maxHeight: 510)
                     
+                    
                     //nút copy to clipboard
                     let array_Data12Words = data12Words.map { i in
                         return i.components(separatedBy: ": ").last ?? " "
                     }
+                    /*
                     HStack(alignment: .center){
                        
                         Button(action: {
@@ -115,7 +117,7 @@ public struct MnemonicWordsView: View {
                             .font(.footnote)
                        
                     }//end VStack
-                    
+                    */
                     //show 12 từ
                     
                     Text(array_Data12Words.joined(separator: " "))
