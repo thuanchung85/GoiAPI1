@@ -103,6 +103,8 @@ public struct CreateNewWallet_View: View {
                     HStack{
                         Spacer()
                         Button(action: {
+                            //khi tạo mới wallet thì clear wallet address củ trên user default
+                            UserDefaults.standard.set( "", forKey: "PoolsWallet_addressWallet")
                             //call PasscodeView_ConfirmPIN
                             self.isShow_PasscodeView_ConfirmPIN = true
                         }) {
