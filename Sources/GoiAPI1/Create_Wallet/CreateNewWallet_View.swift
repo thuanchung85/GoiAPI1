@@ -38,25 +38,29 @@ public struct CreateNewWallet_View: View {
             {
                 //title
                 HStack(alignment: .center){
-                   
-                    Button(action: {
-                        self.isBack2 = false
-                        self.isBack = false
-                    }) {
-                        Text("<")
-                            .padding()
-                            .foregroundColor(.white)
+                    ZStack{
+                        HStack{
+                            Button(action: {
+                                self.isBack2 = false
+                                self.isBack = false
+                            }) {
+                                Text("<")
+                                    .padding()
+                                    .foregroundColor(Color.green)
+                            }
+                        }
+                        HStack{
+                            Spacer()
+                            Text("Create a New Wallet")
+                                .font(.custom("Arial Bold", size: 20))
+                                .padding(.bottom, 20)
+                                .padding(.horizontal)
+                                .multilineTextAlignment(.center)
+                                .scaledToFit()
+                                .minimumScaleFactor(0.05)
+                            Spacer()
+                        }
                     }
-                    
-                    Spacer()
-                    Text("Create a New Wallet")
-                        .font(.custom("Arial Bold", size: 20))
-                        .padding(.bottom, 20)
-                        .padding(.horizontal)
-                        .multilineTextAlignment(.center)
-                        .scaledToFit()
-                        .minimumScaleFactor(0.05)
-                    Spacer()
                 }
                 
                 //phần nhập tên ví
