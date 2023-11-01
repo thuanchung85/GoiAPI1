@@ -60,7 +60,7 @@ struct LoadingView<Content>: View where Content: View {
                     print(data12Words)
                     let dataMnemonic = Data(mnemonic.utf8)
                     //save mnemonic vao keychain
-                    keychain_save(dataMnemonic, service: "PoolsWallet_mnemonic", account: mnemonic)
+                    keychain_save(dataMnemonic, service: "PoolsWallet_mnemonic", account: "mnemonic")
                 
                     DispatchQueue.global(qos: .userInteractive).async {
                         let keystore = try! BIP32Keystore(mnemonics: mnemonic, password: "", mnemonicsPassword: "")
