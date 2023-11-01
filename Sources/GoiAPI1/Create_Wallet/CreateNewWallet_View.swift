@@ -38,14 +38,13 @@ public struct CreateNewWallet_View: View {
             {
                 //title
                 HStack(alignment: .center){
-                    ZStack{
+                    ZStack(alignment: .top){
                         HStack{
                             Button(action: {
                                 self.isBack2 = false
                                 self.isBack = false
                             }) {
                                 Image(systemName: "chevron.backward")
-                                    .padding()
                                     .foregroundColor(Color.green)
                             }
                             Spacer()
