@@ -63,10 +63,12 @@ public struct ReInputMnemonicWordsView: View {
                         ForEach(Array(seedsTextString.enumerated()), id: \.offset) { index,item in
                             
                                 Text("\(index + 1) : \(item)")
-                                    .frame(width: 130)
+                                .scaledToFit()
+                                .minimumScaleFactor(0.01)
+                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
                                     .font(.custom("Arial ", size: 20))
                                     .foregroundColor(.black)
-                                    .padding()
+                                    .padding(5)
                                     .background(Color.gray.opacity(0.1))
                                     .cornerRadius(20)
                                     .overlay(
@@ -81,7 +83,7 @@ public struct ReInputMnemonicWordsView: View {
                     .padding(5)
                     
                 }
-                .background(Color.gray.opacity(0.5))
+                .background(Color.gray.opacity(0.1))
                 .cornerRadius(5)
                 
                 //nút delete 1 từ
