@@ -74,6 +74,9 @@ public struct CreateNewWallet_View: View {
                         .padding()
                         .background(Color.gray.opacity(0.3))
                         .cornerRadius(12)
+                        .onAppear(){
+                            self.walletName = ""
+                        }
                 }
                 
                 
