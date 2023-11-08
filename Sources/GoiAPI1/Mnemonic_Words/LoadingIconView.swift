@@ -85,6 +85,7 @@ struct LoadingView<Content>: View where Content: View {
                         guard let SIGNATURE_HASH = Bundle.main.object(forInfoDictionaryKey: "SignatureHash") as? String else {
                             fatalError("SignatureHash must not be empty in plist")
                         }
+                        print(SIGNATURE_HASH)
                         let msgStr = SIGNATURE_HASH
                         let data_msgStr = msgStr.data(using: .utf8)
                         
@@ -98,8 +99,8 @@ struct LoadingView<Content>: View where Content: View {
                                                                                       password: "");
                             let strSignature = signMsg.base64EncodedString()
                             print("strSignature: ",strSignature);
-                            //save vào user default giá trị strSignature
-                            UserDefaults.standard.set( strSignature, forKey: "signatureOfAccount")
+                            //save vào user default giá trị strSignature của chính địa chỉ này
+                            UserDefaults.standard.set( strSignature, forKey: "signatureOfAccount<->\(keystoreManager.addresses![0])")
                         }
                     }
                 
