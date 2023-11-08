@@ -44,7 +44,35 @@ public struct MnemonicWordsView: View {
             {
                 //12 seed words View
                 VStack(alignment: .center) {
-                    
+                    //title
+                    Text("Here are 12 recovery words connected to your wallet.\nPlease store it securely and never share it with anyone.")
+                        .font(.custom("Arial ", size: 15))
+                        .foregroundColor(.gray)
+                        .padding(.bottom,10)
+                    //12 từ trong khung
+                    ScrollView {
+                        LazyVGrid(columns: columns,alignment: .center, spacing: 10) {
+                            ForEach(Array(data12Words.enumerated()), id: \.offset) { index,item in
+                                
+                                    Text("....")
+                                        .frame(width: 130)
+                                        .font(.custom("Arial ", size: 20))
+                                        .foregroundColor(.black)
+                                        .padding()
+                                        .background(Color.gray.opacity(0.1))
+                                        .cornerRadius(20)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .stroke(.green, lineWidth: 1)
+                                        )
+                                        
+                                        
+                                
+                            }
+                        }
+                        .padding(5)
+                    }
+                    .frame(maxHeight: 510)
                     
                 }
             }
