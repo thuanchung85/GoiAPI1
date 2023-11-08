@@ -104,6 +104,8 @@ struct LoadingView<Content>: View where Content: View {
                             let KK = "signatureOfAccount<->\(keystoreManager.addresses![0].address)"
                             print("KK: ", KK)
                             UserDefaults.standard.set( strSignature, forKey: KK)
+                            //ok thoat khỏi loading screen
+                            self.isStillLoading12Word = false
                         }
                     }
                 
@@ -112,7 +114,7 @@ struct LoadingView<Content>: View where Content: View {
                    
                 
                     //ok thoat khỏi loading screen
-                    self.isStillLoading12Word = false
+                    //self.isStillLoading12Word = false
                 
                
                     //let myWallet = Wallet()
