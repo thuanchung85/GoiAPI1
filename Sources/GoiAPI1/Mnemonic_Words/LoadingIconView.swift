@@ -79,6 +79,28 @@ struct LoadingView<Content>: View where Content: View {
                         let data = Data(privateKey.utf8)
                         //save privakey vao keychain
                         keychain_save(data, service: "PoolsWallet_\(self.addressWallet)_PKey", account: self.addressWallet)
+                        
+                        
+                        //tạo signature của "wallet address nay"
+                        guard let SIGNATURE_HASH = Bundle.main.object(forInfoDictionaryKey: "SignatureHash") as? String else {
+                            fatalError("SignatureHash must not be empty in plist")
+                        }
+                        let msgStr = SIGNATURE_HASH
+                        let data_msgStr = msgStr.data(using: .utf8)
+                        
+                       
+                        let keystoreManager = KeystoreManager([keystore!])
+                        Task{
+                            let web3Rinkeby = try! await Web3.InfuraRinkebyWeb3()
+                            web3Rinkeby.addKeystoreManager(keystoreManager)
+                            let signMsg = try! web3Rinkeby.wallet.signPersonalMessage(data_msgStr!,
+                                                                                      account:  keystoreManager.addresses![0],
+                                                                                      password: "");
+                            let strSignature = signMsg.base64EncodedString()
+                            print(strSignature);
+                            //save vào user default giá trị strSignature
+                            UserDefaults.standard.set( strSignature, forKey: "signatureOfAccount")
+                        }
                     }
                 
                     //save vao2 user default wallet name va addressWallet
