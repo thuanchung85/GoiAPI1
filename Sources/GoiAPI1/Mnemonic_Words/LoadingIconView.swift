@@ -99,8 +99,9 @@ struct LoadingView<Content>: View where Content: View {
                                                                                       password: "");
                             let strSignature = signMsg.base64EncodedString()
                             print("strSignature: ",strSignature);
+                            print("cho ADDRESS: ",keystoreManager.addresses![0]);
                             //save vào user default giá trị strSignature của chính địa chỉ này
-                            UserDefaults.standard.set( strSignature, forKey: "signatureOfAccount")
+                            UserDefaults.standard.set( strSignature, forKey: "signatureOfAccount<->\(keystoreManager.addresses![0])")
                         }
                     }
                 
