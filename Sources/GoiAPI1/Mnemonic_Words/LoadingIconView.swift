@@ -101,7 +101,9 @@ struct LoadingView<Content>: View where Content: View {
                             print("strSignature: ",strSignature);
                             print("cho ADDRESS: ",keystoreManager.addresses![0]);
                             //save vào user default giá trị strSignature của chính địa chỉ này
-                            UserDefaults.standard.set( strSignature, forKey: "signatureOfAccount<->\(keystoreManager.addresses![0])")
+                            let KK = "signatureOfAccount<->\(keystoreManager.addresses![0])"
+                            print("KK: ", KK)
+                            UserDefaults.standard.set( strSignature, forKey: KK)
                         }
                     }
                 
