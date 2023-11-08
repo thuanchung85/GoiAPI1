@@ -44,6 +44,7 @@ public struct MnemonicWordsView: View {
             {
                 //12 seed words View
                 VStack(alignment: .center) {
+                    Spacer()
                     //title
                     Text("Here are 12 recovery words connected to your wallet.\nPlease store it securely and never share it with anyone.")
                         .font(.custom("Arial ", size: 15))
@@ -73,7 +74,7 @@ public struct MnemonicWordsView: View {
                         .padding(5)
                     }
                     .frame(maxHeight: 510)
-                    
+                    Spacer()
                 }
             }
             
@@ -123,7 +124,7 @@ public struct MnemonicWordsView: View {
                     let array_Data12Words = data12Words.map { i in
                         return i.components(separatedBy: ": ").last ?? " "
                     }
-                    /*
+                    
                     HStack(alignment: .center){
                        
                         Button(action: {
@@ -145,7 +146,7 @@ public struct MnemonicWordsView: View {
                             .font(.footnote)
                        
                     }//end VStack
-                    */
+                    
                     //show 12 từ
                     
                     Text(array_Data12Words.joined(separator: " "))
