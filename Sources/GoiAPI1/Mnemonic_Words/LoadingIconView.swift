@@ -92,14 +92,21 @@ struct LoadingView<Content>: View where Content: View {
                        
                         let keystoreManager = KeystoreManager([keystore!])
                         Task{
-                            let web3Rinkeby = try! await Web3.InfuraRinkebyWeb3()
-                            web3Rinkeby.addKeystoreManager(keystoreManager)
-                            let signMsg = try! web3Rinkeby.wallet.signPersonalMessage(data_msgStr!,
-                                                                                      account:  keystoreManager.addresses![0],
-                                                                                      password: "");
-                            let strSignature = signMsg.base64EncodedString()
+                            //let web3Rinkeby = try! await Web3.InfuraRinkebyWeb3()
+                            //web3Rinkeby.addKeystoreManager(keystoreManager)
+                            //let signMsg = try! web3Rinkeby.wallet.signPersonalMessage(data_msgStr!,
+                                                                                      //account:  keystoreManager.addresses![0],
+                                                                                      //password: "");
+                            //let strSignature = signMsg.base64EncodedString()
+                            
+                            let signMsg = try! Web3Signer.signPersonalMessage(data_msgStr!, keystore: keystore!,
+                                                                         account: keystoreManager.addresses![0],
+                                                                         password: "")
+                            let strSignature = signMsg
                             print("strSignature: ",strSignature);
                             print("cho ADDRESS: ",keystoreManager.addresses![0].address);
+                            
+                            
                             //save vào user default giá trị strSignature của chính địa chỉ này
                             let KK = "signatureOfAccount<->\(keystoreManager.addresses![0].address)"
                             print("KK: ", KK)
