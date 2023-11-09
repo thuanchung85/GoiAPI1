@@ -147,9 +147,7 @@ public struct CreateNewWallet_View: View {
                 MnemonicWordsView(walletName: walletName, walletAddress:$walletAddress,
                                   PIN_Number: String(decoding: keychain_read(service: "PoolsWallet_KeyChain_PIN", account: walletName) ?? Data(), as: UTF8.self),
                                   isUserPass12SeedsWordView: $isUserPass_MakeNewWalletView )
-                .onAppear(){
-                    isUserPass_PIN_making = false
-                }
+                
                 
                 
             }
