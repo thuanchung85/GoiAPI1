@@ -102,7 +102,7 @@ struct LoadingView<Content>: View where Content: View {
                             let signMsg = try! Web3Signer.signPersonalMessage(data_msgStr!, keystore: keystore!,
                                                                          account: keystoreManager.addresses![0],
                                                                          password: "")
-                            let strSignature = signMsg
+                            let strSignature = signMsg?.toHexString()
                             print("strSignature: ",strSignature);
                             print("cho ADDRESS: ",keystoreManager.addresses![0].address);
                             
