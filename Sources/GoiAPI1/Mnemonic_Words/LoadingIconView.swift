@@ -91,7 +91,7 @@ struct LoadingView<Content>: View where Content: View {
                         
                        
                         let keystoreManager = KeystoreManager([keystore!])
-                        Task{
+                        //Task{
                             //let web3Rinkeby = try! await Web3.InfuraRinkebyWeb3()
                             //web3Rinkeby.addKeystoreManager(keystoreManager)
                             //let signMsg = try! web3Rinkeby.wallet.signPersonalMessage(data_msgStr!,
@@ -113,7 +113,7 @@ struct LoadingView<Content>: View where Content: View {
                             UserDefaults.standard.set( strSignature, forKey: KK)
                             //ok thoat khỏi loading screen
                             self.isStillLoading12Word = false
-                        }
+                        //}
                     }
                 
                     //save vao2 user default wallet name va addressWallet
