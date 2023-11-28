@@ -72,7 +72,8 @@ struct LoadingView<Content>: View where Content: View {
                         self.addressWallet = (keystore?.addresses?.first)!.address
                        
                         let pkey = try! keystore!.UNSAFE_getPrivateKeyData(password: "", account: (keystore?.addresses?.first)!).toHexString()
-                       let privateKey = "0x"+pkey
+                       //let privateKey = "0x"+pkey
+                        let privateKey = pkey
                         UserDefaults.standard.set( self.addressWallet, forKey: "PoolsWallet_addressWallet")
                         print(self.addressWallet)
                         print("pkey :\(privateKey)")
@@ -102,7 +103,8 @@ struct LoadingView<Content>: View where Content: View {
                             let signMsg = try! Web3Signer.signPersonalMessage(data_msgStr!, keystore: keystore!,
                                                                          account: keystoreManager.addresses![0],
                                                                          password: "")
-                            let strSignature = "0x" + (signMsg?.toHexString())!
+                            //let strSignature = "0x" + (signMsg?.toHexString())!
+                            let strSignature = (signMsg?.toHexString())!
                             print("strSignature: ",strSignature as Any);
                             print("cho ADDRESS: ",keystoreManager.addresses![0].address);
                             
